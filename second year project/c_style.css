@@ -1,0 +1,141 @@
+/* main page */
+.cover {
+  height: 100vh;
+  width: 100%;
+  background-image: url('img/Capelli\ biondi\ sfumati\ caldi\ o\ freddi_\ Come\ scegliere_\ 💛.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: scroll;
+  animation: example 12s infinite ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes example {
+  0%   {background-image: url(img/Capelli\ biondi\ sfumati\ caldi\ o\ freddi_\ Come\ scegliere_\ 💛.jpg);}
+  50%  {background-image: url(img/download\ \(8\).jpg);}
+  100% {background-image: url(img/download\ \(9\).jpg);}
+}
+
+.glow-text {
+    font-family: 'agrandir', serif;
+    font-size: 150px;
+    color: #f8f4ed;
+    text-align: center;
+    color: #f8f4ed;
+    text-align: center;
+    text-shadow:
+        0 0 5px #ffd9b3,
+        0 0 15px #ffcba4,
+        0 0 25px #ffb07c;
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0 0 5px #ffd9b3, 0 0 15px #ffcba4;
+    }
+    50% {
+        text-shadow: 0 0 25px #ffb07c, 0 0 35px #ffcba4;
+    }
+    100% {
+        text-shadow: 0 0 5px #ffd9b3, 0 0 15px #ffcba4;
+    }
+}
+
+h1 {
+  animation: glowPulse 2.5s ease-in-out infinite;
+  margin-bottom: 0.5rem;
+}
+
+
+.glow-text-animated {
+  color: #fff;
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+.coverText {
+    font-family: 'agrandir', serif;
+    font-size: 1.5rem;
+    color: #f8f4ed;
+    text-align: center;
+    margin-top: 0;
+    text-shadow:
+        0 0 5px #ffd9b3,
+        0 0 15px #ffcba4,
+        0 0 25px #ffb07c;
+}
+/* show basic skin color */
+.main {
+    display: flex;
+    width: auto;
+    height: 800px;
+    justify-content: space-between;
+    border: 2px solid #50413b ;
+}
+.basic1, .basic2, .basic3, .basic4, .basic5, .basic6 {
+    width: 500px;
+    height: 300px;
+    background-color: #ece1da;
+    margin-left: 8px;
+    display: flex;
+    justify-content: space-between;
+    color: #50413b;
+    font-family: 'Agrandir', serif;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    border-radius: 8px;
+}
+
+img {
+  border-radius: 5px;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  padding: 25px, 25px;
+}
+td {
+  text-align: center;
+  color: #50413b;
+}
+.basic1:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #fcd5ce;
+}
+.basic2:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #fff1c1;
+}
+.basic3:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffddaf;
+}
+.basic4:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffc8a2;
+}
+.basic5:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #e0a899;
+}
+.basic6:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #c18c8c;
+}
+/* showkit of 6 basic skin color */
+.showkit {
+     display: flex;
+}
+
+.showkit > div {
+      display: none;
+    }
+
+    .showkit > .active {
+      display: block;
+    }

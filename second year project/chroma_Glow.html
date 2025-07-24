@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chroma Glow</title>
+  <link rel="stylesheet" href="c_style.css">
+</head>
+<body>
+    <!--main page-->
+  <div class="cover">
+    <h1 class="glow-text">Chroma Glow</h1>
+    <p class="coverText">Shine with your best color match</p>
+  </div>
+
+  <!--show 6 basic skin color-->
+  <div class="main">
+    <div class="basic1" onclick="showKit('showFair')">
+      <table>
+        <tr>
+          <td><img src="img/fair.jpg" alt="Fair"></td>
+        </tr>
+        <tr>
+          <td>Fair</td>
+        </tr>
+      </table>
+    </div>
+    <div class="basic2" onclick="showKit('showLight')">
+      <table>
+        <tr>
+          <td><img src="img/light.jpg" alt="Light"></td>
+        </tr>
+        <tr>
+          <td>Light</td>
+        </tr>
+      </table>
+    </div>
+    <div class="basic3" onclick="showKit('showMedium')">
+      <table>
+        <tr>
+          <td><img src="img/medium.jpg" alt="medium"></td>
+        </tr>
+        <tr>
+          <td>Medium</td>
+        </tr>
+      </table>
+    </div>
+    <div class="basic4" onclick="showKit('showTan')">
+      <table>
+        <tr>
+          <td><img src="img/tan.jpg" alt="tan"></td>
+        </tr>
+        <tr>
+          <td>Tan</td>
+        </tr>
+      </table>
+    </div>
+    <div class="basic5" onclick="showKit('showDeep')">
+      <table>
+        <tr>
+          <td><img src="img/deep.jpg" alt="Deep"></td>
+        </tr>
+        <tr>
+          <td>Deep</td>
+        </tr>
+      </table>
+    </div>
+    <div class="basic6" onclick="showKit('showDark')">
+      <table>
+        <tr>
+          <td><img src="img/dark.jpg" alt="Dark"></td>
+        </tr>
+        <tr>
+          <td>Dark</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!--showkit of 6 basic skin color-->
+
+  <div class="showkit">
+    <div class="showFair">
+      <h2>Fair</h2>
+      <p>Fair skin tone details here.</p>
+    </div>
+    <div class="showLight">
+      <h2>Light</h2>
+      <p>Light skin tone details here.</p>
+    </div>
+    <div class="showMedium">
+      <h2>Medium</h2>
+      <p>Medium skin tone details here.</p>
+    </div>
+    <div class="showTan">
+      <h2>Tan</h2>
+      <p>Tan skin tone details here.</p>
+    </div>
+    <div class="showDeep">
+      <h2>Deep</h2>
+      <p>Deep skin tone details here.</p>
+    </div>
+    <div class="showDark">
+      <h2>Dark</h2>
+      <p>Dark skin tone details here.</p>
+    </div>
+  </div>
+
+  <script>
+    function showKit(className) {
+      // hide all showkit divs
+      const allKits = document.querySelectorAll('.showkit > div');
+      allKits.forEach(kit => kit.classList.remove('active'));
+
+      // show only the selected one
+      const selectedKit = document.querySelector('.' + className);
+      if (selectedKit) {
+        selectedKit.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
