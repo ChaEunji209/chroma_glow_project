@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chroma Glow test edition</title>
+<link rel="stylesheet" href="teststyle.css">
+</head>
+<body>
+
+<main id="app">
+  <h1>Find the best clothing colours for you</h1>
+
+  <!-- STEP 1 – surface -->
+  <section id="step1" class="step">
+    <h2>1. Choose your surface tone</h2>
+    <div class="grid" id="surfaceGrid"></div>
+  </section>
+
+  <!-- STEP 2 – sub-tone -->
+  <section id="step2" class="step hidden">
+    <h2>2. Pick the closest sub-tone</h2>
+    <div class="grid" id="subGrid"></div>
+  </section>
+
+  <!-- STEP 3 – undertone -->
+  <section id="step3" class="step hidden">
+    <h2>3. Pick your undertone</h2>
+    <div class="grid" id="undertoneGrid"></div>
+  </section>
+
+  <!-- STEP 4 – hair -->
+  <section id="step4" class="step hidden">
+    <h2>4. Choose your hair colour</h2>
+    <div class="grid" id="hairGrid"></div>
+  </section>
+
+  <!-- STEP 5 – eyes -->
+  <section id="step5" class="step hidden">
+    <h2>5. Choose your eye colour</h2>
+    <div class="grid" id="eyeGrid"></div>
+    <button onclick="generateResult()">Show my palette</button>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="step hidden">
+    <h2>Your best clothing colours</h2>
+    <p><strong>Best:</strong></p>
+    <div id="bestSwatches"></div>
+    <p><strong>Avoid:</strong></p>
+    <div id="avoidSwatches"></div>
+    <button onclick="resetQuiz()">Start over</button>
+  </section>
+</main>
+
+<script>
+/* ---------- CONFIG ---------- */
+const surface = ['Fair','Light','Tan','Medium','Deep','Dark'];
+const sub = {
+  Fair:   ['Porcelain','Ivory','Rosy'],
+  Light:  ['Beige','Peach','Alabaster'],
+  Tan:    ['Golden','Honey','Caramel'],
+  Medium: ['Olive','Bronze','Chestnut'],
+  Deep:   ['Mahogany','Espresso','Umber'],
+  Dark:  ['Onyx','Charcoal','Sable']
+};
+const undertone = ['Cool','Warm','Neutral'];
+const hair   = ['Blonde-cool','Blonde-warm','Red','Light-brown','Dark-brown','Black','Grey-silver'];
+const eyes   = ['Blue','Green','Hazel','Light-brown','Dark-brown','Black','Grey'];
+
+/* tiny grey placeholder so it runs offline */
+const grey = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=';
+
+/* palette engine – still only needs undertone */
+const palettes = {
+  Cool:{best:['#4f46e5','#a78bfa','#f9a8d4','#111827','#312e81'],
+        avoid:['#fb923c','#facc15','#d97706','#dc2626']},
+  Warm:{best:['#fb923c','#f59e0b','#84cc16','#d97706','#fde047'],
+        avoid:['#a855f7','#7dd3fc','#ffffff','#9ca3af']},
+  Neutral:{best:['#14b8a6','#67e8f9','#fda4af','#78716c','#3b82f6'],
+           avoid:['#ef4444','#a1a1aa']}
+};
+
+/* ---------- STATE ---------- */
+let state = {surface:'',sub:'',undertone:'',hair:'',eyes:''};
+
+/* ---------- HELPERS ---------- */
+function $(id){return document.getElementById(id);}
+function hide(s){s.classList.add('hidden');}
+function show(s){s.classList.remove('hidden');}
+
+function buildGrid(parent,data,handler){
+  parent.innerHTML='';
+  data.forEach(d=>{
+    const card=document.createElement('div');
+    card.className='card';
+    card.innerHTML=`<img src="img/${d.toLowerCase().replace(/ /g,'-')}" alt="${d}"><span>${d}</span>`;
+    card.onclick=()=>handler(d);
+    parent.appendChild(card);
+  });
+}
+
+/* ---------- FLOW ---------- */
+function init(){
+  buildGrid($('surfaceGrid'),surface,s=>{
+    state.surface=s;
+    hide($('step1'));show($('step2'));
+    buildGrid($('subGrid'),sub[s],sub=>{
+      state.sub=sub;
+      hide($('step2'));show($('step3'));
+      buildGrid($('undertoneGrid'),undertone,u=>{
+        state.undertone=u;
+        hide($('step3'));show($('step4'));
+        buildGrid($('hairGrid'),hair,h=>{
+          state.hair=h;
+          hide($('step4'));show($('step5'));
+          buildGrid($('eyeGrid'),eyes,e=>{
+            state.eyes=e;
+          });
+        });
+      });
+    });
+  });
+}
+
+function generateResult(){
+  hide($('step5'));
+  const p = palettes[state.undertone];
+  $('bestSwatches').innerHTML='';
+  $('avoidSwatches').innerHTML='';
+  p.best.forEach(c=>{
+    const s=document.createElement('span');
+    s.className='swatch'; s.style.background=c; s.title=c;
+    $('bestSwatches').appendChild(s);
+  });
+  p.avoid.forEach(c=>{
+    const s=document.createElement('span');
+    s.className='swatch avoid'; s.style.background=c; s.title=c;
+    $('avoidSwatches').appendChild(s);
+  });
+  show($('result'));
+}
+
+function resetQuiz(){
+  state={surface:'',sub:'',undertone:'',hair:'',eyes:''};
+  ['step2','step3','step4','step5','result'].forEach(id=>hide($(id)));
+  show($('step1'));
+}
+
+init(); // start
+</script>
+</body>
+</html>

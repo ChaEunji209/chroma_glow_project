@@ -126,12 +126,33 @@ img {
 /* showkit of 6 basic skin color */
 .showkit {
      display: flex;
+     border:1px solid #50413b;
+     border-radius: 8px;
+     flex-wrap: wrap;
+     background-image: linear-gradient(60deg, #fdfcfb, #e2d1ce);
 }
 
 .showkit > div {
       display: none;
     }
 
-    .showkit > .active {
+.showkit > .active {
       display: block;
     }
+.underimg {
+      border-radius: 50%;
+      box: shadow 1px #50413b;
+      padding: 20px;
+      border: 1px double #50413b;
+      box-shadow:10px 10px 50px #eea97b;
+      
+}
+
+.showfair {
+  display: flex;
+  flex-direction: row;
+}
+
+.showfair p {
+  display: flex;
+}
