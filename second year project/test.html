@@ -16,11 +16,13 @@
     <div class="grid" id="surfaceGrid"></div>
   </section>
 
+
   <!-- STEP 2 – sub-tone -->
   <section id="step2" class="step hidden">
     <h2>2. Pick the closest sub-tone</h2>
     <div class="grid" id="subGrid"></div>
   </section>
+
 
   <!-- STEP 3 – undertone -->
   <section id="step3" class="step hidden">
@@ -28,11 +30,13 @@
     <div class="grid" id="undertoneGrid"></div>
   </section>
 
+
   <!-- STEP 4 – hair -->
   <section id="step4" class="step hidden">
-    <h2>4. Choose your hair colour</h2>
+    <h2>4. Choose your current hair colour</h2>
     <div class="grid" id="hairGrid"></div>
   </section>
+
 
   <!-- STEP 5 – eyes -->
   <section id="step5" class="step hidden">
@@ -40,6 +44,7 @@
     <div class="grid" id="eyeGrid"></div>
     <button onclick="generateResult()">Show my palette</button>
   </section>
+
 
   <!-- RESULT -->
   <section id="result" class="step hidden">
@@ -52,8 +57,10 @@
   </section>
 </main>
 
+
 <script>
 /* ---------- CONFIG ---------- */
+
 const surface = ['Fair','Light','Tan','Medium','Deep','Dark'];
 const sub = {
   Fair:   ['Porcelain','Ivory','Rosy'],
@@ -67,10 +74,14 @@ const undertone = ['Cool','Warm','Neutral'];
 const hair   = ['Blonde-cool','Blonde-warm','Red','Light-brown','Dark-brown','Black','Grey-silver'];
 const eyes   = ['Blue','Green','Hazel','Light-brown','Dark-brown','Black','Grey'];
 
+
 /* tiny grey placeholder so it runs offline */
+
 const grey = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=';
 
+
 /* palette engine – still only needs undertone */
+
 const palettes = {
   Cool:{best:['#4f46e5','#a78bfa','#f9a8d4','#111827','#312e81'],
         avoid:['#fb923c','#facc15','#d97706','#dc2626']},
@@ -80,35 +91,40 @@ const palettes = {
            avoid:['#ef4444','#a1a1aa']}
 };
 
+
 /* ---------- STATE ---------- */
-let state = {surface:'',sub:'',undertone:'',hair:'',eyes:''};
+
+let state = {surface:'',sub:'',undertone:'',hair:'',eyes:''};                 //each time user selets something, the value is saved here
 
 /* ---------- HELPERS ---------- */
-function $(id){return document.getElementById(id);}
-function hide(s){s.classList.add('hidden');}
+
+function $(id){return document.getElementById(id);}                 //shortcut for not to use document.getElementById(...) everytime
+function hide(s){s.classList.add('hidden');}                                             //acll out css class hidden 
 function show(s){s.classList.remove('hidden');}
 
-function buildGrid(parent,data,handler){
+function buildGrid(parent,data,handler){                    //clear current grid, Creates a div.card for each option
   parent.innerHTML='';
   data.forEach(d=>{
     const card=document.createElement('div');
     card.className='card';
-    card.innerHTML=`<img src="img/${d.toLowerCase().replace(/ /g,'-')}" alt="${d}"><span>${d}</span>`;
+    card.innerHTML=`<img src="${d.toLowerCase().replace(/ /g,'-')}" alt="${d}"><span>${d}</span>`;
     card.onclick=()=>handler(d);
     parent.appendChild(card);
   });
 }
 
+
 /* ---------- FLOW ---------- */
+
 function init(){
-  buildGrid($('surfaceGrid'),surface,s=>{
-    state.surface=s;
+  buildGrid($('surfaceGrid'),surface,s=>{                                                //shows clickable image card
+    state.surface=s;                                            //when user click a surface it saves to state.surface
     hide($('step1'));show($('step2'));
     buildGrid($('subGrid'),sub[s],sub=>{
-      state.sub=sub;
+      state.sub=sub;                                       //base on selected surface tone it loads related sub tones
       hide($('step2'));show($('step3'));
       buildGrid($('undertoneGrid'),undertone,u=>{
-        state.undertone=u;
+        state.undertone=u;                                                       //user pick save to stste.undertones
         hide($('step3'));show($('step4'));
         buildGrid($('hairGrid'),hair,h=>{
           state.hair=h;
@@ -122,11 +138,11 @@ function init(){
   });
 }
 
-function generateResult(){
+function generateResult(){                                                  //base on selected undertones show colors
   hide($('step5'));
   const p = palettes[state.undertone];
-  $('bestSwatches').innerHTML='';
-  $('avoidSwatches').innerHTML='';
+  $('bestSwatches').innerHTML='';                                                                       //match color
+  $('avoidSwatches').innerHTML='';                                                                    //unmatch color
   p.best.forEach(c=>{
     const s=document.createElement('span');
     s.className='swatch'; s.style.background=c; s.title=c;
@@ -140,7 +156,7 @@ function generateResult(){
   show($('result'));
 }
 
-function resetQuiz(){
+function resetQuiz(){                                                                  //stop and restart from step 1
   state={surface:'',sub:'',undertone:'',hair:'',eyes:''};
   ['step2','step3','step4','step5','result'].forEach(id=>hide($(id)));
   show($('step1'));
