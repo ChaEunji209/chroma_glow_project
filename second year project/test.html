@@ -77,7 +77,29 @@ const eyes   = ['Blue','Green','Hazel','Light-brown','Dark-brown','Black','Grey'
 
 /* tiny grey placeholder so it runs offline */
 
-const grey = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=';
+const skinImgs = {
+  Fair : 'img/fair.jpg',
+  Light : 'img/light.jpg',
+  Tan : 'img/tan.jpg',
+  Medium : 'img/medium.jpg',
+  Deep : 'img/deep.jpg',
+  Dark : 'img/dark.jpg',
+  Procelain : 'img/procelain.jpg',
+  Ivory : 'img/ivory.jpg',
+  Rosy : 'img/rosy.jpg',
+  Beige : 'img/Beige.jpg',
+  Peach : 'img/Peach.jpg',
+  Albaster : 'img/Albaster.jpg',
+  Blonde_cool : 'img/Blonde-cool.jpg',
+  Blonde_warm : 'Blonde-warm.jpg',
+  Red : 'Red.jpg',
+};
+  
+  
+  
+  
+  /* 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII='; */
+
 
 
 /* palette engine – still only needs undertone */
@@ -107,7 +129,8 @@ function buildGrid(parent,data,handler){                    //clear current grid
   data.forEach(d=>{
     const card=document.createElement('div');
     card.className='card';
-    card.innerHTML=`<img src="${d.toLowerCase().replace(/ /g,'-')}" alt="${d}"><span>${d}</span>`;
+    const url= skinImgs[d] || grey;
+    card.innerHTML = `<img src="${url}" alt="${d}"><span>${d}</span>`;
     card.onclick=()=>handler(d);
     parent.appendChild(card);
   });
