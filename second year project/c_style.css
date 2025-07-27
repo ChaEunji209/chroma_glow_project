@@ -193,10 +193,7 @@ img {
 /* showkit of 6 basic skin color */
 .showkit {
      display: flex;
-     border:1px solid #50413b;
-     border-radius: 8px;
      flex-wrap: wrap;
-     background-image: linear-gradient(60deg, #fdfcfb, #e2d1ce);
 }
 
 .showkit > div {
@@ -225,7 +222,6 @@ img {
   flex-direction: row; /* Stack on small screens */
   align-items: center;
   padding: 40px 20px;
-  background-color: #f8f8f8;
   text-align: center;
 }
 
