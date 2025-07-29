@@ -2,120 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Chroma Glow</title>
+
+  <!-- Google fonts + your stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="c_style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css? family=Abril+Fatface|Poppins">
 </head>
+
 <body>
-    <!--main page-->
-  <div class="cover">
+  <!-- HERO -->
+  <header class="cover">
     <h1 class="glow-text">Chroma Glow</h1>
     <p class="coverText">Shine with your best color match</p>
-  </div>
+  </header>
 
-  <!--how to consider undertones-->
+  <!-- UNDERTONES SECTION -->
+  <section class="undertones">
+    <div class="undertones__img">
+      <img src="img/undertones.jpg" alt="Undertone graphic">
+    </div>
+    <div class="undertones__text">
+      <h2>How to consider Undertones?</h2>
+      <p>
+        Examine the veins on the inside of your wrist in natural light.<br>
+        <strong>Blue/purple</strong> = cool undertone.<br>
+        <strong>Green</strong> = warm undertone.<br>
+        <strong>Both / hard to tell</strong> = neutral undertone.
+      </p>
+    </div>
+  </section>
 
-  <div class="consider_undertones">
-    <section class="intro-section">
-            <div class="intro-image-wrapper">
-                <img src="img/undertones.jpg" alt="Freelance Designer working">
-            </div>
-            <div class="intro-content">
-                <h2>How to consider Undertones?</h2>
-                <p>To test for undertones using the vein test, examine the veins on the inside of your wrist in natural light.
-                If your veins appear blue or purple, you likely have cool undertones. 
-                If they look green, you have warm undertones. 
-                If you see a mix of both, or if it's hard to tell, you likely have neutral undertones.</p>
-            </div>
-        </section>
-  </div>
-  <!--show 6 basic skin color-->
-  <div class="main">
-    <div class="basic1" onclick="showKit('showFair')">
-      <div><img src="img/fair.jpg" alt="Fair"></div>
-        <p>Fair</p>
-    </div>
-    <div class="basic2" onclick="showKit('showLight')">
-      <div><img src="img/light.jpg" alt="Light"></div>
-       <p>Light</p>
-    </div>
-    <div class="basic3" onclick="showKit('showMedium')">
-      <div><img src="img/medium.jpg" alt="medium"></div>
-      <p>Medium</p>
-    </div>
-    <div class="basic4" onclick="showKit('showTan')">
-      <div><img src="img/tan.jpg" alt="tan"></div>
-        <p>Tan</p>
-    </div>
-    <div class="basic5" onclick="showKit('showDeep')">
-      <div><img src="img/deep.jpg" alt="Deep"></div>
-        <p>Deep</p>
-    </div>
-    <div class="basic6" onclick="showKit('showDark')">
-      <div><img src="img/dark.jpg" alt="Dark"></div>
-        <p>Dark</p>
-    </div>
-  </div>
+  <!-- 6 SKIN-TONE CARDS -->
+  <section class="picks">
+    <div class="card" data-target="fair"><img src="img/fair.jpg" alt="Fair"><span>Fair</span></div>
+    <div class="card" data-target="light"><img src="img/light.jpg" alt="Light"><span>Light</span></div>
+    <div class="card" data-target="medium"><img src="img/medium.jpg" alt="Medium"><span>Medium</span></div>
+    <div class="card" data-target="tan"><img src="img/tan.jpg" alt="Tan"><span>Tan</span></div>
+    <div class="card" data-target="deep"><img src="img/deep.jpg" alt="Deep"><span>Deep</span></div>
+    <div class="card" data-target="dark"><img src="img/dark.jpg" alt="Dark"><span>Dark</span></div>
+  </section>
 
-  <!--showkit of 6 basic skin color-->
-
-  <div class="showkit">
-      <div class="showFair">
-          <h2>Fair</h2>
-      <div class="image_container">
-          <img src="img/fair.jpg" alt="Sticker Image" class="underimg">
-      </div>
-      <section class="brand-identity-section">
-      <div class="brand-identity-content">
-          <p>Fair skin tone is similar to porcelain or ivory skin. Fair skin often will have peach, yellow, or olive undertones. It burns easily if unprotected from the sun. People with fair skin will often have pale-colored eyes, and hair color can range from light to dark.</p>
-
-          <p><strong>Hair color Tips</strong>
-            <p>For fair skin, a range of hair colors can be flattering, with both warm and cool tones working well depending on the specific undertones of the skin. Generally, warm shades like honey blonde, strawberry blonde, and golden brown enhance the warmth of the skin, while cool shades like platinum blonde, ash blonde, and cool-toned browns provide a striking contrast.</p>
-          </p>
-
-          <p><strong>Foundation Shades to Consider:</strong>
-              <p>L'Oréal Paris: Shades like Porcelain, Ivory, and Linen are often recommended for fair skin.</p>
-              <p>Maybelline: Fit Me Matte + Poreless in shade 110 or 112 is a good option for fair skin with cool undertones.</p> 
-              <p>Patrick Ta Beauty: A guide can help narrow down shades based on skin tone and undertones.</p>
-          </p>
-        </div>
-        </section>
-      </div>
-    <div class="showLight">
-      <h2>Light</h2>
-      <p>Light skin tone details here.</p>
-    </div>
-    <div class="showMedium">
-      <h2>Medium</h2>
-      <p>Medium skin tone details here.</p>
-    </div>
-    <div class="showTan">
-      <h2>Tan</h2>
-      <p>Tan skin tone details here.</p>
-    </div>
-    <div class="showDeep">
-      <h2>Deep</h2>
-      <p>Deep skin tone details here.</p>
-    </div>
-    <div class="showDark">
-      <h2>Dark</h2>
-      <p>Dark skin tone details here.</p>
-    </div>
-  </div>
+  <!-- DETAIL PANELS (hidden by default) -->
+  <section class="details">
+    <article id="fair"  class="detail"><h2>Fair</h2><p>Fair details here …</p></article>
+    <article id="light" class="detail"><h2>Light</h2><p>Light details here …</p></article>
+    <article id="medium" class="detail"><h2>Medium</h2><p>Medium details here …</p></article>
+    <article id="tan"   class="detail"><h2>Tan</h2><p>Tan details here …</p></article>
+    <article id="deep"  class="detail"><h2>Deep</h2><p>Deep details here …</p></article>
+    <article id="dark"  class="detail"><h2>Dark</h2><p>Dark details here …</p></article>
+  </section>
 
   <script>
-    function showKit(className) {
-      // hide all showkit divs
-      const allKits = document.querySelectorAll('.showkit > div');
-      allKits.forEach(kit => kit.classList.remove('active'));
-
-      // show only the selected one
-      const selectedKit = document.querySelector('.' + className);
-      if (selectedKit) {
-        selectedKit.classList.add('active');
-      }
-    }
+    // simple show/hide for details
+    document.querySelectorAll('.card').forEach(c => {
+      c.addEventListener('click', () => {
+        const id = c.dataset.target;
+        document.querySelectorAll('.detail').forEach(p => p.classList.toggle('active', p.id === id));
+      });
+    });
   </script>
 </body>
 </html>
