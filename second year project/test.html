@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <title>Chroma Glow test edition</title>
 <link rel="stylesheet" href="teststyle.css">
+
+<!-- EmailJS SDK (v4) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("u1djz-ybNOWN7Mi21");
+</script>
+
 </head>
 <body>
 
@@ -42,7 +49,7 @@
   <section id="step5" class="step hidden">
     <h2>5. Choose your eye colour</h2>
     <div class="grid" id="eyeGrid"></div>
-    <button onclick="generateResult()">Show my palette</button>
+    <button onclick="generateResult()" class="palette">Show my palette</button>
   </section>
 
 
@@ -53,9 +60,25 @@
     <div id="bestSwatches"></div>
     <p><strong>Avoid:</strong></p>
     <div id="avoidSwatches"></div>
+
     <!-- Make-up text suggestion -->
     <div id="makeupBox" class="hidden" style="margin-top:1rem"></div>
-    <button onclick="resetQuiz()">Start over</button>
+
+    <!-- E-mail form -->
+    <div id="emailBox" style="margin-top:1rem">
+      <h3>Send results to your inbox</h3>
+      <label>Name:
+        <input type="text" id="userName" placeholder="Your name">
+      </label><br>
+      <label>E-mail:
+        <input type="email" id="userEmail" placeholder="your@email.com">
+      </label><br>
+      <button onclick="sendViaEmailJS()">Send now</button>
+      <p id="emailStatus" style="color:green"></p>
+    </div>
+    
+    <!-- Resart from beginning -->
+    <button onclick="resetQuiz()" class="startOver">Start over</button>
   </section>
 </main>
 

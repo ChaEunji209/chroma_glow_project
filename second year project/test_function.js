@@ -338,6 +338,38 @@ function merge(a,b){
   };
 }
 
+function sendEmail(){
+  const {surface, sub, undertone, hair, eyes} = state;
+
+  /* grab make-up text */
+  const makeup = MAKEUP_TEXT[surface]?.[undertone];
+  if(!makeup){
+    alert("Please complete all steps first.");
+    return;
+  }
+
+  /* build plain-text body */
+  const body = `
+Clothing Colour Results
+Surface tone: ${surface}
+Sub-tone: ${sub}
+Undertone: ${undertone}
+Hair: ${hair}
+Eyes: ${eyes}
+
+Make-up suggestions
+Foundation: ${makeup.Foundation}
+Blush: ${makeup.Blush}
+Lipstick: ${makeup.Lipstick}
+Eyeshadow: ${makeup.Eyeshadow}
+`.trim();
+
+  /* open user's mail client */
+  const subject = `My colour-match results – ${surface} ${undertone}`;
+  const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+}
+
 /* ---------- FLOW ---------- */
 
 function init(){
@@ -406,6 +438,11 @@ function generateResult(){
     $('avoidSwatches').appendChild(s);
   });
   show($('result'));
+
+  /* expose colours for e-mail */
+  window.bestColors  = final.best.join(', ');
+  window.avoidColors = final.avoid.join(', ');
+
 }
 
 function resetQuiz(){                                                                  //stop and restart from step 1
@@ -415,3 +452,40 @@ function resetQuiz(){                                                           
 }
 
 init(); // start
+
+function sendViaEmailJS(){
+  const name  = $("userName").value.trim();
+  const email = $("userEmail").value.trim();
+  if(!email){ alert("Enter an e-mail"); return; }
+
+  const {surface, sub, undertone, hair, eyes} = state;
+  const makeup = MAKEUP_TEXT[surface]?.[undertone];
+  if(!makeup){ alert("Finish quiz"); return; }
+
+  const params = {
+    to_name:   name || "User",
+    to_email:  email,
+    best_colors:  bestColors,
+    avoid_colors: avoidColors,
+    foundation: makeup.Foundation,
+    blush:      makeup.Blush,
+    lipstick:   makeup.Lipstick,
+    eyeshadow:  makeup.Eyeshadow
+  };
+
+  console.log("🚀 Sending with params:", params);
+  console.log("Service:", "service_16ic69y");
+  console.log("Template:", "template_72seiap");
+  console.log("Public:", "u1djz-ybNOWN7Mi21");
+
+  emailjs.send(
+    "service_16ic69y",
+    "template_72seiap",
+    params,
+    "u1djz-ybNOWN7Mi21"
+  )
+  .then(
+    res => console.log("✅ SUCCESS", res),
+    err => console.error("❌ ERROR", err)
+  );
+}

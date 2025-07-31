@@ -28,10 +28,11 @@ h2{
   justify-content:center;
   align-items:center;
   text-align:center;
+  opacity: 0.5px;
   }
 
 @keyframes bgSlide{
-  0%  {background-image:url('img/Capelli\ biondi\ sfumati\ caldi\ o\ freddi_\ Come\ scegliere_\ 💛.jpg')}
+  0%  {background-image:url('img/Capelli\ biondi\ sfumati\ caldi\ o\ freddi_\ Come\ scegliere_\ 💛.jpg'),}
   50% {background-image:url('img/download\ \(8\).jpg')}
   100%{background-image:url('img/download\ \(9\).jpg')}
 }
@@ -39,19 +40,19 @@ h2{
 .glow-text{
   font-size:clamp(3rem,10vw,9rem);
   color:#f8f4ed;
-  text-shadow:0 0 5px #ffd9b3,0 0 15px #ffcba4,0 0 25px #ffb07c;
+  text-shadow:0 0 5px #704820,0 0 15px #d25e05,0 0 25px #ea6105;
   animation:glowPulse 2.5s ease-in-out infinite;
 }
 
 @keyframes glowPulse{
-  0%,100%{text-shadow:0 0 5px #ffd9b3,0 0 15px #ffcba4}
-  50%    {text-shadow:0 0 25px #ffb07c,0 0 35px #ffcba4}
+  0%,100%{text-shadow:0 0 5px #a8611a,0 0 15px #f38633}
+  50%    {text-shadow:0 0 25px #fc6805,0 0 35px #904205}
 }
 
 .coverText{
   font-size:clamp(1rem,3vw,1.5rem);
   color:#f8f4ed;
-  margin-top:.5rem;text-shadow:0 0 5px #ffd9b3,0 0 10px #ffcba4;
+  margin-top:.5rem;text-shadow:0 0 5px #a57c53,0 0 10px #c36721;
 }
 
 /* ---------- UNDERTONES ---------- */
