@@ -445,6 +445,7 @@ function generateResult(){
 
 }
 
+
 function resetQuiz(){                                                                  //stop and restart from step 1
   state={surface:'',sub:'',undertone:'',hair:'',eyes:''};
   ['step2','step3','step4','step5','result'].forEach(id=>hide($(id)));

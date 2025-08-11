@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroma Glow - Shine With Your Best Color</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="img/logo.png" alt="CG">
+            </div>
+            <ul id="menuList">
+                <li><a href="#home">Home</a></li>
+                <li><a href="test.html" target="_blank">Test</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <div class="menu-icon">
+                <i class="fa-solid fa-bars-staggered" onclick="toggleMenu()"></i>
+            </div>
+        </nav>
+    </header>
+<script src="https://kit.fontawesome.com/dc103e9e3b.js" crossorigin="anonymous"></script>
+
+
+    <main class="hero" id="home">
+        <div class="video-background">
+            <div class="video-overlay"></div>
+            <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                <source src="img/cover.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="hero-content">
+            <p class="tagline">Shine With Your Best Color Match</p>
+            <h1 class="main-heading">Chroma Glow</h1>
+            <a href="test.html" class="cta-button" target="_blank">Reveal Your Radiance</a>
+        </div>
+    </main>
+
+    <section class="page-content">
+    
+    <div class="guide-section">
+        <div class="guide-text">
+            <h2>How to Analyze Your Undertones</h2>
+            <p>Examine the veins on the inside of your wrist in natural light.<br>
+                <strong>Blue/purple</strong> = cool undertone.<br>
+                <strong>Green</strong> = warm undertone.<br>
+                <strong>Both / hard to tell</strong> = neutral undertone.</p>
+            <div class="undertone-visuals">
+                <div class="tone-item">
+                    <span class="tone-label"><a href="https://skincaregeeks.com/cool-skin-tone/">Cool</a></span>
+                </div>
+                <div class="tone-item">
+                    <span class="tone-label"><a href="https://skincaregeeks.com/neutral-skin-tone/">Neutral</a></span>
+                </div>
+                <div class="tone-item">
+                    <span class="tone-label"><a href="https://skincaregeeks.com/warm-skin-tone/">Warm</a></span>
+                </div>
+            </div>
+            <a href="https://youtube.com/shorts/YcjA_4kAB0s?si=4PP1qfoiLMcjh0lw" class="text-button">Learn Other Methods &rarr;</a>
+        </div>
+        <div class="guide-video">
+            <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/NaDUyGdmuMA?si=W_JPECu7rL6tvrNK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <h2>6 Basic Skin Tone</h2>
+        <div class="model-grid">
+            <article class="model-card">
+                <img src="img/download (22).jpg" alt="Fair">
+                <div class="model-overlay">
+                    <h3>Fair</h3>
+                    <p class="text-button">Learn More &rarr;</p>
+                </div>
+            </article>
+            <article class="model-card">
+                <img src="img/download (23).jpg" alt="Light">
+                <div class="model-overlay">
+                    <h3>Light</h3>
+                    <p class="text-button">Learn More &rarr;</p>
+                </div>
+            </article>
+            <article class="model-card">
+                <img src="img/download.jpg" alt="Medium">
+                <div class="model-overlay">
+                    <h3>Medium</h3>
+                    <p class="text-button">Learn More &rarr;</p>
+                </div>
+            </article>
+             <article class="model-card">
+                <img src="img/Caramel Hair Color 2025_ 22 Stunning Ideas with Highlights, Honey Golden, and Balayage (2).jpg" alt="Tan">
+                <div class="model-overlay">
+                    <h3>Tan</h3>
+                    <p class="text-button">Learn More &rarr;</p>
+                </div>
+            </article>
+             <article class="model-card">
+                <img src="img/download (24).jpg" alt="Deep">
+                <div class="model-overlay">
+                    <h3>Deep</h3>
+                    <p class="text-button">Learn More &rarr;</p>
+                </div>
+            </article>
+            <article class="model-card">
+                <img src="img/Beauty & Portraits.jpg" alt="Dark">
+                <div class="model-overlay">
+                    <h3>Dark</h3>
+                    <p class="text-button">Learn More &rarr;</p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+
+</section>
+
+<!-- Popup -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2 id="popupTitle">Skin Tone</h2>
+    <div id="popupText">Details about this skin tone will show here.</div>
+  </div>
+</div>
+
+
+<!--Star rating Section-->
+<section class="ratingStar" id="ratingbox">
+  <div class="bg">
+    <div class="borderBox">
+      <h2> 5 Stars Rating</h2>
+      <div class="star_rating">
+        <button class="star" id="s1">&#9734</button>
+        <button class="star" id="s2">&#9734</button>
+        <button class="star" id="s3">&#9734</button>
+        <button class="star" id="s4">&#9734</button>
+        <button class="star" id="s5">&#9734</button>
+        <p class="current_rating">0 of 5</p>
+        <p id="react" class="react">will you give me 5 stars 🧐</p>
+      </div>
+    </div>
+  </div>
+  </section>
+<script src="main_function.js"></script>
+</body>
+</html>
