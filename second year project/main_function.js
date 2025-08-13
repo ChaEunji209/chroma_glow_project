@@ -204,3 +204,16 @@
       revealEls.forEach(el => el.classList.add('reveal'));
       revealEls.forEach(el => io.observe(el));
         
+
+
+
+
+  window.addEventListener('scroll', () => {
+    const about = document.querySelector('.about-section');
+    const top = about.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if(top < windowHeight - 100) {
+      about.style.opacity = 1;
+    }
+  });

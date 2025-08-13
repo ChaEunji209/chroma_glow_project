@@ -127,13 +127,23 @@ body{
   /* Email Box */
 
   #emailBox {
+    width: 500px;
+    height: 300px;
     border: 1px solid black;
     padding: 5px 20px;
     border-radius: 8px;
-    background-image:linear-gradient(45deg, #c0fcff, #efc9fd);
+    background-image:linear-gradient(180deg, #fef5e7, #fff2df, #ffe0b2);
     align-items: center;
     display: flex;
     flex-direction: column;
+    transition: all 0.5s;
+  }
+
+  @media (max-width: 768px) {
+    #emailBox {
+      width: 250px;
+      height: auto;
+    }
   }
 
   #emailBox h3 {

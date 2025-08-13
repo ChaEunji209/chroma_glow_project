@@ -565,3 +565,27 @@ nav ul li a:hover::after {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
+
+
+
+.about-section {
+  padding: 50px 20px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  text-align: center;
+  opacity: 0; /* for fade-in effect */
+  transition: opacity 1.2s ease-in-out;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  color:var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 10px auto;
+}

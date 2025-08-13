@@ -1,3 +1,5 @@
+
+
 /* ---------- CONFIG ---------- */
 
 const surface = ['Fair','Light','Tan','Medium','Deep','Dark'];
@@ -454,6 +456,23 @@ function resetQuiz(){                                                           
 
 init(); // start
 
+/* ----------  COLOUR-NAME HELPER  ---------- */
+/*  built once at start-up                        */
+const colorMap = colorNameList.reduce((acc, {name, hex}) => {
+  acc[name] = hex;               // key = name, value = hex
+  return acc;
+}, {});
+const nearest = nearestColor.from(colorMap);
+
+function hexToName(hex){
+  try {
+    return nearest(hex).name;    // e.g.  #FF6B6B  →  "Coral Pink"
+  } catch(e){
+    return hex.toUpperCase();    // fallback if lookup fails
+  }
+}
+
+/* ----------  EMAILJS SENDER  ---------- */
 function sendViaEmailJS(){
   const name  = $("userName").value.trim();
   const email = $("userEmail").value.trim();
@@ -463,21 +482,26 @@ function sendViaEmailJS(){
   const makeup = MAKEUP_TEXT[surface]?.[undertone];
   if(!makeup){ alert("Finish quiz"); return; }
 
-  const params = {
-    to_name:   name || "User",
-    to_email:  email,
-    best_colors:  bestColors,
-    avoid_colors: avoidColors,
-    foundation: makeup.Foundation,
-    blush:      makeup.Blush,
-    lipstick:   makeup.Lipstick,
-    eyeshadow:  makeup.Eyeshadow
-  };
+  /* turn hex arrays into “Name (Hex)” strings */
+  const bestNamed  = window.bestColors
+                       .split(', ')
+                       .map(h => `${hexToName(h)}`)
+                       .join(', ');
+  const avoidNamed = window.avoidColors
+                       .split(', ')
+                       .map(h => `${hexToName(h)}`)
+                       .join(', ');
 
-  console.log("🚀 Sending with params:", params);
-  console.log("Service:", "service_16ic69y");
-  console.log("Template:", "template_72seiap");
-  console.log("Public:", "u1djz-ybNOWN7Mi21");
+  const params = {
+    to_name:      name || "User",
+    to_email:     email,
+    best_colors:  bestNamed,
+    avoid_colors: avoidNamed,
+    foundation:   makeup.Foundation,
+    blush:        makeup.Blush,
+    lipstick:     makeup.Lipstick,
+    eyeshadow:    makeup.Eyeshadow
+  };
 
   emailjs.send(
     "service_16ic69y",
@@ -486,7 +510,7 @@ function sendViaEmailJS(){
     "u1djz-ybNOWN7Mi21"
   )
   .then(
-    res => console.log("✅ SUCCESS", res),
-    err => console.error("❌ ERROR", err)
+    res => alert("Results sent!"),
+    err => alert("Send failed: " + JSON.stringify(err))
   );
 }
