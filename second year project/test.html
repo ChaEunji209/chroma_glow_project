@@ -5,6 +5,9 @@
 <title>Chroma Glow test edition</title>
 <link rel="stylesheet" href="teststyle.css">
 
+<!-- Boxicons CSS -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 <!-- EmailJS SDK (v4) -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -12,7 +15,9 @@
 </script>
 </head>
 <body>
-
+<header class="home">
+  <a href="Chroma Glow.html" target="_self"><i class='bx bx-home-alt-2'></i></a>
+</header>
 <main id="app">
   <h1>Find the best clothing colours for you</h1>
 
@@ -26,6 +31,9 @@
   <!-- STEP 2 – sub-tone -->
   <section id="step2" class="step hidden">
     <h2>2. Pick the closest sub-tone</h2>
+    <div class="nav-buttons">
+      <button class="prev" onclick="goStep(1)">← Previous</button>
+  </div>
     <div class="grid" id="subGrid"></div>
   </section>
 
@@ -33,6 +41,9 @@
   <!-- STEP 3 – undertone -->
   <section id="step3" class="step hidden">
     <h2>3. Pick your undertone</h2>
+    <div class="nav-buttons">
+      <button class="prev" onclick="goStep(2)">← Previous</button>
+  </div>
     <div class="grid" id="undertoneGrid"></div>
   </section>
 
@@ -40,6 +51,9 @@
   <!-- STEP 4 – hair -->
   <section id="step4" class="step hidden">
     <h2>4. Choose your current hair colour</h2>
+    <div class="nav-buttons">
+      <button class="prev" onclick="goStep(3)">← Previous</button>
+  </div>
     <div class="grid" id="hairGrid"></div>
   </section>
 
@@ -47,6 +61,9 @@
   <!-- STEP 5 – eyes -->
   <section id="step5" class="step hidden">
     <h2>5. Choose your eye colour</h2>
+    <div class="nav-buttons">
+      <button class="prev" onclick="goStep(4)">← Previous</button>
+  </div>
     <div class="grid" id="eyeGrid"></div>
     <button onclick="generateResult()" class="palette">Show my palette</button>
   </section>

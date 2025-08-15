@@ -81,7 +81,7 @@ const palettes = {
 /* === NEW: step-specific colour contributions === */
 const DATA = {
   /* Sub-skin mini-palettes */
-  Porcelain: { best:[`#50C878`,`#0F52BA`,`#0000FF`,`#9B111E`,`#9966CC`,`#800080`,`#B0E0E6`,`#FFC0CB`,`#98FF98`,`#E6E6FA`,`#000080`,`#D3D3D3`,`#FFFDD0`,`#C19A6B`,`#90E4C1`, `#00A86B`
+  Porcelain: { best:["#50C878",`#0F52BA`,`#0000FF`,`#9B111E`,`#9966CC`,`#800080`,`#B0E0E6`,`#FFC0CB`,`#98FF98`,`#E6E6FA`,`#000080`,`#D3D3D3`,`#FFFDD0`,`#C19A6B`,`#90E4C1`, `#00A86B`
 ],     avoid:[] },
 
   Ivory:     { best:[`#50C878`,`#0F52BA`,`#9B111E`,`#9966CC`,`#E4D00A`,`#ADD8E6`,`#FFC0CB`,`#E6E6FA`,`#98FF98`],               avoid:[] },
@@ -440,6 +440,7 @@ function generateResult(){
     $('avoidSwatches').appendChild(s);
   });
   show($('result'));
+  goStep(6);   // treat result as step-6 so Prev can jump back to step-5
 
   /* expose colours for e-mail */
   window.bestColors  = final.best.join(', ');
@@ -514,3 +515,26 @@ function sendViaEmailJS(){
     err => alert("Send failed: " + JSON.stringify(err))
   );
 }
+
+
+/* ----------  WIZARD NAVIGATION  ---------- */
+function goStep(targetStep){
+    /* hide everything first */
+    [1,2,3,4,5].forEach(n => hide($('step'+n)));
+    hide($('result'));
+
+    if(targetStep === 1)      show($('step1'));
+    else if(targetStep === 2) show($('step2'));
+    else if(targetStep === 3) show($('step3'));
+    else if(targetStep === 4) show($('step4'));
+    else if(targetStep === 5) show($('step5'));
+    else if(targetStep === 6) show($('result'));   // 6 = show result
+}
+
+/* OPTIONAL: map left/right arrow keys */
+document.addEventListener('keydown', e=>{
+    const visible = [1,2,3,4,5].find(n => !$('step'+n).classList.contains('hidden'));
+    if(!visible) return;
+    if(e.key === 'ArrowLeft'  && visible > 1) goStep(visible - 1);
+    if(e.key === 'ArrowRight' && visible < 5) goStep(visible + 1);
+});

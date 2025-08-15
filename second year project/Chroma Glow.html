@@ -11,8 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- ========== Header section ========== -->
     <header>
         <nav>
             <div class="logo">
@@ -22,15 +24,21 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="test.html" target="_blank">Test</a></li>
                 <li><a href="#about-us">About Us</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="#Contact">Contact</a></li>
             </ul>
+            <div class="theme-toggle" id="themeToggle" title="Toggle light / dark">
+                <i class="fas fa-moon"></i>
+            </div>
             <div class="menu-icon">
                 <i class="fa-solid fa-bars-staggered" onclick="toggleMenu()"></i>
             </div>
+
         </nav>
+        
     </header>
 <script src="https://kit.fontawesome.com/dc103e9e3b.js" crossorigin="anonymous"></script>
 
+ <!-- ========== Undertones explaination ========== -->
 
     <main class="hero" id="home">
         <div class="video-background">
@@ -73,7 +81,7 @@
             <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/NaDUyGdmuMA?si=W_JPECu7rL6tvrNK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </div>
-
+  <!-- ========== Gallery section ========== -->
     <div class="gallery-section">
         <h2>6 Basic Skin Tone</h2>
         <div class="model-grid">
@@ -123,6 +131,8 @@
     </div>
 </section>
 
+            <!-- ========= About us section ========= -->
+
 <section id="about-us" class="about-section">
   <div class="container">
     <h2>About Us</h2>
@@ -136,6 +146,43 @@
   </div>
 </section>
 
+<!-- ========== STAR-RATING CHART ========== -->
+<section class="ratingStar">
+        <div id="ratingChart">
+            <h3>Tell us... how bright are we shining for you? 🌈</h3>
+
+                <!-- 5 clickable stars -->
+                <div id="starPicker">
+                    <span data-s="1" id="s1">☆</span>
+                    <span data-s="2" id="s2">☆</span>
+                    <span data-s="3" id="s3">☆</span>
+                    <span data-s="4" id="s4">☆</span>
+                    <span data-s="5" id="s5">☆</span>
+                </div>
+
+                <!-- tiny thank-you line -->
+                <p id="thanksMsg"></p>
+
+                <!-- the bar chart -->
+                <div id="bars"></div>
+        </div>
+</section>
+
+            <!-- ========= Footer ========= -->
+<footer class="footer" id="Contact">
+  <div class="footer-container">
+    <p>&copy; 2025 Chroma Glow. All Rights Reserved.</p>
+    <p>Designed & Created by Ji</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/eunji-cha-3b0884284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/ChaEunji209" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</footer>
 
 <!-- Popup -->
 <div class="popup-overlay" id="popup">
@@ -146,24 +193,6 @@
   </div>
 </div>
 
-
-<!--Star rating Section-->
-<section class="ratingStar" id="ratingbox">
-  <div class="bg">
-    <div class="borderBox">
-      <h2> 5 Stars Rating</h2>
-      <div class="star_rating">
-        <button class="star" id="s1">&#9734</button>
-        <button class="star" id="s2">&#9734</button>
-        <button class="star" id="s3">&#9734</button>
-        <button class="star" id="s4">&#9734</button>
-        <button class="star" id="s5">&#9734</button>
-        <p class="current_rating">0 of 5</p>
-        <p id="react" class="react">will you give me 5 stars 🧐</p>
-      </div>
-    </div>
-  </div>
-  </section>
 <script src="main_function.js"></script>
 </body>
 </html>
