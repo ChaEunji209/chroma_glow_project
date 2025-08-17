@@ -1,33 +1,36 @@
 /* --- General Setup & Variables --- */
 :root{
     --primary-color: #da9928;
-    --secondary-color: #fff;
+    --secondary-color: #000;
     --background-color: #fdfcfa;
     --overlay-color: rgba(0, 0, 0, 0.6);
     --text-color: #000;
+    --nav-color:#fff;
   }
-  .darkmode{
+.darkmode{
     --primary-color: #E0C097;
     --secondary-color: #FFFFFF;
     --background-color: #121212;
     --overlay-color: rgba(0, 0, 0, 0.6);
     --text-color: #fbfbfb;
+    --nav-color:#fff;
   }
 
-  body{
+ body{
     margin:0;
     font-family:'Montserrat',sans-serif;
     background:var(--background-color);
     color:var(--text-color);
-    transition:background .3s,color .3s;
+    transition:background .3s,color .3s
 }
 
   .theme-toggle{
-    color:var(--secondary-color);
+    color:var(--nav-color);
     font-size:1.4rem;
     cursor:pointer;
     margin-left:auto
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -39,7 +42,7 @@ nav{
     padding: 10px 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     position: relative;
     height: 70px;
     position: fixed;
@@ -67,7 +70,7 @@ nav ul li{
 
 nav ul li a{
     text-decoration: none;
-    color: var(--secondary-color);
+    color: var(--nav-color);
     font-weight: 500;
     position: relative;
     padding: 0.5rem 0;
@@ -94,7 +97,7 @@ nav ul li a:hover::after {
 }
 
 .menu-icon i{
-    color: var(--secondary-color);
+    color: var(--nav-color);
     font-size: 25px;
 }
 
@@ -165,7 +168,7 @@ nav ul li a:hover::after {
 
 .tagline {
     font-size: 1.2rem;
-    color: var(--secondary-color);
+    color: #fff;
     margin-bottom: 0.5rem;
     letter-spacing: 1px;
 }
@@ -304,7 +307,8 @@ nav ul li a:hover::after {
 .text-button {
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 20px;
     transition: letter-spacing 0.3s ease;
     font-family: 'Cormorant Garamond', serif;
 }
