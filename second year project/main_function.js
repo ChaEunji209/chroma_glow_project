@@ -132,26 +132,17 @@
 
 
  /* ---------- Light / Dark mode ---------- */
-const STORAGE_KEY = 'chromaTheme';
-const body = document.body;
-const toggleBtn = document.getElementById('themeToggle');
-const icon = toggleBtn.querySelector('i');
+    const toggle = document.getElementById("theme-toggle");
+    const body = document.body;
 
-(function initTheme() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved === 'dark') body.classList.add('darkmode');
-  updateIcon();
-})();
-
-toggleBtn.addEventListener('click', () => {
-  body.classList.toggle('darkmode');
-  localStorage.setItem(STORAGE_KEY, body.classList.contains('darkmode') ? 'dark' : 'light');
-  updateIcon();
-});
-
-function updateIcon() {
-  icon.className = body.classList.contains('darkmode') ? 'fas fa-sun' : 'fas fa-moon';
-}
+    // When the switch changes
+    toggle.addEventListener("change", () => {
+      if (toggle.checked) {
+        body.classList.add("darkmode");
+      } else {
+        body.classList.remove("darkmode");
+      }
+    });
 
 /* ---------- Rating chart (no jQuery) ---------- */
 (() => {

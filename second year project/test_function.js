@@ -398,7 +398,6 @@ function init(){
 
 function generateResult(){
   hide($('step5'));
-
   /* start with sub-skin */
   let final = DATA[state.sub] || {best:[],avoid:[]};
 
@@ -440,7 +439,7 @@ function generateResult(){
     $('avoidSwatches').appendChild(s);
   });
   show($('result'));
-  goStep(6);   // treat result as step-6 so Prev can jump back to step-5
+  hide($('step4'));show($('result'));   // treat result as step-6 so Prev can jump back to step-5
 
   /* expose colours for e-mail */
   window.bestColors  = final.best.join(', ');
@@ -538,3 +537,4 @@ document.addEventListener('keydown', e=>{
     if(e.key === 'ArrowLeft'  && visible > 1) goStep(visible - 1);
     if(e.key === 'ArrowRight' && visible < 5) goStep(visible + 1);
 });
+

@@ -32,7 +32,7 @@
   <section id="step2" class="step hidden">
     <h2>2. Pick the closest sub-tone</h2>
     <div class="nav-buttons">
-      <button class="prev" onclick="goStep(1)">← Previous</button>
+      <button class="prev" onclick="goStep(1)"> <i class='bx bx-undo'></i></button>
   </div>
     <div class="grid" id="subGrid"></div>
   </section>
@@ -42,7 +42,7 @@
   <section id="step3" class="step hidden">
     <h2>3. Pick your undertone</h2>
     <div class="nav-buttons">
-      <button class="prev" onclick="goStep(2)">← Previous</button>
+      <button class="prev" onclick="goStep(2)"><i class='bx bx-undo'></i></button>
   </div>
     <div class="grid" id="undertoneGrid"></div>
   </section>
@@ -52,7 +52,7 @@
   <section id="step4" class="step hidden">
     <h2>4. Choose your current hair colour</h2>
     <div class="nav-buttons">
-      <button class="prev" onclick="goStep(3)">← Previous</button>
+      <button class="prev" onclick="goStep(3)"><i class='bx bx-undo'></i></button>
   </div>
     <div class="grid" id="hairGrid"></div>
   </section>
@@ -62,7 +62,7 @@
   <section id="step5" class="step hidden">
     <h2>5. Choose your eye colour</h2>
     <div class="nav-buttons">
-      <button class="prev" onclick="goStep(4)">← Previous</button>
+      <button class="prev" onclick="goStep(4)"><i class='bx bx-undo'></i></button>
   </div>
     <div class="grid" id="eyeGrid"></div>
     <button onclick="generateResult()" class="palette">Show my palette</button>
@@ -71,6 +71,9 @@
 
   <!-- RESULT -->
   <section id="result" class="step hidden">
+    <div class="nav-buttons">
+      <button class="prev" onclick="goStep(4)"><i class='bx bx-undo'></i></button>
+  </div>
     <h2>Your best clothing colours</h2>
     <p><strong>Best:</strong></p>
     <div id="bestSwatches"></div>
@@ -82,14 +85,12 @@
 
     <!-- E-mail form -->
     <div id="emailBox" style="margin-top:1rem">
-      <h3>Send results to your inbox</h3>
-      <label>Name:
+      <h3>Do you want to save your result?</h3>
+      <label>
         <input type="text" id="userName" placeholder="Your name">
-      </label><br>
-      <label>E-mail:
         <input type="email" id="userEmail" placeholder="your@email.com">
-      </label><br>
-      <button onclick="sendViaEmailJS()">Send now</button>
+      <button onclick="sendViaEmailJS()"><i class='bx bx-send'></i></button>
+      </label>
       <p id="emailStatus" style="color:green"></p>
     </div>
     
