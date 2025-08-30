@@ -71,15 +71,20 @@
 
   <!-- RESULT -->
   <section id="result" class="step hidden">
+    
     <div class="nav-buttons">
       <button class="prev" onclick="goStep(4)"><i class='bx bx-undo'></i></button>
+
+      <!-- Resart from beginning -->
+    <button onclick="resetQuiz()" class="startOver">Start over</button>
   </div>
+  <div class="answer">
     <h2>Your best clothing colours</h2>
     <p><strong>Best:</strong></p>
     <div id="bestSwatches"></div>
     <p><strong>Avoid:</strong></p>
     <div id="avoidSwatches"></div>
-
+  </div>  
     <!-- Make-up text suggestion -->
     <div id="makeupBox" class="hidden" style="margin-top:1rem"></div>
 
@@ -93,9 +98,6 @@
       </label>
       <p id="emailStatus" style="color:green"></p>
     </div>
-    
-    <!-- Resart from beginning -->
-    <button onclick="resetQuiz()" class="startOver">Start over</button>
   </section>
 </main>
 

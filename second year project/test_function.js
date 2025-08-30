@@ -81,12 +81,15 @@ const palettes = {
 /* === NEW: step-specific colour contributions === */
 const DATA = {
   /* Sub-skin mini-palettes */
-  Porcelain: { best:["#50C878",`#0F52BA`,`#0000FF`,`#9B111E`,`#9966CC`,`#800080`,`#B0E0E6`,`#FFC0CB`,`#98FF98`,`#E6E6FA`,`#000080`,`#D3D3D3`,`#FFFDD0`,`#C19A6B`,`#90E4C1`, `#00A86B`
+  Porcelain: { best:["#50C878","#0F52BA","#0000FF","#9B111E","#9966CC","#800080","#B0E0E6","#FFC0CB","#98FF98","#E6E6FA","#000080","#D3D3D3","#FFFDD0","#C19A6B","#90E4C1","#00A86B"
+
 ],     avoid:[] },
 
-  Ivory:     { best:[`#50C878`,`#0F52BA`,`#9B111E`,`#9966CC`,`#E4D00A`,`#ADD8E6`,`#FFC0CB`,`#E6E6FA`,`#98FF98`],               avoid:[] },
+  Ivory:     { best:["#50C878","#0F52BA","#9B111E","#9966CC","#E4D00A","#ADD8E6","#FFC0CB","#E6E6FA","#98FF98"
+],               avoid:[] },
 
-  Rosy:      { best:[`#4169E1`,`#000080`,`#008080`,`#B0E0E6`,`#228B22`,`#50C878`,`#BCA8D0`,`#9966CC`,`#8E4585`,`#36454F`,`#000000`
+  Rosy:      { best:["#4169E1","#000080","#008080","#B0E0E6","#228B22","#50C878","#BCA8D0","#9966CC","#8E4585","#36454F","#000000"
+
 ],               avoid:[] },
 
   Beige:     { best:["#000000", "#FFFFFF", "#808080", "#FFFDD0", "#FFC0CB", "#FF0000", "#0000FF", "#008000", "#FFFF00", "#E2725B", "#556B2F", "#FFDB58", "#7B3F00", "#AF6E4D", "#D2B48C"
@@ -95,7 +98,8 @@ const DATA = {
   Peach:     { best:["#FFFFFF", "#D3D3D3", "#000080", "#FF7F50", "#FFD700", "#8B0000", "#000000", "#98FF98", "#E6E6FA", "#556B2F", "#5F9EA0", "#AEC6CF", "#FFDB58", "#654321", "#800020", "#E2725B", "#F88379"
 ],               avoid:[] },
 
-  Alabaster: { best:[`#50C878`,`#0F52BA`,`#9B111E`,`#9966CC`,`#580F41`,`#B0E0E6`,`#FFC0CB`,`#E6E6FA`,`#98FF98`,`#000080`,`#D3D3D3`,`#FFFDD0`,`#C19A6B`,`#F0E68C`,`#FAFAD2`,`#FFE5B4`,`#FF7F50`,`#FFDB58`
+  Alabaster: { best:["#50C878","#0F52BA","#9B111E","#9966CC","#580F41","#B0E0E6","#FFC0CB","#E6E6FA","#98FF98","#000080","#D3D3D3","#FFFDD0","#C19A6B","#F0E68C","#FAFAD2","#FFE5B4","#FF7F50","#FFDB58"
+
 ],               avoid:[] },
 
   Golden:    { best:["#ffd700", "fafad2", "#d4af37", "b76e79", "c28840", "cd7f32", "f7e7ce", "ffcc33"],               avoid:[] },
@@ -106,9 +110,10 @@ const DATA = {
   Caramel:   { best:["#FFDB58",     "#E2725B",     "#556B2F",     "#B7410E",     "#FFFDD0",     "#CC5500",     "#000080",     "#F8E0E7",     "#381819",     "#FFD700"
 ],               avoid:[] },
 
-  Olive:     { best:[`#556B2F`, `#C19A6B`, `#CC7722`, `#E2725B`, `#50C878`, `#4B0082`, `#0F52BA`,
-`#FFFFFF`, `#FFFFF0`, `#FFFDD0`, `#950714`, `#A45A75`, `#F88379`, `#E34234`,
-`#FF6347`, `#FF0000`, `#FFDB58`, `#FFD700`, `#01796F`, `#00A86B`
+  Olive:     { best:["#556B2F","#C19A6B","#CC7722","#E2725B","#50C878","#4B0082","#0F52BA",
+"#FFFFFF","#FFFFF0","#FFFDD0","#950714","#A45A75","#F88379","#E34234",
+"#FF6347","#FF0000","#FFDB58","#FFD700","#01796F","#00A86B"
+
 ],               avoid:[] },
 
   Bronze:    { best:["#E2725B", "#FFD700", "#CC7722", "#556B2F", "#50C878", "#580F41", "#0F52BA", "#800020", "#C19A6B", "#F5F5DC", "#FFFDD0", "#002366", "#FF8C00", "#FFD700", "#000080", "#A9A9A9", "#000000"
