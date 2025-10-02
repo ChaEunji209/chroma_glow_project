@@ -318,7 +318,7 @@ const MAKEUP_TEXT = {
 
 /* ---------- STATE ---------- */
 
-let state = {surface:'',sub:'',undertone:'',hair:'',eyes:''};                 //each time user selets something, the value is saved here
+let state = {surface:'',sub:'',undertone:'',hair:'',eyes:'',contrast:'',eyeLight:''};                 //each time user selets something, the value is saved here
 
 /* ---------- HELPERS ---------- */
 
@@ -391,9 +391,10 @@ function init(){
         hide($('step3'));show($('step4'));
         buildGrid($('hairGrid'),hair,h=>{
           state.hair=h;
-          hide($('step4'));show($('step5'));
+          hide($('step4'));show($('step4b'));
           buildGrid($('eyeGrid'),eyes,e=>{
             state.eyes=e;
+            hide($('step4b')); show($('step5'));
           });
         });
       });
@@ -401,8 +402,17 @@ function init(){
   });
 }
 
+/* handlers */
+function pickContrast(level){
+  state.contrast = level;
+  hide($('step5')); show($('step5b'));
+}
+function pickEyeLight(level){
+  state.eyeLight = level;
+}
+
 function generateResult(){
-  hide($('step5'));
+  hide($('step5b'));
   /* start with sub-skin */
   let final = DATA[state.sub] || {best:[],avoid:[]};
 

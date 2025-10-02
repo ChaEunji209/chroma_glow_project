@@ -9,16 +9,16 @@
     --boxshadow: #4e4e4e;
     --footer-color:#122e34;
     --gallery: #fff4f4;
-    --guide: #b0f2bc;
+    --guide: #9df5f0;
     --about: linear-gradient(135deg, #64ffda, #1de9b6);
   }
 .darkmode{
     --primary-color: #E0C097;
     --secondary-color: #FFFFFF;
     --background-color: #121212;
-    --overlay-color: rgba(0, 0, 0, 0.6);
+    --overlay-color: rgba(225, 225, 225, 0.6);
     --text-color: #fbfbfb;
-    --nav-color:#fff;
+    --nav-color:#032f30;
     --boxshadow: #dfdfdf;
     --footer-color:#677e8a;
     --gallery: #0d1118;
@@ -79,7 +79,7 @@ nav ul li{
 nav ul li a{
     text-decoration: none;
     color: var(--nav-color);
-    font-weight: 500;
+    font-weight: 600;
     position: relative;
     padding: 0.5rem 0;
 }
@@ -229,7 +229,7 @@ input:checked + .slider:before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--overlay-color);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .video-background video {
@@ -292,6 +292,13 @@ input:checked + .slider:before {
     }
 }
 
+.uptobtn {
+    position: fixed;
+    right: 100px;
+    border: 1px solid rosybrown;
+    border-radius: 50%;
+}
+
 /* --- Responsive Design for Smaller Screens --- */
 @media (max-width: 768px) {
     .main-header {
@@ -341,6 +348,13 @@ input:checked + .slider:before {
     padding: 30px;
     border-radius: 6px;
     
+}
+
+@media (max-width: 768px) {
+    .guide-section {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
 }
 
 .guide-text h2 {
@@ -449,9 +463,14 @@ input:checked + .slider:before {
     padding: 0 60px;
 }
 
-@media (amx-width: 768px) {
+@media (max-width: 768px) {
     .model-grid {
-        gap: 1.5rem;
+        column-gap: 1.5rem;
+        row-gap: 1.5rem;
+    }
+    .gallery-section {
+       padding:10px;
+       background: none; 
     }
 }
 
@@ -588,19 +607,19 @@ input:checked + .slider:before {
 }
 
 .image:nth-child(1) {
-    background-image: url("img/aboutus.jpg");
+    background-image: url("img/ThandarSu.jpg");
 }
 .image:nth-child(2) {
-    background-image: url("img/golden.jpg");
+    background-image: url("img/KMK.jpg");
 }
 .image:nth-child(3) {
-    background-image: url("img/ivory.jpg");
+    background-image: url("img/ZLLT.jpg");
 }
 .image:nth-child(4) {
-    background-image: url("img/mahogany.jpg");
+    background-image: url("img/TZLH.jpg");
 }
 .image:nth-child(5) {
-    background-image: url("img/olive.jpg");
+    background-image: url("img/HYA.jpg");
 }
 
 
@@ -635,7 +654,6 @@ input:checked + .slider:before {
 
 .image:hover .about{
     transform: translateX(0);
-    /* transition-delay: 0.1s; */
     opacity: 1;
 }
 
@@ -654,6 +672,29 @@ input:checked + .slider:before {
     margin-bottom: 4px;
 }
 
+@media (max-width:900px) {
+    .image {
+        height: 200px;
+        overflow: hidden;
+        gap: 3px;
+        width: 80px;
+        display: flex;
+    }
+    .imgcontainer {
+        overflow-x: auto;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .imgcard {
+       justify-content: flex-start;
+       padding: 0 10px; 
+   }
+}
+
+/* Custom Scrollbar for the About Us section on mobile */
+.imgcontainer::-webkit-scrollbar {
+  height: .1px;
+}
 
 /* --- Rating Section --- */
 .ratingStar {
@@ -719,7 +760,9 @@ gap:.35rem;
 }
 .barLabel { 
     width:12px; 
-    text-align:right; 
+    text-align:right;
+    font-size: 15px; 
+    font-weight: 500;
 }
 .barTrack { 
     flex:1; 
@@ -732,6 +775,11 @@ gap:.35rem;
     height:100%; 
     background:#ffc107; 
     transition:width .3s; 
+}
+
+.barPct {
+    font-size: 15px;
+    font-weight: 900;
 }
 
 @media (max-width: 900px) {
@@ -801,7 +849,7 @@ gap:.35rem;
   top: 10px; right: 15px;
   font-size: 24px;
   cursor: pointer;
-  color: var(--secondary-color);
+  color: white;
 
 }
 
@@ -873,8 +921,60 @@ gap:.35rem;
   transform: scale(1.2);
 }
 
+/* --- Scroll Animation --- */
+.animate-on-scroll {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
 
+@keyframes appear {
+    from {
+        opacity: 0;
+        clip-path: inset(100% 0 100%  0);
+    }
+    to {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+    }
+}
 
+.animate-appear {
+    animation: showup linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
 
+@keyframes showup {
+    from {
+        opacity: 0;
+        scale: 0;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
 
+.text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2s, appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+}
 
+@keyframes typing {
+    from { width: 0;}
+}
+
+/*  disable animations on tablets & phones */
+@media (max-width: 900px) {
+    .animate-on-scroll,
+    .animate-appear,
+    .text {
+        animation: none !important;
+        white-space: normal !important;
+    }
+}

@@ -187,3 +187,26 @@
 
   renderChart();  // initial paint
 })();
+
+/* ---------- Scroll Animation ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Triggers when 10% of the element is visible
+    });
+
+    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+    elementsToAnimate.forEach((element, index) => {
+        // Add a special staggered delay just for the model cards
+        if (element.classList.contains('model-card')) {
+            element.style.transitionDelay = `${index * 100}ms`;
+        }
+        observer.observe(element);
+    });
+});
