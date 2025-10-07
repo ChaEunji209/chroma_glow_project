@@ -11,12 +11,13 @@
     --gallery: #fff4f4;
     --guide: #9df5f0;
     --about: linear-gradient(135deg, #64ffda, #1de9b6);
+    --popup_text : #fcfcfc;
   }
 .darkmode{
     --primary-color: #E0C097;
     --secondary-color: #FFFFFF;
     --background-color: #121212;
-    --overlay-color: rgba(225, 225, 225, 0.6);
+    --overlay-color: #e6f0f2a8;
     --text-color: #fbfbfb;
     --nav-color:#032f30;
     --boxshadow: #dfdfdf;
@@ -24,6 +25,7 @@
     --gallery: #0d1118;
     --guide: #032f30;
     --about: #195042;
+    --popup_text : rgb(5, 12, 18);
   }
 
  body{
@@ -833,13 +835,13 @@ gap:.35rem;
 }
 
 #popupText {
-    color: var(--primary-color);
+    color: var(--popup_text);
     font-family: 'Montserrat', sans-serif;
     line-height: 2.5;
 }
 
 #popupTitle {
-    color: var(--primary-color);
+    color: var(--popup_text);
     font-family: 'Cormorant Garamond', serif;
     line-height: 1.8;
 }
@@ -866,13 +868,15 @@ gap:.35rem;
 }
 
 .hover-card a {
-  color: var(--primary-color);
+  color: var(--popup_text);
   text-decoration: none;
   font-weight: bold;
+  transition: all 0.3s;
 }
 
 .hover-card a:hover {
-  text-decoration: underline;
+  letter-spacing: 0.7px;
+  font-size: larger;
 }
 
 
