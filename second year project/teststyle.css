@@ -290,3 +290,336 @@ body{
   background:var(--accent);
   color:#fff;
 }
+
+
+
+
+
+
+/* ---------- SEASONAL HEADER ---------- */
+.seasonal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.seasonal-title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.seasonal-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+/* ---------- CONFIRMATION POPUP ---------- */
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.confirmation-overlay.show {
+  opacity: 1;
+}
+
+.confirmation-popup {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.confirmation-overlay.show .confirmation-popup {
+  transform: scale(1);
+}
+
+.confirmation-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.confirmation-header h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.profile-summary {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.profile-label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+.profile-value {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.confirmation-prompt {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.confirmation-prompt p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.confirmation-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-yes, .btn-no {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-yes {
+  background: #27ae60;
+  color: white;
+}
+
+.btn-yes:hover {
+  background: #229954;
+  transform: translateY(-2px);
+}
+
+.btn-no {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-no:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+/* ---------- ENHANCED RESTART BUTTON ---------- */
+.restart-analysis {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.restart-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 768px) {
+  .confirmation-popup {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .seasonal-title {
+    font-size: 2rem;
+  }
+  
+  .confirmation-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-yes, .btn-no {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------- VISUAL CONFIRMATION STYLES ---------- */
+.visual-summary {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.visual-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #3498db;
+  transition: transform 0.2s ease;
+}
+
+.visual-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.visual-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.visual-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.visual-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.visual-label {
+  font-weight: 600;
+  color: #34495e;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.visual-value {
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.confirmation-subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  margin: 0.5rem 0 1.5rem 0;
+  font-size: 1rem;
+}
+
+/* ---------- ALTERNATIVE GRID LAYOUT ---------- */
+.visual-summary.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.visual-summary.grid-layout .visual-item {
+  flex-direction: column;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.visual-summary.grid-layout .visual-image {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+
+/* ---------- RESPONSIVE VISUALS ---------- */
+@media (max-width: 768px) {
+  .visual-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .visual-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .visual-summary {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .visual-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .visual-value {
+    font-size: 1rem;
+  }
+}
+
+/* Add CSS for image placeholder */
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ecf0f1;
+  color: #95a5a6;
+  font-size: 0.8rem;
+}
+
+.image-placeholder i {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}

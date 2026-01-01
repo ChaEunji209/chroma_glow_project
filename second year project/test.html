@@ -64,18 +64,20 @@
       <button class="prev" onclick="goStep(4)"><i class='bx bx-undo'></i></button>
   </div>
     <div class="grid" id="eyeGrid"></div>
-    <button onclick="generateResult()" class="palette">Show my palette</button>
+    <button onclick="showConfirmationPopup()" class="palette">Show my palette</button>
   </section>
 
   <!-- RESULT -->
-  <section id="result" class="step hidden">
-    
-    <div class="nav-buttons">
-      <button class="prev" onclick="goStep(4)"><i class='bx bx-undo'></i></button>
-
-      <!-- Resart from beginning -->
-    <button onclick="resetQuiz()" class="startOver">Start over</button>
+  <!-- Update the result section in test.html -->
+<section id="result" class="step hidden">
+  <!-- Seasonal header will be inserted here dynamically -->
+  
+  <div class="nav-buttons">
+    <button class="prev" onclick="goStep(4)">
+      <i class='bx bx-undo'></i>
+    </button>
   </div>
+  
   <div class="answer">
     <h2>Your best clothing colours</h2>
     <p><strong>Best:</strong></p>
@@ -83,20 +85,31 @@
     <p><strong>Avoid:</strong></p>
     <div id="avoidSwatches"></div>
   </div>  
-    <!-- Make-up text suggestion -->
-    <div id="makeupBox" class="hidden" style="margin-top:1rem"></div>
+  
+  <!-- Make-up text suggestion -->
+  <div id="makeupBox" class="hidden" style="margin-top:1rem"></div>
 
-    <!-- E-mail form -->
-    <div id="emailBox" style="margin-top:1rem">
-      <h3>Do you want to save your result?</h3>
-      <label>
-        <input type="text" id="userName" placeholder="Your name">
-        <input type="email" id="userEmail" placeholder="your@email.com">
-      <button onclick="sendViaEmailJS()"><i class='bx bx-send'></i></button>
-      </label>
-      <p id="emailStatus" style="color:green"></p>
-    </div>
-  </section>
+  <!-- E-mail form -->
+  <div id="emailBox" style="margin-top:1rem">
+    <h3>Do you want to save your result?</h3>
+    <label>
+      <input type="text" id="userName" placeholder="Your name">
+      <input type="email" id="userEmail" placeholder="your@email.com">
+      <button onclick="sendViaEmailJS()">
+        <i class='bx bx-send'></i>
+      </button>
+    </label>
+    <p id="emailStatus" style="color:green"></p>
+  </div>
+  
+  <!-- Enhanced restart button -->
+  <div class="restart-analysis">
+    <button onclick="resetQuiz()" class="restart-btn">
+      <i class='bx bx-refresh'></i>
+      Restart Analysis
+    </button>
+  </div>
+</section>
 </main>
 
 <script  src="test_function.js"></script>

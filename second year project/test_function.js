@@ -4,15 +4,15 @@
 
 const surface = ['Fair','Light','Tan','Medium','Deep','Dark'];
 const sub = {
-  Fair:   ['Porcelain','Ivory','Rosy'],
-  Light:  ['Beige','Peach','Alabaster'],
-  Tan:    ['Golden','Honey','Caramel'],
-  Medium: ['Olive','Bronze','Chestnut'],
-  Deep:   ['Mahogany','Espresso','Umber'],
-  Dark:  ['Onyx','Charcoal','Sable']
+  Fair:   ['Porcelain','Ivory','Rosy','Alabaster','Pearl','Pale Pink'],
+  Light:  ['Beige','Peach','Alabaster','Cream','Buff','Sand'],
+  Tan:    ['Golden','Honey','Caramel','Amber','Sunkissed','Toasted'],
+  Medium: ['Olive','Bronze','Chestnut','Almond','Warm Sand','Cashew'],
+  Deep:   ['Mahogany','Espresso','Umber','Sienna','Cacao','Copper'],
+  Dark:   ['Onyx','Charcoal','Sable','Ebony','Deep Coffee','Midnight']
 };
 const undertone = ['Cool','Warm','Neutral'];
-const hair   = ['Blonde_cool','Blonde_warm','Red','Light_brown','Dark_brown','Black','Grey_silver'];
+const hair   = ['Blonde_cool','Blonde_warm','Red','Auburn','Light_brown','Dark_brown','Ash_brown','Black','Jet_Black','Grey_silver'];
 const eyes   = ['Blue','Green','Hazel','Light__brown','Dark__brown','Black1','Grey'];
 
 
@@ -30,6 +30,7 @@ const skinImgs = {
   Rosy : 'img/rosy.jpg',
   Beige : 'img/Beige.jpg',
   Peach : 'img/Peach.jpg',
+  Cream: 'img/cream.jpg',
   Alabaster : 'img/Alabaster.jpg',
   Golden : 'img/olive.jpg',
   Honey : 'img/bronze.jpg',
@@ -59,126 +60,352 @@ const skinImgs = {
   Grey : 'img/Grey.jpg',
   Cool : 'img/cool.jpg',
   Neutral : 'img/natural tone.jpg',
-  Warm : 'img/warm tone.jpg'
+  Warm : 'img/warm tone.jpg',
+  Auburn: 'img/auburn.jpg',
+  Jet_Black: 'img/jet_black.jpg',
+  Ash_brown: 'img/ash_brown.jpg'
 };
 
 /* palette engine – still only needs undertone */
 
 const palettes = {
-  Cool:{best:["#0F52BA",     "#4169E1",     "#50C878",     "#01796F",     "#FF0000",     "#DE3163",     "#FF00FF",     "#C154C1",     "#8F00FF",     "#9966CC",     "#CCCCFF",     "#E6E6FA",     "#AFDBF5",     "#F8C8DC",     "#708090",     "#36454F",     "#C0C0C0",     "#FFFFFF",     "#000080",     "#000000"
-],
-        avoid:['#fb923c','#facc15','#d97706','#dc2626']},
+  Cool: {
+    best: [
+      "#0F52BA", "#4169E1", "#50C878", "#01796F", "#FF0000", // Royal Blue, Emerald, True Red
+      "#DE3163", "#FF00FF", "#C154C1", "#8F00FF", "#9966CC", // Cherry, Fuchsia, Violet
+      "#CCCCFF", "#E6E6FA", "#AFDBF5", "#F8C8DC", "#708090", // Periwinkle, Lavender, Pastel Pink
+      "#36454F", "#C0C0C0", "#FFFFFF", "#000080", "#000000", // Charcoal, Silver, White, Navy, Black
+      "#191970", "#4B0082", "#008080", "#E0B0FF", "#00FFFF"  // Midnight Blue, Indigo, Teal, Mauve, Cyan
+    ],
+    avoid: ["#fb923c", "#facc15", "#d97706", "#dc2626", "#8B4513", "#FFD700", "#556B2F"] // Orange, Mustard, Brown, Gold, Olive
+  },
 
-  Warm:{best:["#E2725B",     "#B7410E",     "#FF7F50",     "#FF6347",     "#FF7518",     "#FFDB58",     "#EAA221",     "#C19A6B",     "#9A463D",     "#7B3F00",     "#808000",     "#8A9A5B",     "#B2AC88",     "#FFDAB9",     "#FBCEB1",     "#CC5500",     "#CD7F32",     "#FFD700",     "#FFFDD0",     "#D2B48C"
-],
-        avoid:['#a855f7','#7dd3fc','#ffffff','#9ca3af']},
+  Warm: {
+    best: [
+      "#E2725B", "#B7410E", "#FF7F50", "#FF6347", "#FF7518", // Terra Cotta, Rust, Coral, Orange
+      "#FFDB58", "#EAA221", "#C19A6B", "#9A463D", "#7B3F00", // Mustard, Goldenrod, Camel, Chocolate
+      "#808000", "#8A9A5B", "#B2AC88", "#FFDAB9", "#FBCEB1", // Olive, Sage, Khaki, Peach, Apricot
+      "#CC5500", "#CD7F32", "#FFD700", "#FFFDD0", "#D2B48C", // Burnt Orange, Bronze, Gold, Cream, Tan
+      "#556B2F", "#8B4513", "#BC8F8F", "#F4A460", "#DAA520"  // Dark Olive, Saddle Brown, Rosy Brown, Sandy Brown
+    ],
+    avoid: ["#a855f7", "#7dd3fc", "#ffffff", "#9ca3af", "#FF00FF", "#000080", "#C0C0C0"] // Purple, Icy Blue, Stark White, Grey, Fuchsia, Navy, Silver
+  },
 
-  Neutral:{best:["#696969",     "#808080",     "#837060",     "#483C32",     "#BFAFB2",     "#F8E0E7",     "#D4A5A5",     "#B784A7",     "#008080",     "#00A86B",     "#93E9BE",     "#1560BD",     "#191970",     "#B9AEDC",     "#A3989D",     "#99AABB",     "#AAF0D1",     "#708238",     "#3B2F2F",     "#F8F8F0"
-],
-           avoid:['#ef4444','#a1a1aa']}
+  Neutral: {
+    best: [
+      "#5F9EA0", "#BC8F8F", "#8FBC8F", "#BDB76B", "#CD5C5C", // Cadet Blue, Rosy Brown, Sea Green, Khaki, Indian Red
+      "#4682B4", "#D2B48C", "#808080", "#2F4F4F", "#A52A2A", // Steel Blue, Tan, Gray, Slate, Brown
+      "#E9967A", "#66CDAA", "#778899", "#D8BFD8", "#EEE8AA", // Dark Salmon, Aquamarine, Light Slate Gray, Thistle
+      "#F5F5DC", "#FAF0E6", "#708090", "#DAA520", "#556B2F"  // Beige, Linen, Slate Gray, Goldenrod, Dark Olive
+    ],
+    avoid: ["#FF00FF", "#39FF14", "#FF3131", "#00FFFF", "#000000", "#FFFFFF"] // Neon Fuchsia, Neon Green, Electric Red, Cyan, Pure Black, Stark White
+  }
 };
 
 /* === NEW: step-specific colour contributions === */
 const DATA = {
   /* Sub-skin mini-palettes */
-  Porcelain: { best:["#50C878",`#0F52BA`,`#0000FF`,`#9B111E`,`#9966CC`,`#800080`,`#B0E0E6`,`#FFC0CB`,`#98FF98`,`#E6E6FA`,`#000080`,`#D3D3D3`,`#FFFDD0`,`#C19A6B`,`#90E4C1`, `#00A86B`
-],     avoid:[] },
+  Porcelain: {
+    best: [
+      "#FFD1DC", "#E0B0FF", "#F0F8FF", "#B0C4DE", "#E6E6FA", "#AFDBF5", "#F8C8DC", "#FFFFFF", "#C0C0C0", "#0F52BA",
+      "#4169E1", "#50C878", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#CCCCFF", "#708090", "#36454F", "#000080",
+      "#191970", "#4B0082", "#008080", "#00FFFF", "#4682B4", "#5F9EA0", "#D8BFD8", "#B0E0E6", "#778899", "#E6E6FA"
+    ],
+    avoid: ["#8B4513", "#fb923c", "#facc15", "#d97706", "#dc2626", "#FFD700", "#556B2F", "#808000", "#CD7F32", "#A52A2A"]
+  },
 
-  Ivory:     { best:[`#50C878`,`#0F52BA`,`#9B111E`,`#9966CC`,`#E4D00A`,`#ADD8E6`,`#FFC0CB`,`#E6E6FA`,`#98FF98`],               avoid:[] },
+  // 1. IVORY (Fair - Warm/Neutral)
+  Ivory: {
+    best: [
+      "#FFFDD0", "#F0E68C", "#EAA221", "#FFD700", "#FFDAB9", "#FBCEB1", "#FF7F50", "#E2725B", "#FFDB58", "#C19A6B",
+      "#8A9A5B", "#B2AC88", "#FFF8DC", "#FAEBD7", "#F5F5DC", "#FAF0E6", "#DEB887", "#D2B48C", "#BC8F8F", "#8FBC8F",
+      "#CD7F32", "#DAA520", "#B8860B", "#EEE8AA", "#F4A460", "#E9967A", "#FF7518", "#E2725B", "#9A463D", "#8B4513"
+    ],
+    avoid: ["#000000", "#191970", "#4B0082", "#000080", "#C0C0C0", "#708090", "#36454F", "#FF00FF", "#00FFFF", "#FFFFFF"]
+  },
 
-  Rosy:      { best:[`#4169E1`,`#000080`,`#008080`,`#B0E0E6`,`#228B22`,`#50C878`,`#BCA8D0`,`#9966CC`,`#8E4585`,`#36454F`,`#000000`
-],               avoid:[] },
+  // 2. ROSY (Fair - Cool/Pinkish)
+  Rosy: {
+    best: [
+      "#FFC0CB", "#FFB6C1", "#FF69B4", "#DB7093", "#C71585", "#E0B0FF", "#D8BFD8", "#EE82EE", "#DA70D6", "#BA55D3",
+      "#9370DB", "#8A2BE2", "#9400D3", "#9932CC", "#8B008B", "#800080", "#4B0082", "#483D8B", "#6A5ACD", "#7B68EE",
+      "#E6E6FA", "#CCCCFF", "#B0C4DE", "#ADD8E6", "#87CEEB", "#87CEFA", "#00BFFF", "#1E90FF", "#6495ED", "#4682B4"
+    ],
+    avoid: ["#FFA500", "#FF8C00", "#FF4500", "#FFD700", "#FFFF00", "#808000", "#556B2F", "#A52A2A", "#8B4513", "#D2691E"]
+  },
 
-  Beige:     { best:["#000000", "#FFFFFF", "#808080", "#FFFDD0", "#FFC0CB", "#FF0000", "#0000FF", "#008000", "#FFFF00", "#E2725B", "#556B2F", "#FFDB58", "#7B3F00", "#AF6E4D", "#D2B48C"
-],               avoid:[] },
+  // 3. ALABASTER (Fair - Cool/Neutral Clear)
+  Alabaster: {
+    best: [
+      "#F0F8FF", "#E6F0FA", "#B0C4DE", "#778899", "#708090", "#4682B4", "#5F9EA0", "#B0E0E6", "#AFDBF5", "#E0FFFF",
+      "#F0FFFF", "#F5FFFA", "#F0F8FF", "#E6E6FA", "#D8BFD8", "#BDB76B", "#8FBC8F", "#BC8F8F", "#D2B48C", "#C0C0C0",
+      "#FFFFFF", "#F5F5F5", "#DCDCDC", "#D3D3D3", "#A9A9A9", "#808080", "#696969", "#191970", "#000080", "#000000"
+    ],
+    avoid: ["#4B5320", "#556B2F", "#808000", "#B8860B", "#DAA520", "#CD853F", "#A0522D", "#8B4513", "#D2691E", "#FF4500"]
+  },
 
-  Peach:     { best:["#FFFFFF", "#D3D3D3", "#000080", "#FF7F50", "#FFD700", "#8B0000", "#000000", "#98FF98", "#E6E6FA", "#556B2F", "#5F9EA0", "#AEC6CF", "#FFDB58", "#654321", "#800020", "#E2725B", "#F88379"
-],               avoid:[] },
+  // 4. PEARL (Fair - Cool/Luminous)
+  Pearl: {
+    best: [
+      "#FBFCF8", "#FFF5EE", "#F5F5DC", "#FAF0E6", "#E6E6FA", "#FFF0F5", "#F0F8FF", "#F5FFFA", "#FDF5E6", "#FFFAF0",
+      "#FFFFF0", "#F0FFFF", "#F5F5F5", "#D8BFD8", "#E0B0FF", "#B0C4DE", "#ADD8E6", "#B0E0E6", "#AFDBF5", "#F8C8DC",
+      "#C0C0C0", "#E5E4E2", "#D3D3D3", "#BCC6CC", "#98AFC7", "#6D929B", "#E6E6FA", "#CCCCFF", "#F0EAD6", "#E9FFDB"
+    ],
+    avoid: ["#5D3954", "#4E3524", "#3D2B1F", "#2F4F4F", "#004225", "#800000", "#4A0E0E", "#1B1B1B", "#000080", "#8B008B"]
+  },
 
-  Alabaster: { best:[`#50C878`,`#0F52BA`,`#9B111E`,`#9966CC`,`#580F41`,`#B0E0E6`,`#FFC0CB`,`#E6E6FA`,`#98FF98`,`#000080`,`#D3D3D3`,`#FFFDD0`,`#C19A6B`,`#F0E68C`,`#FAFAD2`,`#FFE5B4`,`#FF7F50`,`#FFDB58`
-],               avoid:[] },
+  // 5. PALE PINK (Fair - Soft/Cool)
+  "Pale Pink": {
+    best: [
+      "#FADADD", "#F8C8DC", "#FFB6C1", "#FFC0CB", "#D8BFD8", "#E6E6FA", "#E0B0FF", "#CCCCFF", "#B0C4DE", "#ADD8E6",
+      "#AFDBF5", "#B0E0E6", "#F0F8FF", "#F5F5F5", "#C0C0C0", "#BC8F8F", "#D2B48C", "#8FBC8F", "#5F9EA0", "#4682B4",
+      "#6495ED", "#7B68EE", "#9370DB", "#BA55D3", "#DB7093", "#FFD1DC", "#FFF0F5", "#E6E6FA", "#F0FFFF", "#FFFFFF"
+    ],
+    avoid: ["#D2691E", "#A0522D", "#8B4513", "#CD853F", "#B8860B", "#DAA520", "#FF8C00", "#FF4500", "#808000", "#556B2F"]
+  },
 
-  Golden:    { best:["#ffd700", "fafad2", "#d4af37", "b76e79", "c28840", "cd7f32", "f7e7ce", "ffcc33"],               avoid:[] },
+  // 1. BEIGE (Light - Neutral/Soft)
+  Beige: {
+    best: [
+      "#F5F5DC", "#F5F5F5", "#8FBC8F", "#BC8F8F", "#D2B48C", "#D3D3D3", "#C0C0C0", "#708090", "#5F9EA0", "#4682B4",
+      "#BDB76B", "#CD5C5C", "#E9967A", "#66CDAA", "#778899", "#D8BFD8", "#EEE8AA", "#FAF0E6", "#708090", "#DAA520",
+      "#556B2F", "#8A9A5B", "#B2AC88", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#98AFC7", "#BCC6CC", "#808080"
+    ],
+    avoid: ["#FF00FF", "#39FF14", "#FF3131", "#00FFFF", "#000000", "#FFFFFF", "#FF1493", "#0000FF", "#8B0000", "#FFD700"]
+  },
 
-  Honey:     { best:["#E2725B", "#FFDB58", "#556B2F", "#B7410E", "#FFFDD0", "#E4D5B7", "#D3D3D3", "#F88379", "#950714", "#4169E1", "#000080", "#0F52BA", "#50C878", "#00A86B", "#E34234", "#FF6347", "#FFFF00"
-],               avoid:[] },
+  // 2. PEACH (Light - Warm/Glowing)
+  Peach: {
+    best: [
+      "#FFDAB9", "#FF7F50", "#FF6347", "#FF7518", "#E2725B", "#FFDB58", "#EAA221", "#FBCEB1", "#F4A460", "#DAA520",
+      "#CD7F32", "#FFD700", "#FFFDD0", "#D2B48C", "#E9967A", "#EE82EE", "#FFB6C1", "#FFA07A", "#FF8C00", "#FFA500",
+      "#CD5C5C", "#F0E68C", "#EEE8AA", "#B8860B", "#D2691E", "#BC8F8F", "#FFD1DC", "#FFB7C5", "#E5AA70", "#FFEFD5"
+    ],
+    avoid: ["#4169E1", "#000080", "#191970", "#4B0082", "#00FFFF", "#708090", "#C0C0C0", "#808080", "#000000", "#FFFFFF"]
+  },
 
-  Caramel:   { best:["#FFDB58",     "#E2725B",     "#556B2F",     "#B7410E",     "#FFFDD0",     "#CC5500",     "#000080",     "#F8E0E7",     "#381819",     "#FFD700"
-],               avoid:[] },
+  // 3. CREAM (Light - Warm/Delicate)
+  Cream: {
+    best: [
+      "#FFFDD0", "#F0E68C", "#FAF0E6", "#FFF8DC", "#FAEBD7", "#FDF5E6", "#FFFAF0", "#FFFFF0", "#F5F5DC", "#FFE4B5",
+      "#FFEFD5", "#FFEBCD", "#FFE4C4", "#FFDEAD", "#F5DEB3", "#DEB887", "#D2B48C", "#BC8F8F", "#DAA520", "#B8860B",
+      "#CD7F32", "#E9967A", "#FFA07A", "#FF7F50", "#FFDAB9", "#F4A460", "#8A9A5B", "#B2AC88", "#8FBC8F", "#9ACD32"
+    ],
+    avoid: ["#000080", "#191970", "#4B0082", "#8B0000", "#000000", "#708090", "#483D8B", "#2F4F4F", "#006400", "#4A0E0E"]
+  },
 
-  Olive:     { best:[`#556B2F`, `#C19A6B`, `#CC7722`, `#E2725B`, `#50C878`, `#4B0082`, `#0F52BA`,
-`#FFFFFF`, `#FFFFF0`, `#FFFDD0`, `#950714`, `#A45A75`, `#F88379`, `#E34234`,
-`#FF6347`, `#FF0000`, `#FFDB58`, `#FFD700`, `#01796F`, `#00A86B`
-],               avoid:[] },
+  // 4. BUFF (Light - Neutral/Muted)
+  Buff: {
+    best: [
+      "#F0DC82", "#DEB887", "#D2B48C", "#BC8F8F", "#8A9A5B", "#B2AC88", "#8FBC8F", "#5F9EA0", "#4682B4", "#778899",
+      "#708090", "#D3D3D3", "#C0C0C0", "#BDB76B", "#CD5C5C", "#E9967A", "#EEE8AA", "#FAF0E6", "#F5F5DC", "#F0E68C",
+      "#E5AA70", "#D2B48C", "#D2691E", "#CD7F32", "#DAA520", "#B8860B", "#9ACD32", "#6B8E23", "#556B2F", "#A0522D"
+    ],
+    avoid: ["#FF0000", "#FF00FF", "#0000FF", "#00FFFF", "#39FF14", "#FF3131", "#FFFFFF", "#000000", "#4B0082", "#FF1493"]
+  },
 
-  Bronze:    { best:["#E2725B", "#FFD700", "#CC7722", "#556B2F", "#50C878", "#580F41", "#0F52BA", "#800020", "#C19A6B", "#F5F5DC", "#FFFDD0", "#002366", "#FF8C00", "#FFD700", "#000080", "#A9A9A9", "#000000"
-],               avoid:[] },
+  // 5. SAND (Light - Neutral/Warm)
+  Sand: {
+    best: [
+      "#C2B280", "#BC8F8F", "#D2B48C", "#8FBC8F", "#8A9A5B", "#B2AC88", "#DEB887", "#F5F5DC", "#FAF0E6", "#F0E68C","#CD7F32", "#DAA520", "#B8860B", "#BDB76B", "#CD5C5C", "#E9967A", "#66CDAA", "#778899", "#708090", "#5F9EA0","#4682B4", "#B0C4DE", "#EEE8AA", "#FFF8DC", "#E5AA70", "#F4A460", "#D2691E", "#A0522D", "#8B4513", "#556B2F"
+    ],
+    avoid: ["#708090", "#000080", "#191970", "#4B0082", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#FF1493", "#483D8B"]
+  },
+  
+ // 1. GOLDEN
+  Golden: {
+    best: ["#FFD700", "#DAA520", "#B8860B", "#EEBC1D", "#FFBF00", "#F4A460", "#E2725B", "#B7410E", "#FF7F50", "#FF6347", "#FF7518", "#EAA221", "#C19A6B", "#9A463D", "#7B3F00", "#808000", "#8A9A5B", "#B2AC88", "#CC5500", "#CD7F32", "#BC8F8F", "#B22222", "#006400", "#556B2F", "#8B4513", "#A0522D", "#D2691E", "#CD853F", "#E9967A", "#FFA07A"],
+    avoid: ["#E6E6FA", "#CCCCFF", "#AFDBF5", "#F8C8DC", "#C0C0C0", "#FFFFFF", "#a855f7", "#7dd3fc", "#FF00FF", "#000080"]
+  },
+  // 2. HONEY
+  Honey: {
+    best: ["#EB9605", "#F9A602", "#E2725B", "#FF7F50", "#FFDAB9", "#FBCEB1", "#F4A460", "#DAA520", "#CD7F32", "#B8860B", "#9A463D", "#8B4513", "#A52A2A", "#D2691E", "#CD853F", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#EAA221", "#C19A6B", "#7B3F00", "#808000", "#8A9A5B", "#B2AC88", "#556B2F", "#A0522D", "#B22222"],
+    avoid: ["#CCCCFF", "#B0C4DE", "#E6E6FA", "#AFDBF5", "#F8C8DC", "#FFFFFF", "#C0C0C0", "#00FFFF", "#FF00FF", "#000080"]
+  },
+  // 3. CARAMEL
+  Caramel: {
+    best: ["#AF6F09", "#825103", "#A52A2A", "#8B4513", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#3D2B1F", "#654321", "#966919", "#E5AA70"],
+    avoid: ["#AFDBF5", "#E0FFFF", "#F0FFFF", "#FFFFFF", "#C0C0C0", "#E6E6FA", "#FF00FF", "#00FFFF", "#708090", "#D3D3D3"]
+  },
+  // 4. AMBER
+  Amber: {
+    best: ["#FFBF00", "#FFD700", "#FF8C00", "#FF4500", "#FF7F50", "#E2725B", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#D2691E", "#B7410E", "#CC5500", "#EAA221", "#F4A460", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#C19A6B", "#9A463D", "#7B3F00", "#808000", "#8A9A5B", "#B2AC88", "#556B2F", "#B22222"],
+    avoid: ["#F8C8DC", "#FFD1DC", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#FFFFFF", "#C0C0C0", "#00FFFF", "#FF00FF", "#000080"]
+  },
+  // 5. SUNKISSED
+  Sunkissed: {
+    best: ["#F4A460", "#FF4500", "#FF8C00", "#FFD700", "#FF7F50", "#E2725B", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#D2691E", "#B7410E", "#CC5500", "#EAA221", "#FFBF00", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#C19A6B", "#9A463D", "#7B3F00", "#808000", "#8A9A5B", "#B2AC88", "#556B2F", "#B22222"],
+    avoid: ["#C0C0C0", "#D3D3D3", "#DCDCDC", "#FFFFFF", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#F8C8DC", "#FF00FF", "#00FFFF"]
+  },
+  // 6. TOASTED
+  Toasted: {
+    best: ["#966919", "#4E3524", "#3D2B1F", "#654321", "#8B4513", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#AF6F09", "#E5AA70"],
+    avoid: ["#FFFFFF", "#F5F5F5", "#DCDCDC", "#D3D3D3", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#F8C8DC", "#FF00FF", "#00FFFF"]
+  },
 
-  Chestnut:  { best:["#556B2F", "#FFDB58", "#B7410E", "#F0E68C", "#800020", "#0F52BA", "#000000", "#808080", "#C0C0C0"
-],               avoid:[] },
+ // 1. OLIVE
+  Olive: {
+    best: ["#808000", "#B22222", "#CD7F32", "#006400", "#954535", "#3D2B1F", "#556B2F", "#DAA520", "#8B4513", "#A52A2A", "#E2725B", "#B7410E", "#FF7F50", "#FF6347", "#FF7518", "#FFDB58", "#EAA221", "#C19A6B", "#9A463D", "#7B3F00", "#8A9A5B", "#B2AC88", "#FFDAB9", "#FBCEB1", "#CC5500", "#FFFDD0", "#D2B48C", "#5F9EA0", "#BC8F8F", "#8FBC8F"],
+    avoid: ["#FFC0CB", "#CCCCFF", "#F0F8FF", "#B0C4DE", "#E6E6FA", "#AFDBF5", "#F8C8DC", "#FF00FF", "#00FFFF", "#FFFFFF"]
+  },
+  // 2. BRONZE
+  Bronze: {
+    best: ["#CD7F32", "#804A00", "#A52A2A", "#8B4513", "#7B3F00", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#3D2B1F", "#654321", "#966919", "#AF6F09", "#E5AA70"],
+    avoid: ["#CCCCFF", "#AFDBF5", "#E0FFFF", "#F8C8DC", "#FFFFFF", "#C0C0C0", "#E6E6FA", "#FF00FF", "#00FFFF", "#D3D3D3"]
+  },
+  // 3. CHESTNUT
+  Chestnut: {
+    best: ["#954535", "#3D2B1F", "#8B4513", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#654321", "#966919", "#AF6F09", "#E5AA70"],
+    avoid: ["#00FFFF", "#AFDBF5", "#E0FFFF", "#F0FFFF", "#FFFFFF", "#C0C0C0", "#E6E6FA", "#FF00FF", "#0000FF", "#D3D3D3"]
+  },
+  // 4. ALMOND
+  Almond: {
+    best: ["#EFDECD", "#D2B48C", "#E5AA70", "#BC8F8F", "#8A9A5B", "#B2AC88", "#8FBC8F", "#5F9EA0", "#4682B4", "#778899", "#708090", "#D3D3D3", "#C0C0C0", "#BDB76B", "#CD5C5C", "#E9967A", "#EEE8AA", "#FAF0E6", "#F5F5DC", "#F0E68C", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#556B2F", "#2F4F4F", "#BC8F8F", "#5D3954", "#483C32"],
+    avoid: ["#39FF14", "#FF3131", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#FF1493", "#FF0000", "#0000FF", "#4B0082"]
+  },
+  // 5. WARM SAND
+  "Warm Sand": {
+    best: ["#E5AA70", "#D2B48C", "#BC8F8F", "#8A9A5B", "#B2AC88", "#8FBC8F", "#5F9EA0", "#4682B4", "#778899", "#708090", "#D3D3D3", "#C0C0C0", "#BDB76B", "#CD5C5C", "#E9967A", "#EEE8AA", "#FAF0E6", "#F5F5DC", "#F0E68C", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#556B2F", "#B22222", "#006400", "#BC8F8F", "#CD853F", "#A0522D"],
+    avoid: ["#FF3131", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#FF1493", "#FF0000", "#0000FF", "#4B0082", "#483D8B"]
+  },
+  // 6. CASHEW
+  Cashew: {
+    best: ["#D2B48C", "#E5AA70", "#BC8F8F", "#8A9A5B", "#B2AC88", "#8FBC8F", "#5F9EA0", "#4682B4", "#778899", "#708090", "#D3D3D3", "#C0C0C0", "#BDB76B", "#CD5C5C", "#E9967A", "#EEE8AA", "#FAF0E6", "#F5F5DC", "#F0E68C", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#556B2F", "#B22222", "#006400", "#483C32", "#5D3A1A", "#3D2B1F"],
+    avoid: ["#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#FF1493", "#FF0000", "#4B0082", "#39FF14", "#FF3131"]
+  },
 
-  Mahogany:  { best:["#50C878", "#0F52BA", "#800080", "#F0E68C", "#556B2F", "#CC5500", "#000080", "#FFFDD0", "#808080", "#8B4513"
-],               avoid:[] },
+  // 1. MAHOGANY
+  Mahogany: {
+    best: ["#C04000", "#FFD700", "#8B0000", "#800000", "#A52A2A", "#B22222", "#CD7F32", "#DAA520", "#B8860B", "#E2725B", "#B7410E", "#CC5500", "#A0522D", "#8B4513", "#4E3524", "#3D2B1F", "#006400", "#556B2F", "#008080", "#191970", "#4B0082", "#800080", "#FF8C00", "#BC8F8F", "#9A463D", "#7B3F00", "#966919", "#5D3A1A", "#654321", "#3B271E"],
+    avoid: ["#708090", "#D3D3D3", "#F5F5DC", "#E6E6FA", "#AFDBF5", "#F8C8DC", "#CCCCFF", "#E0FFFF", "#FFFFFF", "#C0C0C0"]
+  },
+  // 2. ESPRESSO
+  Espresso: {
+    best: ["#3D2B1F", "#008080", "#191970", "#000080", "#000000", "#36454F", "#2F4F4F", "#004225", "#800000", "#4A0E0E", "#4B0082", "#800080", "#C04000", "#8B4513", "#A52A2A", "#DAA520", "#CD7F32", "#556B2F", "#006400", "#01796F", "#0F52BA", "#4169E1", "#50C878", "#DE3163", "#FF0000", "#8B008B", "#483D8B", "#2E8B57", "#2F4F4F", "#3D2B1F"],
+    avoid: ["#F5F5DC", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#FFFDD0", "#FFFFFF", "#F8C8DC", "#FFB6C1", "#E6E6FA"]
+  },
+  // 3. UMBER
+  Umber: {
+    best: ["#635147", "#4E3524", "#3D2B1F", "#654321", "#8B4513", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#AF6F09", "#3B271E"],
+    avoid: ["#FFFFFF", "#F5F5F5", "#DCDCDC", "#D3D3D3", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#F8C8DC", "#FF00FF", "#00FFFF"]
+  },
+  // 4. SIENNA
+  Sienna: {
+    best: ["#A0522D", "#E2725B", "#B7410E", "#CC5500", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#D2691E", "#FF7F50", "#FF6347", "#FF7518", "#EAA221", "#C19A6B", "#9A463D", "#7B3F00", "#808000", "#8A9A5B", "#B2AC88", "#BC8F8F", "#E9967A", "#FFA07A", "#FFDB58", "#556B2F", "#B22222", "#006400", "#483C32", "#5D3A1A", "#3D2B1F"],
+    avoid: ["#708090", "#AFDBF5", "#E0FFFF", "#F0FFFF", "#FFFFFF", "#C0C0C0", "#E6E6FA", "#FF00FF", "#00FFFF", "#D3D3D3"]
+  },
+  // 5. CACAO
+  Cacao: {
+    best: ["#4E3629", "#3D2B1F", "#654321", "#8B4513", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#AF6F09", "#966919", "#3B271E"],
+    avoid: ["#FFFFFF", "#F8C8DC", "#FFD1DC", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#C0C0C0", "#00FFFF", "#FF00FF", "#000080"]
+  },
+  // 6. COPPER
+  Copper: {
+    best: ["#B87333", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#DAA520", "#B8860B", "#EAA221", "#FFD700", "#FF8C00", "#FF4500", "#FF7F50", "#A52A2A", "#8B4513", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#C19A6B", "#7B3F00", "#808000", "#8A9A5B", "#B2AC88", "#556B2F", "#B22222"],
+    avoid: ["#C0C0C0", "#AFDBF5", "#E0FFFF", "#F8C8DC", "#FFFFFF", "#E6E6FA", "#FF00FF", "#00FFFF", "#D3D3D3", "#708090"]
+  },
+  // 1. ONYX
+  Onyx: {
+    best: ["#353935", "#000000", "#191970", "#000080", "#36454F", "#2F4F4F", "#004225", "#800000", "#4A0E0E", "#4B0082", "#800080", "#E31D12", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#C0C0C0", "#FFFFFF", "#00FFFF", "#4682B4", "#778899", "#2E8B57", "#8B0000", "#8B008B", "#483D8B", "#00008B"],
+    avoid: ["#BDB76B", "#F5F5DC", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#FFFDD0", "#D3D3D3", "#BC8F8F", "#D2B48C"]
+  },
+  // 2. CHARCOAL
+  Charcoal: {
+    best: ["#36454F", "#2F4F4F", "#708090", "#191970", "#000080", "#000000", "#C0C0C0", "#FFFFFF", "#00FFFF", "#4682B4", "#5F9EA0", "#778899", "#B0C4DE", "#ADD8E6", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#CCCCFF", "#E6E6FA", "#4B0082", "#800080", "#2E8B57", "#8B0000", "#8B008B", "#483D8B"],
+    avoid: ["#A52A2A", "#8B4513", "#D2691E", "#CD853F", "#A0522D", "#B8860B", "#DAA520", "#FF4500", "#808000", "#556B2F"]
+  },
+  // 3. SABLE
+  Sable: {
+    best: ["#060606", "#1B1B1B", "#191970", "#000080", "#000000", "#36454F", "#2F4F4F", "#004225", "#800000", "#4A0E0E", "#4B0082", "#800080", "#8B4513", "#A52A2A", "#DAA520", "#CD7F32", "#556B2F", "#006400", "#01796F", "#0F52BA", "#4169E1", "#50C878", "#DE3163", "#FF0000", "#8B008B", "#483D8B", "#2E8B57", "#2F4F4F", "#191970", "#00008B"],
+    avoid: ["#D3D3D3", "#BC8F8F", "#D2B48C", "#F5F5DC", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#FFFDD0", "#FFFFFF"]
+  },
+  // 4. EBONY
+  Ebony: {
+    best: ["#555D50", "#000000", "#191970", "#000080", "#36454F", "#2F4F4F", "#004225", "#800000", "#4A0E0E", "#4B0082", "#800080", "#FFD700", "#DAA520", "#CD7F32", "#A52A2A", "#8B4513", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF0000", "#8B008B", "#483D8B", "#2E8B57", "#2F4F4F", "#00008B", "#B8860B", "#4E3524", "#006400"],
+    avoid: ["#D3D3D3", "#F5F5DC", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#FFFDD0", "#FFFFFF", "#AFDBF5", "#F8C8DC"]
+  },
+  // 5. DEEP COFFEE
+  "Deep Coffee": {
+    best: ["#3B271E", "#4E3524", "#3D2B1F", "#654321", "#8B4513", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#AF6F09", "#966919"],
+    avoid: ["#F5F5DC", "#FFFDD0", "#FFFFFF", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#F8C8DC", "#FF00FF", "#00FFFF", "#D3D3D3"]
+  },
+  // 6. MIDNIGHT
+  Midnight: {
+    best: ["#191970", "#000033", "#000080", "#000000", "#36454F", "#2F4F4F", "#004225", "#800000", "#4A0E0E", "#4B0082", "#800080", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#C0C0C0", "#FFFFFF", "#00FFFF", "#4682B4", "#778899", "#2E8B57", "#8B0000", "#8B008B", "#483D8B", "#00008B", "#2F4F4F"],
+    avoid: ["#D2B48C", "#F5F5DC", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#FFFDD0", "#D3D3D3", "#BC8F8F", "#BDB76B"]
+  },
 
-  Espresso:  { best:["#50C878", "#9B111E", "#0F52BA", "#FFC0CB", "#F5F5DC", "#008080", "#FFDB58", "#CC5500", "#E6E6FA", "#98FF98", "#B0E0E6"
-],               avoid:[] },
+  /* --- HAIR COLORS --- */
+  Blonde_cool: {
+    best: ["#B0E0E6", "#E6E6FA", "#ADD8E6", "#B0C4DE", "#F0F8FF", "#CCCCFF", "#AFDBF5", "#F8C8DC", "#E0B0FF", "#D8BFD8", "#F5F5F5", "#C0C0C0", "#778899", "#708090", "#4682B4", "#5F9EA0", "#8FBC8F", "#BC8F8F", "#D2B48C", "#BDB76B", "#FFFFFF", "#AFDBF5", "#87CEEB", "#00BFFF", "#1E90FF", "#6495ED", "#4169E1", "#0F52BA", "#50C878", "#01796F"],
+    avoid: ["#FFA500", "#FF8C00", "#FF4500", "#FFD700", "#8B4513", "#D2691E", "#CD853F", "#A0522D", "#B8860B", "#DAA520"]
+  },
+  Blonde_warm: {
+    best: ["#FFD700", "#FF7F50", "#FFDAB9", "#FBCEB1", "#F4A460", "#DAA520", "#B8860B", "#FFFDD0", "#F0E68C", "#EAA221", "#C19A6B", "#9A463D", "#7B3F00", "#808000", "#8A9A5B", "#B2AC88", "#CC5500", "#CD7F32", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#D2B48C", "#A52A2A", "#8B4513", "#CD7F32", "#BC8F8F", "#8FBC8F", "#9ACD32"],
+    avoid: ["#4169E1", "#000080", "#191970", "#4B0082", "#FF00FF", "#00FFFF", "#FFFFFF", "#C0C0C0", "#E6E6FA", "#708090"]
+  },
+  Red: {
+    best: ["#006400", "#8B0000", "#228B22", "#556B2F", "#808000", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#D2691E", "#B7410E", "#CC5500", "#EAA221", "#FFD700", "#FF8C00", "#FF4500", "#FF7F50", "#E2725B", "#9A463D", "#7B3F00", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#C19A6B", "#B22222", "#CD7F32", "#8A9A5B"],
+    avoid: ["#FF00FF", "#00FFFF", "#AFDBF5", "#F8C8DC", "#E6E6FA", "#CCCCFF", "#FFFFFF", "#C0C0C0", "#000080", "#4B0082"]
+  },
+  Auburn: {
+    best: ["#A52A2A", "#DAA520", "#B8860B", "#8B4513", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#CC5500", "#EAA221", "#FFD700", "#FF8C00", "#FF4500", "#FF7F50", "#E2725B", "#9A463D", "#808000", "#8A9A5B", "#556B2F", "#006400", "#B22222", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#C19A6B", "#483C32"],
+    avoid: ["#0000FF", "#00FFFF", "#AFDBF5", "#F8C8DC", "#E6E6FA", "#CCCCFF", "#FFFFFF", "#C0C0C0", "#FF00FF", "#191970"]
+  },
+  Light_brown: {
+    best: ["#D2B48C", "#5F9EA0", "#BC8F8F", "#8FBC8F", "#8A9A5B", "#B2AC88", "#DEB887", "#F5F5DC", "#FAF0E6", "#F0E68C", "#CD7F32", "#DAA520", "#B8860B", "#BDB76B", "#CD5C5C", "#E9967A", "#66CDAA", "#778899", "#708090", "#4682B4", "#B0C4DE", "#EEE8AA", "#FFF8DC", "#E5AA70", "#F4A460", "#D2691E", "#A0522D", "#8B4513", "#556B2F", "#5D3954"],
+    avoid: ["#FF0000", "#FF00FF", "#0000FF", "#00FFFF", "#39FF14", "#FF3131", "#FFFFFF", "#000000", "#4B0082", "#FF1493"]
+  },
+  Dark_brown: {
+    best: ["#654321", "#E9967A", "#8B4513", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#CC5500", "#EAA221", "#DAA520", "#B8860B", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#006400", "#B22222", "#008080", "#191970", "#4B0082", "#800080", "#3D2B1F", "#4E3524", "#966919", "#AF6F09", "#E5AA70", "#F4A460", "#3B271E"],
+    avoid: ["#F0F8FF", "#B0C4DE", "#E6E6FA", "#AFDBF5", "#F8C8DC", "#FFFFFF", "#C0C0C0", "#E0FFFF", "#F0FFFF", "#F5F5DC"]
+  },
+  Ash_brown: {
+    best: ["#708090", "#8FBC8F", "#5F9EA0", "#4682B4", "#778899", "#D3D3D3", "#C0C0C0", "#BDB76B", "#BC8F8F", "#D2B48C", "#8A9A5B", "#B2AC88", "#E6E6FA", "#CCCCFF", "#B0C4DE", "#ADD8E6", "#B0E0E6", "#AFDBF5", "#F8C8DC", "#E0B0FF", "#D8BFD8", "#4B0082", "#800080", "#2F4F4F", "#36454F", "#2E8B57", "#191970", "#000080", "#000000", "#FFFFFF"],
+    avoid: ["#FFD700", "#FFA500", "#FF8C00", "#FF4500", "#8B4513", "#D2691E", "#CD853F", "#A0522D", "#B8860B", "#DAA520"]
+  },
+  Black: {
+    best: ["#000000", "#FF0000", "#191970", "#000080", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#36454F", "#2F4F4F", "#C0C0C0", "#FFFFFF", "#00FFFF", "#4682B4", "#778899", "#4B0082", "#800080", "#B22222", "#8B0000", "#008080", "#2E8B57", "#8B008B", "#483D8B", "#00008B", "#191970", "#483C32"],
+    avoid: ["#F5F5DC", "#D2B48C", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#FFFDD0", "#BC8F8F", "#BDB76B", "#CD853F"]
+  },
+  Jet_Black: {
+    best: ["#000080", "#FF1493", "#000000", "#FF0000", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#C154C1", "#8F00FF", "#9966CC", "#36454F", "#C0C0C0", "#FFFFFF", "#191970", "#4B0082", "#008080", "#00FFFF", "#4682B4", "#778899", "#2F4F4F", "#800080", "#B22222", "#00008B", "#483D8B", "#2E8B57", "#8B0000", "#191970"],
+    avoid: ["#808000", "#F5F5DC", "#D2B48C", "#FFF8DC", "#F0E68C", "#E9967A", "#BC8F8F", "#D2691E", "#CD853F", "#A0522D"]
+  },
+  Grey_silver: {
+    best: ["#C0C0C0", "#4B0082", "#708090", "#36454F", "#191970", "#000080", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#CCCCFF", "#E6E6FA", "#B0C4DE", "#ADD8E6", "#B0E0E6", "#AFDBF5", "#F8C8DC", "#E0B0FF", "#D8BFD8", "#FFFFFF", "#00FFFF", "#4682B4", "#778899", "#2E8B57", "#8B0000", "#8B008B"],
+    avoid: ["#A52A2A", "#8B4513", "#D2691E", "#CD853F", "#A0522D", "#B8860B", "#DAA520", "#FF4500", "#808000", "#556B2F"]
+  },
 
-  Umber:     { best:["#708238", "#8B4513", "#C19A6B", "#CC5500","#FF7F50", "#B22222", "#FF6347","#FFDB58", "#FFC512","#003366", "#50C878", "#FF8C00", "#FFD700","#FAF3E0", "#C19A6B", "#7B3F00"
-],               avoid:[] },
-
-  Onyx:      { best:["#50C878", "#9B111E", "#0F52BA", "#9966CC", "#36454F", "#000000", "#000080","#AFDBF5", "#E6E6FA", "#FADADD","#FFD700", "#C0C0C0", "#B87333"
-],               avoid:[] },
-
-  Charcoal:  { best:["#FFFFFF", "#DFFF00", "#0047AB", "#6A0DAD", "#50C878", "#FF00FF", "#DC143C", "#C0C0C0", "#008080", "#FF5F00"
-],               avoid:[] },
-
-  Sable:     { best:["#FFFFF0", "#FFD700", "#E2725B", "#B7410E", "#556B2F", "#FFDB58", "#B7410E", "#381819", "#800020", "#FFFDD0"
-],               avoid:[] },
-
-  /* Hair add-ons */
-  Blonde_cool:   { best:["#E6E6FA", "#AFDBF5", "#36454F", "#C0C0C0", "#000080", "#DCAE96", "#708679", "#000000", "#FFFFFF", "#708090"
-],           avoid:[] },
-
-  Blonde_warm:   { best:["#F88379", "#C19A6B", "#556B2F", "#B7410E", "#FFFDD0", "#FFDB58", "#E2725B", "#381819", "#000080", "#FFDAB9"
-],           avoid:[] },
-
-  Red:           { best:["#228B22", "#008080", "#FFFDD0", "#000080", "#C19A6B", "#800020", "#FFDB58", "#36454F", "#FADADD", "#CD7F32"
-],           avoid:[] },
-
-  Light_brown:   { best:["#9CAF88", "#DCAE96", "#D2B1A3", "#000080", "#E2725B", "#FFFDD0", "#808000", "#875D80", "#C19A6B", "#36454F"
-],           avoid:[] },
-
-  Dark_brown:    { best:["#800020", "#FFDB58", "#50C878", "#FFFFF0", "#808000", "#B7410E", "#4B0082", "#C19A6B", "#36454F", "#FFFFFF"
-],           avoid:[] },
-
-  Black:         { best:["#FFFFFF", "#DC143C", "#4169E1", "#50C878", "#C0C0C0", "#36454F", "#FFC0CB", "#C19A6B", "#FFD700", "#722F37"
-],           avoid:[] },
-
-  Grey_silver:   { best:["#36454F", "#E6E6FA", "#AFDBF5", "#800020", "#D6D6D6", "#000080", "#FADADD", "#FFFFFF", "#008080", "#673147"
-],           avoid:[] },
-
-  /* Eye add-ons */
-  Blue:        { best:["#000080", "#0047AB", "#AFDBF5", "#008080", "#A3989D",
-"#C48E96", "#36454F", "#C0C0C0", "#FF7F50", "#C19A6B"
-],             avoid:[] },
-
-  Green:       { best:["#50C878", "#228B22", "#808000", "#B7410E", "#800020", "#673147", "#FFDB58", "#D2B1A3", "#7B3F00", "#FFFFF0"
-],             avoid:[] },
-
-  Hazel:       { best:["#8A9A5B", "#CD7F32", "#E2725B", "#673147", "#FFBF00", "#FFDAB9", "#9A463D", "#708090", "#FFFDD0", "#FFD700"
-],             avoid:[] },
-
-  Light__brown:{ best:["#F5DEB3", "#B7410E", "#9CAF88", "#669999", "#DCAE96", "#808000", "#D2B48C", "#F88379", "#36454F", "#FFFDD0"
-],             avoid:[] },
-
-  Dark__brown: { best:["#800020", "#CC5500", "#FFDB58", "#228B22", "#580F41", "#C19A6B", "#381819", "#FFFFF0", "#000080", "#808000"
-],             avoid:[] },
-
-  Black1:      { best:["#FFFFFF", "#D6D6D6", "#FADADD", "#AFDBF5", "#C19A6B", "#B7410E", "#4A0000", "#D4AF37", "#36454F", "#E6E6FA"
-],             avoid:[] },
-
-  Grey:        { best:["#36454F", "#C0C0C0", "#4682B4", "#DCAE96", "#C8A2C8", "#708679", "#99AABB", "#AAF0D1", "#000000", "#FFFFF0"
-],             avoid:[] }
+  /* --- EYE COLORS --- */
+  Blue: {
+    best: ["#F0F8FF", "#000080", "#B0E0E6", "#E6E6FA", "#ADD8E6", "#B0C4DE", "#AFDBF5", "#F8C8DC", "#E0B0FF", "#D8BFD8", "#F5F5F5", "#C0C0C0", "#778899", "#708090", "#4682B4", "#5F9EA0", "#8FBC8F", "#BC8F8F", "#D2B48C", "#BDB76B", "#FFFFFF", "#87CEEB", "#00BFFF", "#1E90FF", "#6495ED", "#4169E1", "#0F52BA", "#50C878", "#01796F", "#191970"],
+    avoid: ["#8B4513", "#D2691E", "#CD853F", "#A0522D", "#B8860B", "#DAA520", "#FF4500", "#FFA500", "#FF8C00", "#808000"]
+  },
+  Green: {
+    best: ["#E0FFE0", "#228B22", "#006400", "#556B2F", "#808000", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#D2691E", "#B7410E", "#CC5500", "#EAA221", "#FFD700", "#FF8C00", "#FF4500", "#FF7F50", "#E2725B", "#9A463D", "#7B3F00", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#C19A6B", "#B22222", "#CD7F32", "#8A9A5B"],
+    avoid: ["#FF00FF", "#C154C1", "#8F00FF", "#9966CC", "#CCCCFF", "#E6E6FA", "#F8C8DC", "#FFB6C1", "#FFFFFF", "#C0C0C0"]
+  },
+  Hazel: {
+    best: ["#BDB76B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#D2691E", "#CD7F32", "#BC8F8F", "#8A9A5B", "#B2AC88", "#EAA221", "#FFD700", "#FF8C00", "#FF4500", "#FF7F50", "#E2725B", "#9A463D", "#7B3F00", "#006400", "#228B22", "#BC8F8F", "#E9967A", "#FFA07A", "#FF6347", "#FF7518", "#FFDB58", "#C19A6B", "#483C32"],
+    avoid: ["#00FFFF", "#AFDBF5", "#E0FFFF", "#F0FFFF", "#FFFFFF", "#C0C0C0", "#E6E6FA", "#FF00FF", "#0000FF", "#D3D3D3"]
+  },
+  Light__brown: {
+    best: ["#DEB887", "#DAA520", "#B8860B", "#D2B48C", "#BC8F8F", "#8A9A5B", "#B2AC88", "#8FBC8F", "#5F9EA0", "#4682B4", "#778899", "#708090", "#D3D3D3", "#C0C0C0", "#BDB76B", "#CD5C5C", "#E9967A", "#EEE8AA", "#FAF0E6", "#F5F5DC", "#F0E68C", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#556B2F", "#B22222", "#006400", "#CD853F"],
+    avoid: ["#4169E1", "#000080", "#191970", "#4B0082", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#FF1493", "#483D8B"]
+  },
+  Dark__brown: {
+    best: ["#8B4513", "#3D2B1F", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#DAA520", "#B8860B", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#006400", "#B22222", "#008080", "#191970", "#4B0082", "#800080", "#4E3524", "#966919", "#AF6F09", "#E5AA70", "#F4A460", "#3B271E", "#2F4F4F"],
+    avoid: ["#E0FFFF", "#F0FFFF", "#F5F5DC", "#FFFDD0", "#FFFFFF", "#C0C0C0", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#F8C8DC"]
+  },
+  Black1: {
+    best: ["#000000", "#FFFFFF", "#191970", "#000080", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#36454F", "#C0C0C0", "#00FFFF", "#4682B4", "#778899", "#4B0082", "#800080", "#B22222", "#8B0000", "#008080", "#2E8B57", "#8B008B", "#483D8B", "#00008B", "#191970", "#483C32", "#FF0000", "#2F4F4F"],
+    avoid: ["#808080", "#A9A9A9", "#D3D3D3", "#F5F5DC", "#D2B48C", "#BC8F8F", "#BDB76B", "#CD853F", "#A0522D", "#8B4513"]
+  },
+  Grey: {
+    best: ["#708090", "#E6E6FA", "#C0C0C0", "#36454F", "#191970", "#000080", "#0F52BA", "#4169E1", "#50C878", "#01796F", "#DE3163", "#FF00FF", "#8F00FF", "#9966CC", "#CCCCFF", "#B0C4DE", "#ADD8E6", "#B0E0E6", "#AFDBF5", "#F8C8DC", "#E0B0FF", "#D8BFD8", "#FFFFFF", "#00FFFF", "#4682B4", "#778899", "#2E8B57", "#8B0000", "#8B008B", "#483D8B"],
+    avoid: ["#D2691E", "#A0522D", "#8B4513", "#CD853F", "#B8860B", "#DAA520", "#FF4500", "#FFA500", "#FF8C00", "#808000"]
+  }
 };
 
 /* ---------- MAKE-UP TEXT SUGGESTIONS ---------- */
@@ -311,6 +538,188 @@ const MAKEUP_TEXT = {
   }
 };
 
+/* ---------- SEASONAL COLOR ANALYSIS ---------- */
+function getSeasonalResult(surface, undertone, hair, eyes) {
+  // Seasonal color analysis mapping
+  const seasonalMap = {
+    // Clear Winter
+    'Fair': {
+      'Cool': {
+        hair: ['Blonde_cool', 'Black', 'Jet_Black'],
+        eyes: ['Blue', 'Grey'],
+        result: 'Clear Winter'
+      }
+    },
+    // Soft Summer  
+    'Light': {
+      'Cool': {
+        hair: ['Ash_brown', 'Light_brown'],
+        eyes: ['Hazel', 'Light__brown', 'Grey'],
+        result: 'Soft Summer'
+      }
+    },
+    // Warm Spring
+    'Tan': {
+      'Warm': {
+        hair: ['Blonde_warm', 'Red', 'Auburn'],
+        eyes: ['Green', 'Hazel', 'Light__brown'],
+        result: 'Warm Spring'
+      }
+    },
+    // Deep Autumn
+    'Medium': {
+      'Warm': {
+        hair: ['Dark_brown', 'Auburn', 'Red'],
+        eyes: ['Dark__brown', 'Hazel'],
+        result: 'Deep Autumn'
+      }
+    },
+    // Cool Winter
+    'Deep': {
+      'Cool': {
+        hair: ['Black', 'Jet_Black', 'Dark_brown'],
+        eyes: ['Black1', 'Dark__brown', 'Grey'],
+        result: 'Cool Winter'
+      }
+    },
+    // Warm Autumn
+    'Dark': {
+      'Warm': {
+        hair: ['Dark_brown', 'Black', 'Auburn'],
+        eyes: ['Dark__brown', 'Black1'],
+        result: 'Warm Autumn'
+      }
+    }
+  };
+
+  // Default mappings for missing combinations
+  const defaultSeasons = {
+    'Fair': {
+      'Warm': 'Light Spring',
+      'Neutral': 'Soft Summer'
+    },
+    'Light': {
+      'Warm': 'Light Spring',
+      'Neutral': 'Soft Summer'
+    },
+    'Tan': {
+      'Cool': 'Soft Summer',
+      'Neutral': 'Light Spring'
+    },
+    'Medium': {
+      'Cool': 'Cool Winter',
+      'Neutral': 'Soft Autumn'
+    },
+    'Deep': {
+      'Warm': 'Deep Autumn',
+      'Neutral': 'Cool Winter'
+    },
+    'Dark': {
+      'Cool': 'Cool Winter',
+      'Neutral': 'Deep Autumn'
+    }
+  };
+
+  // Check for specific seasonal match
+  if (seasonalMap[surface] && seasonalMap[surface][undertone]) {
+    const seasonalData = seasonalMap[surface][undertone];
+    if (seasonalData.hair.includes(hair) && seasonalData.eyes.includes(eyes)) {
+      return seasonalData.result;
+    }
+  }
+
+  // Return default seasonal result
+  return defaultSeasons[surface]?.[undertone] || 'Soft Autumn';
+}
+
+/* ---------- CONFIRMATION POPUP WITH VISUALS ---------- */
+function showConfirmationPopup() {
+  // Create popup overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'confirmationOverlay';
+  overlay.className = 'confirmation-overlay';
+  
+  // Get user selections with visual data
+  const surfaceImg = skinImgs[state.surface];
+  const subImg = skinImgs[state.sub];
+  
+  const selections = {
+    'Surface Tone': { text: state.surface, image: surfaceImg },
+    'Sub-tone': { text: state.sub, image: subImg },
+    'Undertone': { text: state.undertone, image: skinImgs[state.undertone] },
+    'Hair Color': { text: state.hair.replace(/_/g, ' '), image: skinImgs[state.hair] },
+    'Eye Color': { text: state.eyes.replace(/_/g, ' '), image: skinImgs[state.eyes] }
+  };
+  
+  // Create popup content with visuals
+  const popup = document.createElement('div');
+  popup.className = 'confirmation-popup';
+  popup.innerHTML = `
+    <div class="confirmation-header">
+      <h2>Your Profile</h2>
+      <p class="confirmation-subtitle">Please review your selections</p>
+    </div>
+    <div class="confirmation-content">
+      <div class="visual-summary">
+        ${Object.entries(selections).map(([key, data]) => `
+          <div class="visual-item">
+            <div class="visual-image">
+              <img src="${data.image}" alt="${data.text}" onerror="this.style.display='none'">
+            </div>
+            <div class="visual-info">
+              <span class="visual-label">${key}:</span>
+              <span class="visual-value">${data.text}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="confirmation-prompt">
+        <p>Are you satisfied with these choices?</p>
+      </div>
+    </div>
+    <div class="confirmation-buttons">
+      <button class="btn-yes" onclick="proceedToResults()">
+        <i class='bx bx-check'></i> Yes, Show My Results
+      </button>
+      <button class="btn-no" onclick="retakeQuiz()">
+        <i class='bx bx-refresh'></i> No, Let Me Re-take
+      </button>
+    </div>
+  `;
+  
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+  
+  // Show with animation
+  setTimeout(() => {
+    overlay.classList.add('show');
+  }, 10);
+}
+
+function proceedToResults() {
+  hideConfirmationPopup();
+  setTimeout(() => {
+    generateEnhancedResult();
+  }, 300);
+}
+
+function retakeQuiz() {
+  hideConfirmationPopup();
+  setTimeout(() => {
+    resetQuiz();
+  }, 300);
+}
+
+function hideConfirmationPopup() {
+  const overlay = document.getElementById('confirmationOverlay');
+  if (overlay) {
+    overlay.classList.remove('show');
+    setTimeout(() => {
+      document.body.removeChild(overlay);
+    }, 300);
+  }
+}
+
 /* ---------- STATE ---------- */
 
 let state = {surface:'',sub:'',undertone:'',hair:'',eyes:''};                 //each time user selets something, the value is saved here
@@ -418,40 +827,55 @@ document.addEventListener('keydown', e=>{
     if(e.key === 'ArrowRight' && visible < 5) goStep(visible + 1);
 });
 
-function generateResult(){
+function generateEnhancedResult() {
   hide($('step5'));
-
-  /* start with sub-skin */
+  
+  // Get seasonal result
+  const seasonalResult = getSeasonalResult(state.surface, state.undertone, state.hair, state.eyes);
+  
+  // Add seasonal header
+  const seasonalHeader = document.createElement('div');
+  seasonalHeader.className = 'seasonal-header';
+  seasonalHeader.innerHTML = `
+    <h1 class="seasonal-title">You are a ${seasonalResult}</h1>
+    <p class="seasonal-subtitle">Your personalized color analysis</p>
+  `;
+  
+  // Insert at the top of result section
+  const resultSection = $('result');
+  const existingHeader = resultSection.querySelector('.seasonal-header');
+  if (existingHeader) {
+    existingHeader.remove();
+  }
+  resultSection.insertBefore(seasonalHeader, resultSection.firstChild);
+  
+  // Continue with existing color generation logic...
   let final = DATA[state.sub] || {best:[],avoid:[]};
-
-  /* intersect with undertone palette */
+  
   const undertoneP = palettes[state.undertone];
   final.best = final.best.filter(c => undertoneP.best.includes(c));
   final.avoid = [...new Set([...final.avoid, ...undertoneP.avoid])];
-
-  /* add hair colours */
+  
   final = merge(final, DATA[state.hair] || {});
-
-  /* add eye colours */
   final = merge(final, DATA[state.eyes] || {});
-
-  /* render */
+  
+  // Render results
   $('bestSwatches').innerHTML='';
   $('avoidSwatches').innerHTML='';
+  
   final.best.forEach(c=>{
     const s=document.createElement('span');
     s.className='swatch'; s.style.background=c; s.title=c;
     $('bestSwatches').appendChild(s);
   });
-
-  /* === render make-up text === */
+  
   const makeup = MAKEUP_TEXT[state.surface]?.[state.undertone];
   if (makeup) {
     let html = `<h3>Make-up Shade Suggestions</h3>
                 <p><strong>Foundation:</strong> ${makeup.Foundation}</p>
                 <p><strong>Blush:</strong> ${makeup.Blush}</p>
                 <p><strong>Lipstick:</strong> ${makeup.Lipstick}</p>
-                <p><strong>Eyeshadow:</strong> ${makeup.Eyeshadow}</p>`;
+                <p><strong>Eye shadow:</strong> ${makeup.Eyeshadow}</p>`;
     $('makeupBox').innerHTML = html;
     show($('makeupBox'));
   }
@@ -461,12 +885,17 @@ function generateResult(){
     s.className='swatch avoid'; s.style.background=c; s.title=c;
     $('avoidSwatches').appendChild(s);
   });
+  
   show($('result'));
-
-  /* expose colours for e-mail */
-  window.bestColors  = final.best.join(', ');
+  
+  // Scroll to results with animation
+  setTimeout(() => {
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+  
+  // Store colors for email
+  window.bestColors = final.best.join(', ');
   window.avoidColors = final.avoid.join(', ');
-
 }
 
 
