@@ -143,50 +143,7 @@
       }
     });
 
-/* ---------- Rating chart (no jQuery) ---------- */
-(() => {
-  const STORAGE = 'chromaRatings';
-  let votes = JSON.parse(localStorage.getItem(STORAGE) || '[]');
-
-  const starPicker = document.getElementById('starPicker');
-  const thanksMsg  = document.getElementById('thanksMsg');
-  const barsHost   = document.getElementById('bars');
-
-  function renderChart() {
-    const counts = [0,0,0,0,0];
-    votes.forEach(v => counts[v-1]++);
-    const total = counts.reduce((a,b) => a + b, 0);
-
-    barsHost.innerHTML = '';
-    [5,4,3,2,1].forEach(stars => {
-      const count = counts[stars - 1];
-      const pct   = total ? Math.round((count / total) * 100) : 0;
-      barsHost.insertAdjacentHTML('beforeend', `
-        <div class="barRow">
-          <span class="barLabel">${stars}★</span>
-          <div class="barTrack">
-            <div class="barFill" style="width:${pct}%"></div>
-          </div>
-          <span class="barPct">${pct}%</span>
-        </div>
-      `);
-    });
-  }
-
-  starPicker.addEventListener('click', e => {
-    if (!e.target.dataset.s) return;
-    const score = +e.target.dataset.s;
-    votes.push(score);
-    localStorage.setItem(STORAGE, JSON.stringify(votes));
-    thanksMsg.textContent = 'Thanks for rating!';
-    renderChart();
-    [...starPicker.children].forEach((s,i) =>
-      s.classList.toggle('filled', i < score));
-  });
-
-  renderChart();  // initial paint
-})();
-
+    
 /* ---------- Scroll Animation ---------- */
 document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver((entries) => {

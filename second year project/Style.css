@@ -982,3 +982,14 @@ gap:.35rem;
         white-space: normal !important;
     }
 }
+
+
+/* Seasonal color links */
+.seasonal-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--primary-color);
+}

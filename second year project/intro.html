@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undertones & Seasonal Colors - အသေးစိတ်လမ်းညွှန်</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap');
+
+        :root {
+            --spring: #feb236;
+            --summer: #92a8d1;
+            --autumn: #b85042;
+            --winter: #034f84;
+            --warm: #f39c12;
+            --cool: #3498db;
+            --neutral: #95a5a6;
+        }
+
+        body {
+            font-family: 'Pyidaungsu', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        header {
+            background: linear-gradient(135deg, #d3dcff, #ffa1a1e5, #5effdf);
+            color: rgb(180, 23, 23);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        h2 { font-size: 1.8rem; border-left: 5px solid #2c3e50; padding-left: 15px; margin-bottom: 1.5rem; }
+        h3 { color: #444; margin-top: 1.5rem; }
+
+        /* Undertone Cards */
+        .undertone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 1rem;
+        }
+
+        .u-card {
+            padding: 1.5rem;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .warm-bg { background: var(--warm); }
+        .cool-bg { background: var(--cool); }
+        .neutral-bg { background: var(--neutral); }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        /* Test Section */
+        .test-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+.container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 8px;
+        margin: 0 auto;
+    }
+}
+
+        .season-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 10px solid;
+        }
+
+        .spring-sec { border-color: var(--spring); }
+        .summer-sec { border-color: var(--summer); }
+        .autumn-sec { border-color: var(--autumn); }
+        .winter-sec { border-color: var(--winter); }
+
+        h2 { font-size: 2rem; margin-top: 0; }
+        h3 { color: #555; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .detail-grid { grid-template-columns: 1fr; }
+        }
+
+        .color-box {
+            display: flex;
+            gap: 10px;
+            margin: 1rem 0;
+        }
+
+        .circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #e67e22;
+        }
+	h1 {
+	     text-align: center;
+	   }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Skin Undertone & Seasonal Colors</h1>
+    <p>ကိုယ့်အသားအရေရဲ့ လျှို့ဝှက်ချက်ကို ရှာဖွေဖော်ထုတ်ခြင်း</p>
+</header>
+
+<div class="container">
+
+    <section>
+        <h2>Undertone အကြောင်း</h2>
+        <p>Undertone ဆိုတာ အသားအရေရဲ့ အပေါ်ယံအရောင် (Surface Tone) အောက်မှာရှိတဲ့ <b>"အခြေခံအောက်ခံအရောင်"</b> ဖြစ်ပါတယ်။ အသားဖြူသည်ဖြစ်စေ၊ ညိုသည်ဖြစ်စေ Undertone ကတော့ ပြောင်းလဲသွားခြင်း မရှိပါဘူး။</p>
+        
+        <div class="undertone-grid">
+            <div class="u-card warm-bg">
+                <img src="img\warm tone.jpg" alt="warm">
+                <h3>Warm tone</h3>
+                <p>အဝါ၊ ရွှေဝါ ဒါမှမဟုတ် မက်မွန်သီးရောင် အောက်ခံရှိပါတယ်။</p>
+            </div>
+            <div class="u-card cool-bg">
+                <img src="img\cool.jpg" alt="cool">
+                <h3>Cool tone</h3>
+                <p>ပန်းရောင်၊ အပြာ ဒါမှမဟုတ် ခရမ်းရောင် အောက်ခံရှိပါတယ်။</p>
+            </div>
+            <div class="u-card neutral-bg">
+                <img src="img\natural tone.jpg" alt="neutral">
+                <h3>Neutral tone</h3>
+                <p>အေးတဲ့အရောင်ရော၊ နွေးတဲ့အရောင်ရော မျှတစွာ ပါဝင်နေပါတယ်။</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>ကိုယ့်ရဲ့ Undertone ကို ဘယ်လိုစစ်ဆေးမလဲ?</h2>
+        <p>အလင်းရောင်ကောင်းကောင်း (သဘာဝနေရောင်) အောက်မှာ အောက်ပါအတိုင်း စမ်းသပ်ကြည့်ပါ။</p>
+
+        <div class="test-box">
+            <h3> သွေးကြောစစ်ဆေးနည်း (Vein Test)</h3>
+            <ul>
+                <li><b>အစိမ်းရောင်:</b> Warm Undertone ဖြစ်ဖို့ များပါတယ်။</li>
+                <li><b>အပြာ/ခရမ်းရောင်:</b> Cool Undertone ဖြစ်ဖို့ များပါတယ်။</li>
+                <li><b>ခွဲရခက်နေလျှင်:</b> Neutral Undertone ဖြစ်နိုင်ပါတယ်။</li>
+            </ul>
+        </div>
+
+        <div class="test-box">
+            <h3> လက်ဝတ်ရတနာ စစ်ဆေးနည်း (Jewelry Test)</h3>
+            <ul>
+                <li><b>ရွှေထည် (Gold):</b> ဝတ်လိုက်ရင် အသားဝင်းပသွားပါက Warm ပါ။</li>
+                <li><b>ငွေထည် (Silver):</b> ဝတ်လိုက်ရင် ပိုကြည့်ကောင်းပါက Cool ပါ။</li>
+            </ul>
+        </div>
+
+        <div class="test-box">
+            <h3> အဖြူရောင်စက္ကူနည်း (White Paper Test)</h3>
+            <p>မျက်နှာဘေးမှာ အဖြူရောင်စက္ကူတစ်ရွက် ကပ်ကြည့်ပါ။</p>
+            <ul>
+                <li>မျက်နှာက <b>အဝါ/လိမ္မော်</b> ဘက်သန်းသွားရင် - Warm</li>
+                <li>မျက်နှာက <b>ပန်းရောင်/ပြာ</b> ဘက်သန်းသွားရင် - Cool</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="container">
+	<h1> 4 Seasonal color tone </h1>
+
+    <div class="season-section spring-sec" id="spring">
+        <h2>1. Spring - Warm & Bright</h2>
+        <p>Spring သမားတွေရဲ့ အသားအရေက အလင်းပေါက်သလိုမျိုး ကြည်လင် နေတတ်ပါတယ်။ အောက်ခံအရောင် ရွှေရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် သန်းပါတယ်။ မျက်နှာမှာ ပါးနီလေးတွေ သဘာဝအတိုင်း ပါနေတတ်သလို၊ တချို့ဆို မှဲ့ခြောက် လေးတွေ ရှိတတ်ပါတယ်။ လက်ကောက်ဝတ်မှာ အစိမ်းရောင် ဒါမှမဟုတ် အပြာစိမ်းရောင် သွေးကြောလေးတွေ တွေ့ရတတ်ပါတယ်။ ဖြူတဲ့သူဆိုရင် ခရင်မ်ရောင် (Creamy ivory) ရှိပြီး၊ ညိုတဲ့သူဆိုရင် ရွှေရောင်သန်းတဲ့ အသားညို (Golden tan) မျိုး ဖြစ်ပါတယ်။</p>
+        
+        <div class="detail-grid">
+            <div>
+                <h3>အသားအရေ (Skin)</h3>
+                <p>Warm Undertone ရှိပြီး ရွှေဝါရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် အခြေခံပါတယ်။ သွေးကြောက အစိမ်းရောင်သန်းပြီး နေပူထဲသွားရင် အသားအရေက ရွှေရောင်ဝင်းလာတတ်ပါတယ်။</p>
+            </div>
+            <div>
+                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
+                <p>မျက်လုံးအရောင်က အရမ်းကြည်ပါတယ်။ အပြာနုရောင်၊ အစိမ်းနုရောင် ဒါမှမဟုတ် ပယင်းရောင် မျိုး ဖြစ်တတ်ပြီး မျက်လုံးအိမ်က တောက်ပနေပါတယ်။ဆံပင်အရောင်မှာ ရွှေဝါရောင်၊ စတော်ဘယ်ရီရွှေရောင် ဒါမှမဟုတ် ရွှေရောင်သန်းတဲ့ အညိုဖျော့လေးတွေ ရှိပါတယ်။</p>
+            </div>
+        </div>
+
+        <h3 class="highlight">Spring Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
+        <div class="color_palette">
+            <p><b>Bright Spring:</b> Spring ထဲမှာမှ အတောက်ပဆုံးပါ။ (Winter နဲ့ နီးစပ်ပါတယ်)။ တောက်ပတဲ့ အဝါရောင်၊ လိမ္မော်ရောင်တွေနဲ့ လှပါတယ်။</p>
+            <p><b>Warm Spring:</b> နွေးထွေးတဲ့ အရောင်တွေ ပိုကဲပါတယ်။ (Autumn နဲ့ နီးစပ်ပါတယ်)။ ရွှေဝါရောင်၊ မက်မွန်ရောင်တွေနဲ့ အလိုက်ဖက်ဆုံးပါ။</p>
+            <p><b>Light Spring:</b> အလွန်နုနယ်ပြီး တောက်ပတဲ့ အရောင်ဖျော့လေးတွေနဲ့ လိုက်ဖက်ပါတယ်။ (Summer နဲ့ နီးစပ်ပါတယ်)။</p>
+        </div>
+        <br>
+        <h3 class="highlight">Spring လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
+        <div>
+            <p><b>Warm Tones:</b> Spring တွေဟာ လိမ္မော်ရောင်၊ အဝါရောင် နဲ့ ပန်းရောင်နုနု ဝတ်လိုက်ရင် မျက်နှာက ချက်ချင်းလင်းလာပါတယ်။</p>
+            <p><b>Gold jewelry:</b> Autumn လိုပဲ ရွှေရောင် နဲ့ လိုက်ပါတယ်။ ဒါပေမဲ့ Autumn ထက်စာရင် ပိုပြီးတောက်ပတဲ့ ရွှေရောင်အဝါမျိုး နဲ့ ပိုလိုက်ပါတယ်။</p>
+            <p><b>Black is too heavy:</b> Spring သမားတွေ အနက်ရောင် ဝတ်လိုက်ရင် လူက အသားအရောင် မှိန်သွားပြီး အင်္ကျီအရောင်က အသားရောင်ကိုမှေးမှိန်သွားစေ ပါတယ်။ အနက်အစား နို့နှစ်ရောင်  ဒါမှမဟုတ် ရွှေညိုရောင်  ကို ဝတ်သင့်ပါတယ်။</p>
+        </div>
+        <br>
+        <h3 class="highlight">Spring နဲ့ Autumn ဘယ်လို ကွာသလဲ?</h3>
+        <div>
+            <p><b>Spring:</b> အလင်းပေါက်သလို ကြည်လင်တယ်၊ တောက်ပတယ်၊ အရောင်ဖျော့ပြီး လင်းတဲ့ဘက်ကို သွားပါတယ်။</p>
+            <p><b>Autumn:</b> မှိုင်းတယ်၊ နက်ရှိုင်းတယ်၊ မြေကြီးရောင် ခပ်ရင့်ရင့်ဘက်ကို သွားပါတယ်။</p>
+        </div>
+        <br>
+        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
+        <div class="color-box">
+            <div class="circle" style="background: #FF7F50;"></div>
+            <div class="circle" style="background: #FFD700;"></div>
+            <div class="circle" style="background: #40E0D0;"></div>
+            <div class="circle" style="background: #DA70D6;"></div>
+        </div>
+        <p><span class="highlight">အဓိကအချက်:</span> အနက်ရောင်ထက် နို့နှစ်ရောင် (Cream)၊ ရွှေညိုရောင်တို့နဲ့ ပိုလိုက်ပါတယ်။ တောက်ပတဲ့ အနီ၊ အဝါတွေက မျက်နှာကို လင်းစေပါတယ်။</p>
+    </div>
+
+    <div class="season-section summer-sec" id="summer">
+        <h2>2. Summer - Cool & Muted</h2>
+        <p>Summer သမားတွေဟာ Cool Undertone ရှိကြပါတယ်။ အသားထဲမှာ ပန်းရောင် ဒါမှမဟုတ် အပြာနုရောင် အောက်ခံလေးတွေ ရှိနေတတ်ပါတယ်။ လက်ကောက်ဝတ်က သွေးကြောတွေဟာ အပြာရောင် ဒါမှမဟုတ် ခရမ်းရောင် သန်းပါတယ်။ အသားဖြူသူဆိုရင် ပန်းရောင်သန်းပြီး အသားနုပါတယ်။ အသားညိုသူဆိုရင်လည်း အသားအရေက ခပ်ပြာပြာ ခပ်မှိုင်းမှိုင်း ဘက်ကို သွားပါတယ်။ Summer ရဲ့ ထူးခြားချက်က "နူးညံ့မှု" ပါ။ Winter လို ပြတ်သားတဲ့ ကွာခြားမှု (High Contrast) မရှိဘဲ အရာအားလုံးက ရောယှက်ပြီး အေးအေးလူလူ ရှိနေတတ်ပါတယ်။</p>
+        
+        <div class="detail-grid">
+            <div>
+                <h3>အသားအရေ (Skin)</h3>
+                <p>Cool Undertone ရှိပြီး ပန်းရောင် ဒါမှမဟုတ် အပြာနုရောင် အခြေခံပါတယ်။ သွေးကြောက အပြာရောင်သန်းပြီး နေလောင်ရင် နီမြန်းလွယ်ပါတယ်။</p>
+            </div>
+            <div>
+                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
+                <p>မျက်လုံးအရောင်က အရမ်းမတောက်ပါဘူး။ ခပ်မှိုင်းမှိုင်း အပြာရောင်၊ ခပ်မှိုင်းမှိုင်း အစိမ်းရောင် ဒါမှမဟုတ် အညိုဖျော့ဖျော့ မျိုး ဖြစ်တတ်ပါတယ်။ ဆံပင်အရောင်မှာ ရွှေဝါရောင် သို့မဟုတ် နီကြောင်ကြောင် လုံးဝမပါပါဘူး။ အညိုဖောင်ဖောင် မျိုး ဖြစ်တတ်ပြီး ငယ်ငယ်တုန်းက ဆံပင်အရောင်က ပိုဖျော့တတ်ပါတယ်။</p>
+            </div>
+        </div>
+
+        <h3 class="highlight">Summer Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
+        <div class="color_palette">
+            <p><b>Light Summer:</b> အလွန်ဖျော့ပြီး အေးမြတဲ့အရောင်တွေနဲ့ လိုက်ပါတယ်။ (Spring နဲ့ နီးစပ်ပါတယ်)။</p>
+            <p><b>Cool Summer:</b> အစစ်မှန်ဆုံး Summer ပါ။ အပြာရောင်မှိုင်းမှိုင်း၊ ခရမ်းရောင်ဖျော့ဖျော့ (Lavender) တွေနဲ့ လှပါတယ်။</p>
+            <p><b>Soft Summer:</b> နည်းနည်းလေး ပိုညိုပြီး မှိုင်းတဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ (Autumn နဲ့ နီးစပ်ပါတယ်)။</p>
+        </div>
+        <br>
+        <h3 class="highlight">Summer လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
+        <div>
+            <p><b>Silver is your best friend:</b> Summer သမားတွေဟာ ငွေထည် (Silver) နဲ့ အရမ်းလိုက်ဖက်ပါတယ်။ ရွှေရောင် (Gold) ဝတ်ရင် အသားအရေက အဝါရောင် တက်လာသလိုမျိုး (Sallow look) ဖြစ်တတ်ပါတယ်။</p>
+            <p><b>Pastel Colors:</b>Pastel အရောင်လေးတွေဖြစ်တဲ့ အပြာနု၊ ပန်းနု၊ ခရမ်းနုလေးတွေ ဝတ်ရင် မျက်နှာက ပိုကြည်လင်ပြီး လှပနေတတ်ပါတယ်။</p>
+            <p><b>The Black Test:</b> Summer တွေဟာ အနက်စစ်စစ် ကို ဝတ်ရင် မျက်နှာက ညိုမှိုင်းသွားပြီး လူက အရမ်း ပင်ပန်းနေသလို ထင်ရတတ်ပါတယ်။ အနက်အစား မီးခိုးရောင် ဒါမှမဟုတ် ရေပြာရင့်ရင့် ကို ဝတ်ရင် ပိုပြီး Elegant ဖြစ်ပါတယ်။</p>
+        </div>
+        <br>
+        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
+        <div class="color-box">
+            <div class="circle" style="background: #E6E6FA;"></div>
+            <div class="circle" style="background: #B0C4DE;"></div>
+            <div class="circle" style="background: #F08080;"></div>
+            <div class="circle" style="background: #9575cd;"></div>
+        </div>
+        <p><span class="highlight">အဓိကအချက်:</span> Pastel အရောင်နုလေးတွေနဲ့ အလိုက်ဖက်ဆုံးပါ။ အရမ်းတောက်လွန်းတဲ့အရောင်တွေကို ရှောင်သင့်ပါတယ်။</p>
+    </div>
+
+    <div class="season-section autumn-sec" id="autumn">
+        <h2>3. Autumn (ဆောင်းဦး) - Warm & Muted</h2>
+        <p>Autumn သမားတွေရဲ့ အသားအရေဟာ Warm Undertone ရှိကြပါတယ်။အသားအရေထဲမှာ အဝါရောင် ၊ ရွှေရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် အောက်ခံလေးတွေ ပါနေတတ်ပါတယ်။လက်ကောက်ဝတ်က သွေးကြောတွေကို ကြည့်ရင် အစိမ်းရောင် သန်းနေတာကို တွေ့ရပါလိမ့်မယ်။ ဖြူတဲ့သူဆိုရင်လည်း နို့နှစ်ရောင် ဒါမှမဟုတ် ဆန်ခါရောင် ဘက်သွားပြီး၊ ညိုတဲ့သူဆိုရင် ကြေးနီရောင် ဒါမှမဟုတ် ပျားရည်ရောင် ဘက်ကို သွားပါတယ်။ Autumn သမားတွေရဲ့ ထူးခြားချက်က အရောင်တွေဟာ တစ်ခုနဲ့တစ်ခု ရောယှက် နေပြီး သိပ်မပြတ်သားပါဘူး</p>
+        
+        <div class="detail-grid">
+            <div>
+                <h3>အသားအရေ (Skin)</h3>
+                <p>Warm Undertone ဖြစ်ပြီး အဝါရောင် သို့မဟုတ် ပျားရည်ရောင် သန်းပါတယ်။ သွေးကြောက အစိမ်းရောင်ဖြစ်ပြီး အသားညိုရလွယ်ပါတယ်။</p>
+            </div>
+            <div>
+                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
+                <p>မျက်လုံးအရောင်က အရမ်းတောက်မနေဘဲ အနက်ရောင်ဆိုရင်တောင် အညိုရောင်သန်းတဲ့ အနက်၊ သံလွင်စိမ်းရောင် ဒါမှမဟုတ် ပယင်းရောင် မျိုး ဖြစ်တတ်ပါတယ်။ ဆံပင်မှာ သဘာဝအတိုင်း ရွှေရောင်၊ နီကြောင်ကြောင် ဒါမှမဟုတ် ကြေးနီရောင် လေးတွေ ပါနေတတ်ပါတယ်။ အနက်ရောင်ဆိုရင်လည်း အညိုနွေးနွေးဘက် သန်းပါတယ်။</p>
+            </div>
+        </div>
+
+        <h3 class="highlight">Autumn Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
+        <div class="color_palette">
+            <p><b>Soft Autumn:</b> အသားအရောင်က အရမ်းမနွေးသလို၊ အရမ်းလည်း မအေးပါဘူး (Summer နဲ့ နီးစပ်ပါတယ်)။ အရောင်ဖျော့ဖျော့ မှိုင်းမှိုင်းလေးတွေနဲ့ လိုက်ဖက်ပါတယ်။</p>
+            <p><b>Warm Autumn:</b> ဒါကတော့ အစစ်မှန်ဆုံး Autumn ပါ။ ရွှေရောင်၊ လိမ္မော်ရောင်၊ အဝါရင့်ရင့် တွေနဲ့ အရမ်းကြည့်ကောင်းပါတယ်။</p>
+            <p><b>Dark Autumn:</b> နက်မှောင်ပြီး နွေးထွေးတဲ့ အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ (Winter နဲ့ နီးစပ်ပါတယ်)။ ချောကလက်ရောင်၊ သစ်တောစိမ်းရောင် တွေနဲ့ လှပါတယ်။</p>
+        </div>
+        <br>
+        <h3 class="highlight">Autumn လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
+        <div>
+            <p><b>Gold vs Silver:</b> Autumn သမားတွေဟာ ရွှေထည် ဝတ်လိုက်ရင် မျက်နှာက ပိုဝင်းပပြီး ကျန်းမာတဲ့ပုံပေါက်ပါတယ်။ ငွေထည် ဝတ်ရင်တော့ မျက်နှာက ဖြူဖျော့ပြီး မွဲခြောက်သွားတတ်ပါတယ်။</p>
+            <p><b>Earth Tones:</b>မြေကြီးရောင်တွေဖြစ်တဲ့ အညိုရောင်၊ လိမ္မော်ရင့်ရင့်၊ သံလွင်စိမ်းရောင်တွေကို ဝတ်ကြည့်ပါ။ အဲ့ဒီအရောင်တွေနဲ့ လိုက်ဖက်နေရင် Autumn သေချာပါတယ်။</p>
+            <p><b>The Black Test:</b> Autumn သမားတွေဟာ အနက်စစ်စစ် ဝတ်ရင် လူက အရောင်မှိန်သွားပြီး အိုစာသွားသလို ခံစားရတတ်ပါတယ်။ အနက်အစား အညိုရင့်ရင့် ကို ဝတ်ရင် ပိုလှပါတယ်။</p>
+        </div>
+        <br>
+        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
+        <div class="color-box">
+            <div class="circle" style="background: #8B4513;"></div>
+            <div class="circle" style="background: #556B2F;"></div>
+            <div class="circle" style="background: #D2691E;"></div>
+            <div class="circle" style="background: #FF8C00;"></div>
+        </div>
+        <p><span class="highlight">အဓိကအချက်:</span> မုန်ညင်းဝါ၊ သစ်တောစိမ်းနဲ့ ချောကလက်ရောင်တွေက အသားကို ဝင်းစေပါတယ်။ အပြာရောင်အေးအေးတွေကို ရှောင်ရပါမယ်။</p>
+    </div>
+
+    <div class="season-section winter-sec" id="winter">
+        <h2>4. Winter (ဆောင်းရာသီ) - Cool & Bright</h2>
+        <p>Winter သမားတွေရဲ့ အသားအရေဟာ Cool Undertones ကို သွားပါတယ်။လက်ကောက်ဝတ်က သွေးကြောတွေကို ကြည့်ရင် အပြာရောင် ဒါမှမဟုတ် ခရမ်းရောင် သန်းနေတတ်ပါတယ်။နေပူထဲသွားရင် အသားက ညိုမသွားဘဲ ပန်းရောင်သန်းပြီး နီမြန်းလာတတ်ပါတယ်။ အသားအရောင်က Winter ဆိုတာနဲ့ ဖြူရမယ်လို့ မဆိုလိုပါဘူး။စက္ကူလို ဖြူဆွတ်တာ ဒါမှမဟုတ် ပန်းရောင်သန်းတဲ့ အဖြူမျိုး လည်းရှိသလို သံလွင်ရောင် ခပ်မှိုင်းမှိုင်း ဒါမှမဟုတ် အပြာဘက်သန်းတဲ့ အသားညိုရောင် မျိုးလည်း ဖြစ်တတ်ပါတယ်။Winter တွေရြ့ အဓိက ထူးခြားချက်က မျက်နှာပေါ်မှာ ရှိတဲ့ အစိတ်အပိုင်းတွေက တစ်ခုနဲ့တစ်ခု အရောင်ကွဲပြားမှု အရမ်းပြတ်သားပါတယ်။</p>
+        
+        <div class="detail-grid">
+            <div>
+                <h3>အသားအရေ (Skin)</h3>
+                <p>Cool Undertone စစ်စစ်ဖြစ်ပြီး အသားအရောင်က အရမ်းဖြူရင်ဖြူ၊ ဒါမှမဟုတ် အရမ်းညိုပါတယ်။ သွေးကြောက အပြာ သို့မဟုတ် ခရမ်းရောင် ဖြစ်ပါတယ်။</p>
+            </div>
+            <div>
+                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
+                <p>မျက်လုံးသူငယ်အိမ် အရောင်က အရမ်းတောက်ပပြီး ကြည်လင်နေတတ်ပါတယ်။ မျက်လုံးအိမ် အဖြူသားကလည်း အဝါဘက်မသန်းဘဲ အပြာရောင်သန်းတဲ့အထိ ဖြူစင်နေတတ်လို့ သူငယ်အိမ်အရောင်နဲ့ အဖြူသားက အရမ်းကို သိသာထင်ရှားပါတယ်။ ဆံပင်အရောင်ဟာ အနက်စစ်စစ် ဒါမှမဟုတ် အညိုရင့်ရင့်  တွေ ဖြစ်ပါတယ်။ ရွှေဝါရောင် ဒါမှမဟုတ် နီကြောင်ကြောင် အရောင်တွေ လုံးဝမပါတတ်ပါဘူး။</p>
+            </div>
+        </div>
+
+        <h3 class="highlight">Winter Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
+        <div class="color_palette">
+            <p><b>Cool Winter</b> အစစ်မှန်ဆုံး winter Palette ပါ။အလွန်အေးမြပြီး ကြည်လင်တဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ </p>
+            <p><b>Bright Winter (Clear Winter):</b> Winter နဲ့ Spring ကြား ဆုံမှတ်ဖြစ်လို့ တောက်ပတဲ့အရောင်တွေကို ပိုဆောင်ပါတယ်။မျက်လုံးအရောင် တောက်ပပြီး ကြည်လင်နေတတ်ပါတယ်။</p>
+            <p><b>Dark Winter (Deep Winter):</b> Winter နဲ့ Autumn ကြား ဆုံမှတ်ဖြစ်လို့ နက်မှောင်တဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။အသားညိုတာ ဒါမှမဟုတ် ဆံပင်နဲ့ မျက်လုံးအရောင် အရမ်းနက်မှောင်တာမျိုးပါ။</p>
+        </div>
+        <br>
+        <h3 class="highlight">Winter လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
+        <div>
+            <p><b>Black & White Test:</b> တခြား Seasonal tone တွေ (ဥပမာ- Autumn သို့မဟုတ် Spring) က အနက်စစ်စစ်ကို ဝတ်ရင် မျက်နှာက အရောင်မှိန်သွားတတ်ပါတယ်။ ဒါပေမဲ့ Winter သမားတွေကတော့ "အနက်စစ်စစ်" နဲ့ "အဖြူစင်စစ်" ကို ဝတ်လိုက်ရင် မျက်နှာက ပိုပြီး လင်းလက်တောက်ပလာပါတယ်။</p>
+            <p><b>Silver vs Gold:</b>ရွှေထည် ထက် ငွေထည် ဝတ်လိုက်တဲ့အခါ အသားအရေက ပိုကြည်သွားပြီး အိုမင်းမောပန်းတဲ့ပုံ မပေါက်တော့ဘူးဆိုရင် ဒါဟာ Winter ပါပဲ။</p>
+            <p><b>Lipstick Test:</b> လိမ္မော်ရောင်သန်းတဲ့ နှုတ်ခမ်းနီ ထက် ခရမ်းရောင် ဒါမှမဟုတ် အပြာရောင်သန်းတဲ့ အနီရဲရဲ နဲ့ ပိုလှနေရင် ဒါဟာ Winter သေချာသလောက် ရှိပါတယ်။</p>
+        </div>
+        <br>
+        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
+        <div class="color-box">
+            <div class="circle" style="background: #000000;"></div>
+            <div class="circle" style="background: #FFFFFF;"></div>
+            <div class="circle" style="background: #C71585;"></div>
+            <div class="circle" style="background: #000080;"></div>
+        </div>
+        <p><span class="highlight">အဓိကအချက်:</span> အနက်စစ်စစ်နဲ့ အဖြူစင်စစ်ကို ဝတ်လို့ရတဲ့ တစ်ခုတည်းသော ရာသီပါ။ အရောင်ရင့်ရင့် တောက်တောက်တွေနဲ့ လှပါတယ်။ လိမ္မော်ရောင်၊ အဝါရောင် နဲ့ မြေကြီးရောင် တွေကို ဝတ်ရင် မျက်နှာညှိုးသွားတတ်လို့ သတိထားရပါမယ်။</p>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>

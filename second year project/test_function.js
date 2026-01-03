@@ -4,12 +4,12 @@
 
 const surface = ['Fair','Light','Tan','Medium','Deep','Dark'];
 const sub = {
-  Fair:   ['Porcelain','Ivory','Rosy','Alabaster','Pearl','Pale Pink'],
+  Fair:   ['Porcelain','Ivory','Rosy','Alabaster','Pearl','PalePink'],
   Light:  ['Beige','Peach','Alabaster','Cream','Buff','Sand'],
   Tan:    ['Golden','Honey','Caramel','Amber','Sunkissed','Toasted'],
-  Medium: ['Olive','Bronze','Chestnut','Almond','Warm Sand','Cashew'],
+  Medium: ['Olive','Bronze','Chestnut','Almond','Warm_Sand','Cashew'],
   Deep:   ['Mahogany','Espresso','Umber','Sienna','Cacao','Copper'],
-  Dark:   ['Onyx','Charcoal','Sable','Ebony','Deep Coffee','Midnight']
+  Dark:   ['Onyx','Charcoal','Sable','Ebony','Deep_Coffee','Midnight']
 };
 const undertone = ['Cool','Warm','Neutral'];
 const hair   = ['Blonde_cool','Blonde_warm','Red','Auburn','Light_brown','Dark_brown','Ash_brown','Black','Jet_Black','Grey_silver'];
@@ -28,22 +28,37 @@ const skinImgs = {
   Porcelain : 'img/porcelain.jpg',
   Ivory : 'img/ivory.jpg',
   Rosy : 'img/rosy.jpg',
+  PalePink: 'img/pale_pink.jpg',
   Beige : 'img/Beige.jpg',
   Peach : 'img/Peach.jpg',
   Cream: 'img/cream.jpg',
   Alabaster : 'img/Alabaster.jpg',
+  Buff : 'img/buff.jpg',
+  Sand : 'img/sand.jpg',
   Golden : 'img/olive.jpg',
   Honey : 'img/bronze.jpg',
-  Caramel : 'img/chestnut.jpg',
-  Olive : 'img/golden.jpg',
-  Bronze :'img/Honey.jpg' ,
-  Chestnut :'img/caramel.jpg' ,
+  Caramel : 'img/caramel.jpg',
+  Amber : 'img/amber.jpg',
+  Olive : 'img/olive.jpg',
+  Bronze :'img/bronze.jpg' ,
+  Sunkissed: 'img/sunkissed.jpg',
+  Chestnut :'img/chestnut.jpg' ,
+  Toasted : 'img/toasted.jpg',
+  Almond : 'img/almond.jpg',
+  Warm_Sand : 'img/warm-sand.jpg',
+  Cashew : 'img/chewness.jpg',
   Mahogany : 'img/mahogany.jpg',
   Espresso : 'img/espresso.jpg',
   Umber : 'img/umber.jpg',
+  Sienna : 'img/sienna.jpg',
   Onyx : 'img/onyx.jpg',
   Charcoal : 'img/charcoal.jpg',
+  Cacao : 'img/cocoa.jpg',
+  Copper : 'img/copper.jpg',
   Sable : 'img/sable.jpg',
+  Ebony : 'img/ebony.jpg',
+  Deep_Coffee : 'img/deep-coffee.jpg',
+  Midnight : 'img/midnight.jpg',
   Blonde_cool : 'img/Blonde-cool.jpg',
   Blonde_warm : 'img/Blonde-warm.jpg',
   Red : 'img/Red.jpg',
@@ -63,7 +78,8 @@ const skinImgs = {
   Warm : 'img/warm tone.jpg',
   Auburn: 'img/auburn.jpg',
   Jet_Black: 'img/jet_black.jpg',
-  Ash_brown: 'img/ash_brown.jpg'
+  Ash_brown: 'img/ash_brown.jpg',
+  Pearl: 'img/pearl.jpg',
 };
 
 /* palette engine – still only needs undertone */
@@ -155,7 +171,7 @@ const DATA = {
   },
 
   // 5. PALE PINK (Fair - Soft/Cool)
-  "Pale Pink": {
+  PalePink: {
     best: [
       "#FADADD", "#F8C8DC", "#FFB6C1", "#FFC0CB", "#D8BFD8", "#E6E6FA", "#E0B0FF", "#CCCCFF", "#B0C4DE", "#ADD8E6",
       "#AFDBF5", "#B0E0E6", "#F0F8FF", "#F5F5F5", "#C0C0C0", "#BC8F8F", "#D2B48C", "#8FBC8F", "#5F9EA0", "#4682B4",
@@ -264,7 +280,7 @@ const DATA = {
     avoid: ["#39FF14", "#FF3131", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#FF1493", "#FF0000", "#0000FF", "#4B0082"]
   },
   // 5. WARM SAND
-  "Warm Sand": {
+  Warm_Sand: {
     best: ["#E5AA70", "#D2B48C", "#BC8F8F", "#8A9A5B", "#B2AC88", "#8FBC8F", "#5F9EA0", "#4682B4", "#778899", "#708090", "#D3D3D3", "#C0C0C0", "#BDB76B", "#CD5C5C", "#E9967A", "#EEE8AA", "#FAF0E6", "#F5F5DC", "#F0E68C", "#CD7F32", "#DAA520", "#B8860B", "#A52A2A", "#8B4513", "#556B2F", "#B22222", "#006400", "#BC8F8F", "#CD853F", "#A0522D"],
     avoid: ["#FF3131", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#FF1493", "#FF0000", "#0000FF", "#4B0082", "#483D8B"]
   },
@@ -325,7 +341,7 @@ const DATA = {
     avoid: ["#D3D3D3", "#F5F5DC", "#FFF8DC", "#FAEBD7", "#F0EAD6", "#E9FFDB", "#FFFDD0", "#FFFFFF", "#AFDBF5", "#F8C8DC"]
   },
   // 5. DEEP COFFEE
-  "Deep Coffee": {
+  Deep_Coffee: {
     best: ["#3B271E", "#4E3524", "#3D2B1F", "#654321", "#8B4513", "#A52A2A", "#7B3F00", "#CD7F32", "#D2691E", "#A0522D", "#B7410E", "#E2725B", "#9A463D", "#CC5500", "#BC8F8F", "#8A9A5B", "#556B2F", "#808000", "#DAA520", "#B8860B", "#EAA221", "#C19A6B", "#B2AC88", "#B22222", "#006400", "#228B22", "#483C32", "#5D3A1A", "#AF6F09", "#966919"],
     avoid: ["#F5F5DC", "#FFFDD0", "#FFFFFF", "#E6E6FA", "#CCCCFF", "#AFDBF5", "#F8C8DC", "#FF00FF", "#00FFFF", "#D3D3D3"]
   },
