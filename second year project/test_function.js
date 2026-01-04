@@ -1,5 +1,3 @@
-
-
 /* ---------- CONFIG ---------- */
 
 const surface = ['Fair','Light','Tan','Medium','Deep','Dark'];
@@ -15,6 +13,13 @@ const undertone = ['Cool','Warm','Neutral'];
 const hair   = ['Blonde_cool','Blonde_warm','Red','Auburn','Light_brown','Dark_brown','Ash_brown','Black','Jet_Black','Grey_silver'];
 const eyes   = ['Blue','Green','Hazel','Light__brown','Dark__brown','Black1','Grey'];
 
+/* ---------- OUTFIT CHECKER VARIABLES ---------- */
+let outfitState = {
+    itemCount: 0,
+    colors: [],
+    bestColorsArray: [],
+    avoidColorsArray: []
+};
 
 /* tiny grey placeholder so it runs offline */
 
@@ -118,7 +123,26 @@ const palettes = {
   }
 };
 
-/* === NEW: step-specific colour contributions === */
+// Clashing color pairs (using nearest color names)
+const clashingColors = {
+    primary: {
+        'Red': ['Blue', 'Green'],
+        'Blue': ['Orange', 'Red'],
+        'Yellow': ['Purple', 'Pink'],
+        'Orange': ['Blue', 'Purple'],
+        'Green': ['Red', 'Pink'],
+        'Purple': ['Yellow', 'Orange'],
+        'Pink': ['Green', 'Yellow']
+    },
+    secondary: {
+        'Cyan': ['Red', 'Orange'],
+        'Magenta': ['Green', 'Yellow'],
+        'Lime': ['Purple', 'Pink'],
+        'Indigo': ['Orange', 'Yellow'],
+        'Turquoise': ['Red', 'Pink']
+    }
+};
+
 const DATA = {
   /* Sub-skin mini-palettes */
   Porcelain: {
@@ -826,6 +850,7 @@ function goStep(targetStep){
     /* hide everything first */
     [1,2,3,4,5].forEach(n => hide($('step'+n)));
     hide($('result'));
+    hide($('outfitChecker')); // Add this line
 
     if(targetStep === 1)      show($('step1'));
     else if(targetStep === 2) show($('step2'));
@@ -833,6 +858,7 @@ function goStep(targetStep){
     else if(targetStep === 4) show($('step4'));
     else if(targetStep === 5) show($('step5'));
     else if(targetStep === 6) show($('result'));   // 6 = show result
+    else if(targetStep === 7) show($('outfitChecker')); // Add this line for outfit checker
 }
 
 /* OPTIONAL: map left/right arrow keys */
@@ -980,4 +1006,310 @@ function sendViaEmailJS(){
     res => alert("Results sent!"),
     err => alert("Send failed: " + JSON.stringify(err))
   );
+}
+
+/* ---------- OUTFIT CHECKER FUNCTIONS ---------- */
+function showOutfitChecker() {
+    hide($('result'));
+    show($('outfitChecker'));
+    show($('outfitStep1'));
+    hide($('outfitStep2'));
+    hide($('outfitStep3'));
+    
+    // Initialize arrays from stored colors
+    outfitState.bestColorsArray = window.bestColors ? window.bestColors.split(', ') : [];
+    outfitState.avoidColorsArray = window.avoidColors ? window.avoidColors.split(', ') : [];
+}
+
+function selectItemCount(count) {
+    outfitState.itemCount = count;
+    
+    // Update UI
+    document.querySelectorAll('.number-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    event.target.classList.add('selected');
+    
+    // Generate color pickers
+    generateColorPickers(count);
+    
+    // Show next step
+    hide($('outfitStep1'));
+    show($('outfitStep2'));
+}
+
+function generateColorPickers(count) {
+    const container = $('colorPickersContainer');
+    container.innerHTML = '';
+    
+    for (let i = 1; i <= count; i++) {
+        const pickerItem = document.createElement('div');
+        pickerItem.className = 'color-picker-item';
+        pickerItem.innerHTML = `
+            <label>Item ${i}:</label>
+            <input type="color" id="color${i}" class="color-picker" value="#ffffff">
+        `;
+        container.appendChild(pickerItem);
+    }
+}
+
+function analyzeOutfit() {
+    // Collect colors
+    outfitState.colors = [];
+    for (let i = 1; i <= outfitState.itemCount; i++) {
+        const color = $(`color${i}`).value;
+        outfitState.colors.push(color);
+    }
+    
+    // Analyze each color
+    const analysis = analyzeColors(outfitState.colors);
+    
+    // Display results
+    displayOutfitResults(analysis);
+    
+    // Show results step
+    hide($('outfitStep2'));
+    show($('outfitStep3'));
+}
+
+function analyzeColors(colors) {
+    const results = [];
+    let totalScore = 0;
+    let itemScore = 100 / colors.length;
+    
+    colors.forEach((color, index) => {
+        const nearestColor = findNearestColor(color);
+        const colorName = hexToName(color);
+        
+        let status = 'neutral';
+        let score = 0;
+        let reason = '';
+        
+        // Check against best colors
+        if (outfitState.bestColorsArray.includes(nearestColor)) {
+            status = 'best';
+            score = itemScore;
+            reason = 'Perfect match for your palette!';
+        }
+        // Check against avoid colors
+        else if (outfitState.avoidColorsArray.includes(nearestColor)) {
+            status = 'avoid';
+            score = itemScore * 0.1; // 10% of possible points
+            reason = 'This color clashes with your natural tones';
+        }
+        // Neutral color
+        else {
+            status = 'neutral';
+            score = itemScore * 0.6; // 60% of possible points
+            reason = 'Neutral choice, works adequately';
+        }
+        
+        results.push({
+            originalColor: color,
+            nearestColor: nearestColor,
+            colorName: colorName,
+            status: status,
+            score: score,
+            reason: reason
+        });
+        
+        totalScore += score;
+    });
+    
+    // Check for clashing colors
+    const clashPenalty = checkColorHarmony(results);
+    totalScore -= clashPenalty;
+    
+    // Ensure score doesn't go below 0
+    totalScore = Math.max(0, totalScore);
+    
+    return {
+        results: results,
+        totalScore: Math.round(totalScore),
+        clashPenalty: clashPenalty
+    };
+}
+
+function findNearestColor(hexColor) {
+    // Convert hex to RGB
+    const r = parseInt(hexColor.substr(1, 2), 16);
+    const g = parseInt(hexColor.substr(3, 2), 16);
+    const b = parseInt(hexColor.substr(5, 2), 16);
+    
+    let nearestColor = outfitState.bestColorsArray[0];
+    let minDistance = Infinity;
+    
+    // Check all colors in our palette
+    const allColors = [...outfitState.bestColorsArray, ...outfitState.avoidColorsArray];
+    
+    allColors.forEach(paletteColor => {
+        const pr = parseInt(paletteColor.substr(1, 2), 16);
+        const pg = parseInt(paletteColor.substr(3, 2), 16);
+        const pb = parseInt(paletteColor.substr(5, 2), 16);
+        
+        // Calculate Euclidean distance
+        const distance = Math.sqrt(
+            Math.pow(r - pr, 2) + Math.pow(g - pg, 2) + Math.pow(b - pb, 2)
+        );
+        
+        if (distance < minDistance) {
+            minDistance = distance;
+            nearestColor = paletteColor;
+        }
+    });
+    
+    return nearestColor;
+}
+
+function checkColorHarmony(results) {
+    let penalty = 0;
+    const checkedPairs = new Set();
+    
+    // Check all pairs
+    for (let i = 0; i < results.length; i++) {
+        for (let j = i + 1; j < results.length; j++) {
+            const pairKey = `${i}-${j}`;
+            if (checkedPairs.has(pairKey)) continue;
+            
+            const color1Name = results[i].colorName;
+            const color2Name = results[j].colorName;
+            
+            // Check if they clash
+            if (doColorsClash(color1Name, color2Name)) {
+                penalty += 10;
+                results[i].clash = true;
+                results[j].clash = true;
+                results[i].clashReason = `Clashes with ${color2Name}`;
+                results[j].clashReason = `Clashes with ${color1Name}`;
+            }
+            
+            checkedPairs.add(pairKey);
+        }
+    }
+    
+    return penalty;
+}
+
+function doColorsClash(color1, color2) {
+    // Check primary clashes
+    for (const [primary, clashes] of Object.entries(clashingColors.primary)) {
+        if (color1.includes(primary) && clashes.some(clash => color2.includes(clash))) {
+            return true;
+        }
+        if (color2.includes(primary) && clashes.some(clash => color1.includes(clash))) {
+            return true;
+        }
+    }
+    
+    // Check secondary clashes
+    for (const [secondary, clashes] of Object.entries(clashingColors.secondary)) {
+        if (color1.includes(secondary) && clashes.some(clash => color2.includes(clash))) {
+            return true;
+        }
+        if (color2.includes(secondary) && clashes.some(clash => color1.includes(clash))) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+function displayOutfitResults(analysis) {
+    const score = analysis.totalScore;
+    const percentage = $('scorePercentage');
+    const title = $('scoreTitle');
+    const description = $('scoreDescription');
+    const breakdown = $('outfitBreakdown');
+    
+    // Update score circle
+    percentage.textContent = `${score}%`;
+    
+    // Remove previous score classes
+    const scoreCircle = percentage.parentElement;
+    scoreCircle.className = 'score-circle';
+    
+    // Determine grade and styling
+    let grade, message, className;
+    if (score >= 76) {
+        grade = 'Excellent';
+        message = 'You are a Glow Icon! Your outfit perfectly complements your natural colors!';
+        className = 'score-excellent';
+    } else if (score >= 51) {
+        grade = 'Good';
+        message = 'Great sense of style! Your outfit works well with your palette.';
+        className = 'score-good';
+    } else if (score >= 26) {
+        grade = 'Fair';
+        message = 'Not bad, but could be better. Consider adjusting a few colors.';
+        className = 'score-fair';
+    } else {
+        grade = 'Poor';
+        message = 'Needs a color refresh! Try incorporating more of your best colors.';
+        className = 'score-poor';
+    }
+    
+    scoreCircle.classList.add(className);
+    title.textContent = `${grade} Match!`;
+    description.textContent = message;
+    
+    // Build breakdown
+    breakdown.innerHTML = '<h4>Color Analysis Breakdown:</h4>';
+    analysis.results.forEach((result, index) => {
+        const item = document.createElement('div');
+        item.className = 'breakdown-item';
+        
+        let statusClass = '';
+        let statusText = result.status;
+        if (result.clash) {
+            statusClass = 'status-clash';
+            statusText = 'Clashing';
+        } else if (result.status === 'best') {
+            statusClass = 'status-best';
+        } else if (result.status === 'avoid') {
+            statusClass = 'status-avoid';
+        }
+        
+        item.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="breakdown-color" style="background-color: ${result.originalColor};"></div>
+                <div>
+                    <strong>Item ${index + 1}:</strong> ${result.colorName}
+                    <br><small>${result.reason}</small>
+                    ${result.clashReason ? `<br><small style="color: #e74c3c;">${result.clashReason}</small>` : ''}
+                </div>
+            </div>
+            <span class="breakdown-status ${statusClass}">${statusText}</span>
+        `;
+        breakdown.appendChild(item);
+    });
+    
+    if (analysis.clashPenalty > 0) {
+        const penaltyItem = document.createElement('div');
+        penaltyItem.className = 'breakdown-item';
+        penaltyItem.innerHTML = `
+            <div>
+                <strong>Harmony Penalty:</strong> ${analysis.clashPenalty} points deducted for clashing colors
+            </div>
+            <span class="breakdown-status status-clash">-${analysis.clashPenalty}</span>
+        `;
+        breakdown.appendChild(penaltyItem);
+    }
+}
+
+function resetOutfitChecker() {
+    outfitState = {
+        itemCount: 0,
+        colors: [],
+        bestColorsArray: [],
+        avoidColorsArray: []
+    };
+    
+    hide($('outfitStep3'));
+    show($('outfitStep1'));
+    hide($('outfitStep2'));
+    
+    // Clear selections
+    document.querySelectorAll('.number-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
 }

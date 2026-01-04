@@ -68,9 +68,7 @@
   </section>
 
   <!-- RESULT -->
-  <!-- Update the result section in test.html -->
 <section id="result" class="step hidden">
-  <!-- Seasonal header will be inserted here dynamically -->
   
   <div class="nav-buttons">
     <button class="prev" onclick="goStep(4)">
@@ -109,6 +107,60 @@
       Restart Analysis
     </button>
   </div>
+
+  <div class="outfit-checker-section">
+      <button onclick="showOutfitChecker()" class="outfit-checker-btn">
+          <i class='bx bx-palette'></i> Check Your Current Outfit
+      </button>
+  </div>
+</section>
+<!-- Add this after the result section -->
+<section id="outfitChecker" class="step hidden">
+    <div class="nav-buttons">
+        <button class="prev" onclick="goStep(6)">
+            <i class='bx bx-undo'></i> Back to Results
+        </button>
+    </div>
+    
+    <h2>Real-time Outfit Color Matcher</h2>
+    
+    <!-- Step 1: Number of items -->
+    <div id="outfitStep1" class="outfit-step">
+        <h3>How many clothing items are you wearing?</h3>
+        <div class="number-selector">
+            <div class="number-buttons">
+                <button onclick="selectItemCount(1)" class="number-btn">1</button>
+                <button onclick="selectItemCount(2)" class="number-btn">2</button>
+                <button onclick="selectItemCount(3)" class="number-btn">3</button>
+                <button onclick="selectItemCount(4)" class="number-btn">4</button>
+                <button onclick="selectItemCount(5)" class="number-btn">5</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Step 2: Color pickers -->
+    <div id="outfitStep2" class="outfit-step hidden">
+        <h3>Select colors for each clothing item:</h3>
+        <div id="colorPickersContainer" class="color-pickers-grid"></div>
+        <button onclick="analyzeOutfit()" class="analyze-btn">
+            <i class='bx bx-analyse'></i> Submit & Analyze
+        </button>
+    </div>
+    
+    <!-- Step 3: Results -->
+    <div id="outfitStep3" class="outfit-step hidden">
+        <div class="outfit-score-container">
+            <div class="score-circle">
+                <span id="scorePercentage">0%</span>
+            </div>
+            <h3 id="scoreTitle">Analyzing...</h3>
+            <p id="scoreDescription"></p>
+            <div id="outfitBreakdown" class="outfit-breakdown"></div>
+        </div>
+        <button onclick="resetOutfitChecker()" class="restart-btn">
+            <i class='bx bx-refresh'></i> Check Another Outfit
+        </button>
+    </div>
 </section>
 </main>
 
