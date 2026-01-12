@@ -126,20 +126,20 @@ const palettes = {
 // Clashing color pairs (using nearest color names)
 const clashingColors = {
     primary: {
-        'Red': ['Blue', 'Green'],
-        'Blue': ['Orange', 'Red'],
-        'Yellow': ['Purple', 'Pink'],
-        'Orange': ['Blue', 'Purple'],
-        'Green': ['Red', 'Pink'],
-        'Purple': ['Yellow', 'Orange'],
-        'Pink': ['Green', 'Yellow']
+        '#FF0000': ['#0000FF', '#008000'], 
+        '#0000FF': ['#FFA500', '#FF0000'],
+        '#FFFF00': ['#800080', '#FFC0CB'],
+        '#FFA500': ['#0000FF', '#800080'], 
+        '#008000': ['#FF0000', '#FFC0CB'], 
+        '#800080': ['#FFFF00', '#FFA500'],
+        '#FFC0CB': ['#008000', '#FFFF00'] 
     },
     secondary: {
-        'Cyan': ['Red', 'Orange'],
-        'Magenta': ['Green', 'Yellow'],
-        'Lime': ['Purple', 'Pink'],
-        'Indigo': ['Orange', 'Yellow'],
-        'Turquoise': ['Red', 'Pink']
+        '#00FFFF': ['#FF0000', '#FFA500'],
+        '#FF00FF': ['#008000', '#FFFF00'], 
+        '#32CD32': ['#800080', '#FFC0CB'], 
+        '#4B0082': ['#FFA500', '#FFFF00'], 
+        '#40E0D0': ['#FF0000', '#FFC0CB']  
     }
 };
 
@@ -455,19 +455,28 @@ const MAKEUP_TEXT = {
       Foundation: "True cocoa, neutral deep brown, deep almond, sable, soft mocha",
       Blush:      "Golden plum, neutral berry, rich rose, soft auburn, muted raisin",
       Lipstick:   "Balanced wine, dark mauve, deep nude, muted burgundy, brown rose",
-      Eyeshadow:  "Rich taupe, rose bronze, neutral brown, copper taupe, deep matte beige"
+      Eyeshadow:  "Rich taupe, rose bronze, neutral brown, copper taupe, deep matte beige",
+      Haircolor: "Platinum Blonde, Ash Brown, Jet Black, Cool Burgundy/Plum",
+      Nails: "Soft Pink, Nude roses, Royal Blue, Navy, Silver, Chrome, Clissix Berry, Cool Red",
+      Lenses: "Soft Grey or Muted Blue to keep your look natural and fresh."
     },
     Warm: {
       Foundation: "Warm porcelain, golden beige, soft ivory, peachy tan, light caramel",
       Blush:      "Apricot, coral peach, warm rose, golden apricot, soft terracotta",
       Lipstick:   "Warm nude, peachy rose, coral pink, brick rose, burnt sienna",
-      Eyeshadow:  "Warm sand, peachy bronze, soft copper, camel, muted gold"
+      Eyeshadow:  "Warm sand, peachy bronze, soft copper, camel, muted gold",
+      Haircolor: "Golden Blonde, Warm Auburn, Copper, Golden Brown, Honey Blonde, Strawberry Blonde, Caramel Highlights",
+      Nails: "Coral, Peach, Warm Red, Gold, Bronze, Copper, Terra Cotta, Warm Taupe, Tomato Red",
+      Lenses: "Warm honey or golden brown lenses can enhance your natural warmth."
     },
     Neutral: {
       Foundation: "Neutral fair, soft beige, balanced ivory, light almond, muted peach",
       Blush:      "Dusty rose, neutral mauve, muted berry, soft plum, rosewood",
       Lipstick:   "Rose nude, dusty mauve, muted berry, soft plum, rose-brown",
-      Eyeshadow:  "Soft taupe, dusty mauve, neutral brown, muted rose, cool beige"
+      Eyeshadow:  "Soft taupe, dusty mauve, neutral brown, muted rose, cool beige",
+      Haircolor: "Neutral Blonde, Light Brown, Soft Black, Chestnut Brown",
+      Nails: "Mauve, Dusty Pink, Soft Brown, Neutral Red, Rose Gold, Champagne, Soft Taupe, Plum, Berry",
+      Lenses: "Neutral hazel or soft brown lenses will complement your balanced features."
     }
   },
 
@@ -477,19 +486,28 @@ const MAKEUP_TEXT = {
       Foundation: "Cool beige, soft fawn, porcelain beige, light cocoa, neutral sand",
       Blush:      "Mauve rose, cool berry, soft plum, dusty rose, muted raspberry",
       Lipstick:   "Mauve nude, cool rose, berry mauve, soft plum, cool burgundy",
-      Eyeshadow:  "Cool taupe, soft mauve, muted plum, grey-brown, slate"
+      Eyeshadow:  "Cool taupe, soft mauve, muted plum, grey-brown, slate",
+      Haircolor: "Ash Blonde, Cool Brown, Black, Cool Red, Blue Black",
+      Nails: "Plum, Mauve, Cool Red, Silver, Gunmetal, Charcoal, Blue Black, Icy Pink, Cool Berry",
+      Lenses: "Cool blue or grey lenses can enhance your natural cool undertones."
     },
     Warm: {
       Foundation: "Warm beige, golden fawn, soft caramel, light tan, warm sand",
       Blush:      "Warm peach, soft apricot, coral rose, golden rose, soft brick",
       Lipstick:   "Warm rose, peachy nude, coral mauve, soft terracotta, cinnamon",
-      Eyeshadow:  "Warm bronze, soft copper, camel, muted peach, golden beige"
+      Eyeshadow:  "Warm bronze, soft copper, camel, muted peach, golden beige",
+      Haircolor: "Golden Blonde, Warm Brown, Auburn, Caramel, Honey Highlights",
+      Nails: "Coral, Peach, Warm Red, Gold, Bronze, Copper, Terra Cotta, Warm Taupe, Tomato Red",
+      Lenses: "Warm amber or honey brown lenses can enhance your natural warmth."
     },
     Neutral: {
       Foundation: "Neutral beige, balanced fawn, soft tan, light almond, muted caramel",
       Blush:      "Neutral rose, soft berry, muted apricot, dusty peach, rose-taupe",
       Lipstick:   "Neutral mauve, soft berry, dusty rose, balanced plum, nude-rose",
-      Eyeshadow:  "Neutral taupe, soft brown, muted rose, balanced beige, stone"
+      Eyeshadow:  "Neutral taupe, soft brown, muted rose, balanced beige, stone",
+      Haircolor: "Neutral Blonde, Light Brown, Soft Black, Chestnut Brown",
+      Nails: "Mauve, Dusty Pink, Soft Brown, Neutral Red, Rose Gold, Champagne, Soft Taupe, Plum, Berry",
+      Lenses: "Neutral hazel or soft brown lenses will complement your balanced features."
     }
   },
 
@@ -498,19 +516,28 @@ const MAKEUP_TEXT = {
       Foundation: "Cool tan, soft walnut, neutral bronze, medium almond, cocoa",
       Blush:      "Deep berry, cool plum, rich mauve, soft raisin, muted wine",
       Lipstick:   "Berry wine, cool plum, mauve brown, deep berry, cool burgundy",
-      Eyeshadow:  "Cool bronze, soft plum, taupe-brown, muted charcoal, cool cocoa"
+      Eyeshadow:  "Cool bronze, soft plum, taupe-brown, muted charcoal, cool cocoa",
+      Haircolor: "Ash Brown, Cool Brown, Black, Cool Red, Blue Black",
+      Nails: "Plum, Mauve, Cool Red, Silver, Gunmetal, Charcoal, Blue Black, Icy Pink, Cool Berry",
+      Lenses: "Cool grey or deep blue lenses can enhance your cool undertones."
     },
     Warm: {
       Foundation: "Warm tan, golden bronze, soft caramel, toasted almond, honey",
       Blush:      "Warm coral, soft cinnamon, golden berry, apricot, soft rust",
       Lipstick:   "Warm terracotta, soft brick, coral brown, cinnamon, burnt rose",
-      Eyeshadow:  "Warm bronze, copper brown, soft rust, camel, golden khaki"
+      Eyeshadow:  "Warm bronze, copper brown, soft rust, camel, golden khaki",
+      Haircolor: "Golden Blonde, Warm Brown, Auburn, Caramel, Honey Highlights",
+      Nails: "Coral, Peach, Warm Red, Gold, Bronze, Copper, Terra Cotta, Warm Taupe, Tomato Red",
+      Lenses: "Warm amber or honey brown lenses can enhance your natural warmth."
     },
     Neutral: {
       Foundation: "Neutral tan, balanced bronze, soft walnut, medium almond, muted cocoa",
       Blush:      "Neutral berry, soft plum, muted rose, dusty coral, balanced raisin",
       Lipstick:   "Balanced berry, soft terracotta, muted brick, dusty mauve, rose-brown",
-      Eyeshadow:  "Neutral brown, soft bronze, muted taupe, balanced camel, stone"
+      Eyeshadow:  "Neutral brown, soft bronze, muted taupe, balanced camel, stone",
+      Haircolor: "Neutral Blonde, Light Brown, Soft Black, Chestnut Brown",
+      Nails: "Mauve, Dusty Pink, Soft Brown, Neutral Red, Rose Gold, Champagne, Soft Taupe, Plum, Berry",
+      Lenses: "Neutral hazel or soft brown lenses will complement your balanced features."
     }
   },
 
@@ -519,19 +546,28 @@ const MAKEUP_TEXT = {
       Foundation: "Cool medium, soft sable, neutral chestnut, rich almond, cocoa",
       Blush:      "Deep plum, cool berry, rich raisin, soft wine, muted burgundy",
       Lipstick:   "Cool wine, deep plum, berry brown, cool burgundy, muted raisin",
-      Eyeshadow:  "Cool cocoa, soft charcoal, taupe, muted plum, cool bronze"
+      Eyeshadow:  "Cool cocoa, soft charcoal, taupe, muted plum, cool bronze",
+      Haircolor: "Ash Brown, Cool Brown, Black, Cool Red, Blue Black",
+      Nails: "Plum, Mauve, Cool Red, Silver, Gunmetal, Charcoal, Blue Black, Icy Pink, Cool Berry",
+      Lenses: "Cool grey or deep blue lenses can enhance your cool undertones."
     },
     Warm: {
       Foundation: "Warm medium, golden chestnut, soft sienna, toasted almond, bronze",
       Blush:      "Warm berry, soft rust, golden plum, cinnamon, soft copper",
       Lipstick:   "Warm brick, soft rust, copper brown, cinnamon, terracotta",
-      Eyeshadow:  "Warm copper, soft bronze, rust, caramel, golden brown"
+      Eyeshadow:  "Warm copper, soft bronze, rust, caramel, golden brown",
+      Haircolor: "Golden Blonde, Warm Brown, Auburn, Caramel, Honey Highlights",
+      Nails: "Coral, Peach, Warm Red, Gold, Bronze, Copper, Terra Cotta, Warm Taupe, Tomato Red",
+      Lenses: "Warm amber or honey brown lenses can enhance your natural warmth."
     },
     Neutral: {
       Foundation: "Neutral medium, balanced chestnut, soft cocoa, rich almond, muted bronze",
       Blush:      "Neutral berry, soft raisin, muted plum, dusty rust, balanced wine",
       Lipstick:   "Balanced berry, soft rust, muted plum, dusty brick, rose-cocoa",
-      Eyeshadow:  "Neutral bronze, soft cocoa, muted taupe, balanced khaki, stone"
+      Eyeshadow:  "Neutral bronze, soft cocoa, muted taupe, balanced khaki, stone",
+      Haircolor: "Neutral Blonde, Light Brown, Soft Black, Chestnut Brown",
+      Nails: "Mauve, Dusty Pink, Soft Brown, Neutral Red, Rose Gold, Champagne, Soft Taupe, Plum, Berry",
+      Lenses: "Neutral hazel or soft brown lenses will complement your balanced features."
     }
   },
 
@@ -540,19 +576,28 @@ const MAKEUP_TEXT = {
       Foundation: "Cool espresso, neutral mahogany, deep sable, rich cocoa, umber",
       Blush:      "Deep wine, cool raisin, rich plum, soft burgundy, muted berry",
       Lipstick:   "Cool wine, deep plum, rich burgundy, cool raisin, muted wine",
-      Eyeshadow:  "Cool espresso, soft charcoal, deep taupe, muted plum, cool cocoa"
+      Eyeshadow:  "Cool espresso, soft charcoal, deep taupe, muted plum, cool cocoa",
+      Haircolor: "Ash Brown, Cool Brown, Black, Cool Red, Blue Black",
+      Nails: "Plum, Mauve, Cool Red, Silver, Gunmetal, Charcoal, Blue Black, Icy Pink, Cool Berry",
+      Lenses: "Cool grey or deep blue lenses can enhance your cool undertones."
     },
     Warm: {
       Foundation: "Warm espresso, golden mahogany, deep sienna, toasted umber, bronze",
       Blush:      "Warm raisin, soft rust, golden plum, deep cinnamon, copper",
       Lipstick:   "Warm rust, deep copper, rich terracotta, cinnamon, brick",
-      Eyeshadow:  "Warm espresso, soft copper, rust, deep bronze, caramel"
+      Eyeshadow:  "Warm espresso, soft copper, rust, deep bronze, caramel",
+      Haircolor: "Golden Blonde, Warm Brown, Auburn, Caramel, Honey Highlights",
+      Nails: "Coral, Peach, Warm Red, Gold, Bronze, Copper, Terra Cotta, Warm Taupe, Tomato Red",
+      Lenses: "Warm amber or honey brown lenses can enhance your natural warmth."
     },
     Neutral: {
       Foundation: "Neutral espresso, balanced mahogany, deep cocoa, rich umber, muted bronze",
       Blush:      "Neutral raisin, soft rust, muted plum, dusty wine, balanced copper",
       Lipstick:   "Balanced rust, deep plum, muted terracotta, dusty wine, cocoa-rose",
-      Eyeshadow:  "Neutral espresso, soft cocoa, muted bronze, balanced rust, stone"
+      Eyeshadow:  "Neutral espresso, soft cocoa, muted bronze, balanced rust, stone",
+      Haircolor: "Neutral Blonde, Light Brown, Soft Black, Chestnut Brown",
+      Nails: "Mauve, Dusty Pink, Soft Brown, Neutral Red, Rose Gold, Champagne, Soft Taupe, Plum, Berry",
+      Lenses: "Neutral hazel or soft brown lenses will complement your balanced features."
     }
   },
 
@@ -561,19 +606,28 @@ const MAKEUP_TEXT = {
       Foundation: "Cool onyx, neutral sable, deep espresso, rich umber, cocoa",
       Blush:      "Deep berry, cool wine, rich raisin, soft plum, muted burgundy",
       Lipstick:   "Cool wine, deep berry, rich burgundy, cool raisin, muted plum",
-      Eyeshadow:  "Cool onyx, soft charcoal, deep espresso, muted plum, cool cocoa"
+      Eyeshadow:  "Cool onyx, soft charcoal, deep espresso, muted plum, cool cocoa",
+      Haircolor: "Ash Brown, Cool Brown, Black, Cool Red, Blue Black",
+      Nails: "Plum, Mauve, Cool Red, Silver, Gunmetal, Charcoal, Blue Black, Icy Pink, Cool Berry",
+      Lenses: "Cool grey or deep blue lenses can enhance your cool undertones."
     },
     Warm: {
       Foundation: "Warm onyx, golden sable, deep espresso, toasted umber, bronze",
       Blush:      "Warm raisin, soft copper, golden berry, deep rust, cinnamon",
       Lipstick:   "Warm copper, deep rust, rich terracotta, cinnamon, brick",
-      Eyeshadow:  "Warm onyx, soft bronze, rust, deep copper, golden brown"
+      Eyeshadow:  "Warm onyx, soft bronze, rust, deep copper, golden brown",
+      Haircolor: "Golden Blonde, Warm Brown, Auburn, Caramel, Honey Highlights",
+      Nails: "Coral, Peach, Warm Red, Gold, Bronze, Copper, Terra Cotta, Warm Taupe, Tomato Red",
+      Lenses: "Warm amber or honey brown lenses can enhance your natural warmth."
     },
     Neutral: {
       Foundation: "Neutral onyx, balanced sable, deep espresso, rich umber, muted bronze",
       Blush:      "Neutral raisin, soft copper, muted berry, dusty wine, balanced rust",
       Lipstick:   "Balanced rust, deep berry, muted terracotta, dusty wine, cocoa-bronze",
-      Eyeshadow:  "Neutral onyx, soft cocoa, muted bronze, balanced rust, stone"
+      Eyeshadow:  "Neutral onyx, soft cocoa, muted bronze, balanced rust, stone",
+      Haircolor: "Neutral Blonde, Light Brown, Soft Black, Chestnut Brown",
+      Nails: "Mauve, Dusty Pink, Soft Brown, Neutral Red, Rose Gold, Champagne, Soft Taupe, Plum, Berry",
+      Lenses: "Neutral hazel or soft brown lenses will complement your balanced features."
     }
   }
 };
@@ -813,6 +867,9 @@ Foundation: ${makeup.Foundation}
 Blush: ${makeup.Blush}
 Lipstick: ${makeup.Lipstick}
 Eyeshadow: ${makeup.Eyeshadow}
+Haircolor: ${makeup.Haircolor}
+Nails: ${makeup.Nails}
+Lenses: ${makeup.Lenses}
 `.trim();
 
   /* open user's mail client */
@@ -917,7 +974,10 @@ function generateEnhancedResult() {
                 <p><strong>Foundation:</strong> ${makeup.Foundation}</p>
                 <p><strong>Blush:</strong> ${makeup.Blush}</p>
                 <p><strong>Lipstick:</strong> ${makeup.Lipstick}</p>
-                <p><strong>Eye shadow:</strong> ${makeup.Eyeshadow}</p>`;
+                <p><strong>Eye shadow:</strong> ${makeup.Eyeshadow}</p>
+                <p><strong>Hair color:</strong> ${makeup.Haircolor}</p>
+                <p><strong>Nail color:</strong> ${makeup.Nails}</p>
+                <p><strong>Contact lenses:</strong> ${makeup.Lenses}</p>`;
     $('makeupBox').innerHTML = html;
     show($('makeupBox'));
   }
@@ -993,7 +1053,10 @@ function sendViaEmailJS(){
     foundation:   makeup.Foundation,
     blush:        makeup.Blush,
     lipstick:     makeup.Lipstick,
-    eyeshadow:    makeup.Eyeshadow
+    eyeshadow:    makeup.Eyeshadow,
+    haircolor:    makeup.Haircolor,
+    nails:        makeup.Nails,
+    lenses:       makeup.Lenses
   };
 
   emailjs.send(
@@ -1094,7 +1157,7 @@ function analyzeColors(colors) {
         // Check against avoid colors
         else if (outfitState.avoidColorsArray.includes(nearestColor)) {
             status = 'avoid';
-            score = itemScore * 0.1; // 10% of possible points
+            score = itemScore / color.length; // Deduct points based on length
             reason = 'This color clashes with your natural tones';
         }
         // Neutral color
@@ -1235,12 +1298,12 @@ function displayOutfitResults(analysis) {
         message = 'You are a Glow Icon! Your outfit perfectly complements your natural colors!';
         className = 'score-excellent';
     } else if (score >= 51) {
-        grade = 'Good';
-        message = 'Great sense of style! Your outfit works well with your palette.';
+        grade = 'Not Bad';
+        message = 'Good sense of style! Your outfit works fairly well with your palette.';
         className = 'score-good';
     } else if (score >= 26) {
         grade = 'Fair';
-        message = 'Not bad, but could be better. Consider adjusting a few colors.';
+        message = 'You should consider your color choice. Some colors could be better aligned with your natural tones.';
         className = 'score-fair';
     } else {
         grade = 'Poor';
