@@ -1376,3 +1376,18 @@ function resetOutfitChecker() {
         btn.classList.remove('selected');
     });
 }
+
+function sharePassport() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Style Passport - Chroma Glow',
+                    text: 'Check out my personalized harmony recommendations!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }

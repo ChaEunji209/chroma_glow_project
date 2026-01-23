@@ -1,352 +1,607 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chroma Glow - Shine With Your Best Color</title>
-    <link rel="stylesheet" href="style.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <title>About Our Methodology - Chroma Glow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#2C2C2C',
+                        cream: '#F8F6F0',
+                        sage: '#A8B5A0',
+                        dustyrose: '#D4A5A5'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Cormorant Garamond', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .aurora-bg {
+            background: linear-gradient(45deg, #F8F6F0, #A8B5A0, #F8F6F0, #D4A5A5);
+            background-size: 400% 400%;
+            animation: aurora 15s ease infinite;
+        }
+        
+        @keyframes aurora {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(248, 246, 240, 0.8);
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+        
+        .methodology-card {
+            transition: all 0.3s ease;
+        }
+        
+        .methodology-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(44, 44, 44, 0.1);
+        }
+        
+        .shape-diagram {
+            transition: all 0.3s ease;
+        }
+        
+        .shape-diagram:hover {
+            transform: scale(1.05);
+        }
 
-    <link rel="stylesheet" href="Style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        .textlink {
+            text-decoration: none;
+        }
+        .textlink:hover {
+            text-decoration: underline;
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="img/logo.png" alt="CG">
-            </div>
-            <div>
-                <ul id="menuList">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="test.html" target="_blank">Test</a></li>
-                    <li><a href="#about-us">About Us</a></li>
-                    <li><a href="#Contact">Contact</a></li>
-                    <li><a href="main_mm.html"><i class="fa-solid fa-language"></i></a></li>
-                </ul>
-            </div>
-            <div class="menu-icon">
-                <i class="fa-solid fa-bars-staggered" onclick="toggleMenu()"></i>
-            </div>
-            <label class="switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="slider"></span>
-            </label>
-        </nav>
-        <div class="scroll-btn">
-            <div class="scroll-bar">
-                <span> </span>
+<body class="bg-cream font-body text-charcoal">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-sage/20">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center">
+                        <span class="text-cream font-display font-bold text-lg"><img src="img/logo.png" alt="logo" style="width: 80px; height: 40px; border-radius: 50%;"></span>
+                    </div>
+                    <h1 class="font-display text-2xl font-semibold text-charcoal">Chroma Glow</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="https://fashion-styling.netlify.app/" class="font-medium text-charcoal hover:text-sage transition-colors">Styling Engine</a>
+                    <a href="test.html" class="font-medium text-charcoal hover:text-sage transition-colors">Style Passport</a>
+                    <a href="about.html" class="font-medium text-sage">About</a>
+                </div>
             </div>
         </div>
-    </header>
-<script src="https://kit.fontawesome.com/dc103e9e3b.js" crossorigin="anonymous"></script>
+    </nav>
 
-    <main class="hero" id="home">
-        <div class="video-background">
-            <div class="video-overlay"></div>
-            <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-                <source src="img/cover.mp4" type="video/mp4">
-            </video>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen aurora-bg flex items-center justify-center overflow-hidden">
+        <!-- Floating Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="floating-element absolute top-20 left-10 w-20 h-20 bg-sage/20 rounded-full"></div>
+            <div class="floating-element absolute top-40 right-20 w-16 h-16 bg-dustyrose/20 rounded-full" style="animation-delay: -2s;"></div>
+            <div class="floating-element absolute bottom-32 left-1/4 w-12 h-12 bg-sage/30 rounded-full" style="animation-delay: -4s;"></div>
         </div>
-
-        <div class="hero-content">
-            <p class="tagline">Shine With Your Best Color Match</p>
-            <h1 class="main-heading">Chroma Glow</h1>
-            <a href="test.html" class="cta-button" target="_blank">Reveal Your Radiance</a>
-        </div>
-    </main>
-
-                 <section class="page-content">
-    
-    <div class="guide-section animate-on-scroll">
-        <div class="guide-text">
-                <h2 class="text">How to Analyze Your Undertones</h2>
-                <p class="text">Examine the veins on the inside of your wrist in natural light. <br>
-                    <strong>Blue/purple</strong> = cool undertone.<br>
-                    <strong>Green</strong> = warm undertone.<br>
-                    <strong>Both / hard to tell</strong> = neutral undertone.
+        
+        <div class="max-w-7xl mx-auto px-6 py-20 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="font-display text-5xl md:text-7xl font-bold text-charcoal mb-6 leading-tight">
+                    The Science of
+                    <span class="bg-gradient-to-r from-sage to-dustyrose bg-clip-text text-transparent">
+                        Color Harmony
+                    </span>
+                </h1>
+                <p class="font-body text-xl md:text-2xl text-charcoal/80 mb-12 leading-relaxed max-w-2xl mx-auto">
+                    သင့်အတွက် အလိုက်ဖက်ဆုံး အရောင်တွေကို ရွေးချယ်ပေးမယ့် ကျွန်ုပ်တို့ရဲ့ နည်းပညာနဲ့ ကျွမ်းကျင်တဲ့ လုပ်ဆောင်ပုံအဆင့်ဆင့်အကြောင်း လေ့လာကြည့်ရအောင်။
                 </p>
-            <div class="undertone-visuals">
-                <div class="tone-item animate-appear">
-                    <span class="tone-label"><a href="https://skincaregeeks.com/cool-skin-tone/">Cool</a></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Overview -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                    Our Harmonic Methodology
+                </h2>
+                <p class="font-body text-lg text-charcoal/70 max-w-2xl mx-auto">
+                    ဆယ်စုနှစ်နဲ့ချီတဲ့ ဖက်ရှင်အတွေ့အကြုံရှိသော ပညာရှင်များရဲ့ အကြံပြုချက်တွေကို လေ့လာပြီး သဘာဝ အသားအရောင် ပေါမှာ အခြေခံပြီး တွက်ချက်မှုတွေအပေါ် အခြေခံထားတာကြောင့် သင့်အတွက် တကယ့်ကို အသုံးဝင်မယ့် အကြံပြုချက်တွေကို ပေးနိုင်မှာပါ။
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 mb-20">
+                <div class="methodology-card bg-white p-8 rounded-3xl shadow-sm border border-sage/10 text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-cream">📐</span>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-charcoal mb-4">Proportional Analysis</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        သင့်ရဲ့ ပင်ကိုယ်အသားအရောင်နဲ့ ဘယ်လိုအရောင်ကို ရွေးခြယ်ဝတ်ရင် အလှဆုံးဖြစ်မလဲဆိုတာကို ဖက်ရှင်သိပ္ပံနည်းလမ်းတွေနဲ့ အသေးစိတ် တွက်ချက်ပေးပါတယ်။
+                    </p>
                 </div>
-                <div class="tone-item animate-appear">
-                    <span class="tone-label"><a href="https://skincaregeeks.com/neutral-skin-tone/">Neutral</a></span>
+
+                <div class="methodology-card bg-white p-8 rounded-3xl shadow-sm border border-sage/10 text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-cream">🎯</span>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-charcoal mb-4">Balance & Harmony</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        သင့်ရဲ့ ပင်ကိုယ်အလှကို ပိုပေါ်လွင်စေဖို့အတွက် အမြင်အာရုံမှာ မျှတပြီး ကြည့်ကောင်းစေမယ့် mkaeup shade နဲ့ ဆံပင်အရောင်တွေကို ကျွန်ုပ်တို့က အဓိကထား ရွေးချယ်ပေးပါတယ်။
+                    </p>
                 </div>
-                <div class="tone-item animate-appear">
-                    <span class="tone-label"><a href="https://skincaregeeks.com/warm-skin-tone/">Warm</a></span>
+
+                <div class="methodology-card bg-white p-8 rounded-3xl shadow-sm border border-sage/10 text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl text-cream">✨</span>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-charcoal mb-4">Personal Expression</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        ခန္ဓာကိုယ်အချိုးအစားတင်မကဘဲ သင့်ရဲ့ နေထိုင်မှုပုံစံနဲ့ စိတ်ကြိုက်ဝါသနာတွေကိုပါ ထည့်သွင်းစဉ်းစားပေးတာကြောင့် သင့်အတွက် သီးသန့်ဖြစ်နေမယ့် စတိုင်လ်မျိုးကို ရရှိမှာပါ။
+                    </p>
                 </div>
             </div>
-            <a href="intro.html" class="text-button">Learn Other Methods &rarr;</a>
         </div>
-        <div class="guide-video animate-appear">
-            <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/NaDUyGdmuMA?si=W_JPECu7rL6tvrNK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="uptobtn">
-            <a href="#top"><i class="fa-regular fa-arrow-up"></i></a>
-        </div>
-    </div>
-  <div class="gallery-section animate-on-scroll">
-        <h2>6 Basic Skin Tone</h2>
-        <div class="model-grid">
-            <article class="model-card animate-appear">
-                <img src="img/download (22).jpg" alt="Fair">
-                <div class="model-overlay">
-                    <h3>Fair</h3>
-                    <p class="text-button">Learn More &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card animate-appear">
-                <img src="img/download (23).jpg" alt="Light">
-                <div class="model-overlay">
-                    <h3>Light</h3>
-                    <p class="text-button">Learn More &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card animate-appear">
-                <img src="img/download.jpg" alt="Medium">
-                <div class="model-overlay">
-                    <h3>Medium</h3>
-                    <p class="text-button">Learn More &rarr;</p>
-                </div>
-            </article>
-             <article class="model-card animate-appear">
-                <img src="img/Caramel Hair Color 2025_ 22 Stunning Ideas with Highlights, Honey Golden, and Balayage (2).jpg" alt="Tan">
-                <div class="model-overlay">
-                    <h3>Tan</h3>
-                    <p class="text-button">Learn More &rarr;</p>
-                </div>
-            </article>
-             <article class="model-card animate-appear">
-                <img src="img/download (24).jpg" alt="Deep">
-                <div class="model-overlay">
-                    <h3>Deep</h3>
-                    <p class="text-button">Learn More &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card animate-appear">
-                <img src="img/Beauty & Portraits.jpg" alt="Dark">
-                <div class="model-overlay">
-                    <h3>Dark</h3>
-                    <p class="text-button">Learn More &rarr;</p>
-                </div>
-            </article>
-        </div>
-    </div>
+    </section>
 
-    <div class="gallery-section animate-on-scroll">
-        <h2>4 Main Seasonal Color Palettes</h2>
-        <div class="model-grid">
-            <article class="model-card seasonal-card animate-appear">
-                <img src="img/winter.jpg" alt=" Winter">
-                <div class="model-overlay">
-                    <h3>Winter</h3>
-                    <a href="intro.html#winter" class="seasonal-link">View Palette &rarr;</a>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear">
-                <img src="img/summer.jpg" alt=" Summer">
-                <div class="model-overlay">
-                    <h3>Summer</h3>
-                    <a href="intro.html#summer" class="seasonal-link">View Palette &rarr;</a>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear">
-                <img src="img/spring.jpg" alt=" Spring">
-                <div class="model-overlay">
-                    <h3>Spring</h3>
-                    <a href="intro.html#spring" class="seasonal-link">View Palette &rarr;</a>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear">
-                <img src="img/autumn.jpg" alt=" Autumn">
-                <div class="model-overlay">
-                    <h3>Autumn</h3>
-                    <a href="intro.html#autumn" class="seasonal-link">View Palette &rarr;</a>
-                </div>
-            </article>
-        </div>
-    </div>
+    <!-- Body Shape Science -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-4xl font-bold text-charcoal mb-6">
+                    Understanding Basic Skin Tones
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-sage to-dustyrose mx-auto rounded-full mb-8"></div>
+                <p class="font-body text-lg text-charcoal/70 max-w-2xl mx-auto">
+                    လူ တစ်ယောက်စီမှာ မတူညီတဲ့ အခြေခံအသားရောင်မှား တွေ ရှိပါတယ်။ သင့်အသားရောင်ကို နားလည်ခြင်းက သင့်အတွက် အလိုက်ဖက်ဆုံး အရောင်တွေကို ရွေးချယ်နိုင်ဖို့ အရေးကြီးပါတယ်။
+                </p>
+            </div>
 
-    <div class="gallery-section animate-on-scroll">
-        <h2>12 Sub Seasonal Color Palettes</h2>
-        <div class="model-grid">
-            <article class="model-card seasonal-card animate-appear" data-season="cool-winter">
-                <img src="img/cool-winter.jpg" alt="Cool Winter">
-                <div class="model-overlay">
-                    <h3>Cool Winter</h3>
-                    <p class="text-button">View Palette &rarr;</p>
+            <div class="grid md:grid-cols-6 gap-8 mb-14">
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-32 h-40 mx-auto mb-2 bg-sage/10 rounded-2xl flex items-center justify-center">
+                        <img src="img/fair.jpg" alt="Fair" class="w-20 h-28 object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="https://skincaregeeks.com/fair-skin-tone/" target="_blank" class="textlink">Fair</a></h3>
+                    <p class="text-sm text-charcoal/60">အလွန်ဖြူပြီး မယ်လနင် ဓာတ်ပါဝင်မှု အလွန် နည်းသော အသားအရေ ဖြစ်သည်။</p>
                 </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="deep-winter">
-                <img src="img/deep-winter.jpg" alt="Deep Winter">
-                <div class="model-overlay">
-                    <h3>Deep Winter</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="clear-winter">
-                <img src="img/bright-winter.jpg" alt="Clear Winter">
-                <div class="model-overlay">
-                    <h3>Clear Winter</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="soft-summer">
-                <img src="img/soft-summer.jpg" alt="Soft Summer">
-                <div class="model-overlay">
-                    <h3>Soft Summer</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="cool-summer">
-                <img src="img/cool-summer.jpg" alt="Cool Summer">
-                <div class="model-overlay">
-                    <h3>Cool Summer</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="light-summer">
-                <img src="img/light-summer.jpg" alt="Light Summer">
-                <div class="model-overlay">
-                    <h3>Light Summer</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="warm-autumn">
-                <img src="img/warm-autumn.jpg" alt="Warm Autumn">
-                <div class="model-overlay">
-                    <h3>Warm Autumn</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="deep-autumn">
-                <img src="img/deep-autumn.jpg" alt="Deep Autumn">
-                <div class="model-overlay">
-                    <h3>Deep Autumn</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="soft-autumn">
-                <img src="img/soft-autumn.jpg" alt="Soft Autumn">
-                <div class="model-overlay">
-                    <h3>Soft Autumn</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="clear-spring">
-                <img src="img/clear-spring.jpg" alt="Clear Spring">
-                <div class="model-overlay">
-                    <h3>Clear Spring</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="warm-spring">
-                <img src="img/warm-spring.jpg" alt="Warm Spring">
-                <div class="model-overlay">
-                    <h3>Warm Spring</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-            <article class="model-card seasonal-card animate-appear" data-season="light-spring">
-                <img src="img/light-spring.jpg" alt="Light Spring">
-                <div class="model-overlay">
-                    <h3>Light Spring</h3>
-                    <p class="text-button">View Palette &rarr;</p>
-                </div>
-            </article>
-        </div>
-    </div>
-</section>
 
-<section id="about-us" class="about-section animate-on-scroll">
-  <div class="container animate-appear">
-        <h2>About Us</h2>
-        <p>
-        Hi! I’m Ji, the creator of Chroma Glow. This website helps you find the perfect clothing color matches based on your preferences and style. 
-        From hair color to chosing match color tips, Chroma Glow makes easy in making decision, fun, and personalized.
-        </p>
-        <p>
-        Our mission is to help everyone look and feel their best with colors that suit them. Explore the site and discover your perfect palette!
-        </p>
-  </div>
-  <div class="imgcontainer">
-        <div class="imgcard animate-appear">
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-32 h-40 mx-auto mb-2 bg-dustyrose/10 rounded-2xl flex items-center justify-center">
+                        <img src="img/light.jpg" alt="Light" class="w-20 h-28 object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="https://en.wikipedia.org/wiki/Light_skin" class="textlink">Light</a></h3>
+                    <p class="text-sm text-charcoal/60">fair ကဲ့သိုပင် ဖြူသော အသားရေရှိပြီး မယ်လနင် ဓာတ်ပါဝင်မှု နည်းသော အသားအရေ ဖြစ်သည်။</p>
+                </div>
 
-            
-            <div class="image">
-                <div class="about">
-                    <h3 class="name">Thandar Su</h3>
-                    <h2 class="mo">2IT - 14</h2>
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-32 h-40 mx-auto mb-4 bg-sage/10 rounded-2xl flex items-center justify-center">
+                        <img src="img/medium.jpg" alt="Medium" class="w-20 h-28 object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="https://www.beautyanswered.com/what-is-medium-skin.htm" class="textlink">Medium</a></h3>
+                    <p class="text-sm text-charcoal/60">ဖြူ၍ဝင်းသော အသားရေရှိပြီး မယ်လနင် ဓာတ်ပါဝင်မှု အလယ်အလတ် အသားအရေ ဖြစ်သည်။</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-32 h-40 mx-auto mb-4 bg-dustyrose/10 rounded-2xl flex items-center justify-center">
+                        <img src="img/tan.jpg" alt="Tan" class="w-20 h-28 object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="https://duskyskin.com/what-is-tan-skin-tone/" class="textlink">Tan</a></h3>
+                    <p class="text-sm text-charcoal/60">ညို၍ဝင်းသော အသားရေရှိပြီး မယ်လနင် ဓာတ်ပါဝင်မှု အလယ်အလတ် အသားအရေ ဖြစ်သည်။</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-32 h-40 mx-auto mb-4 bg-sage/10 rounded-2xl flex items-center justify-center">
+                        <img src="img/deep.jpg" alt="Deep" class="w-20 h-28 object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="https://claudianour.com/blogs/modest-makeup/deep-skin-tones" class="textlink">Deep</a></h3>
+                    <p class="text-sm text-charcoal/60">ချောကလက်ရောင် အသားရေရှိပြီး ကျန်းမာသော အသားရေဖြစ်ပြီး မယ်လနင် ဓာတ်ပါဝင်မှု မြင့်သော အသားအရေ ဖြစ်သည်။</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-32 h-40 mx-auto mb-4 bg-sage/10 rounded-2xl flex items-center justify-center">
+                        <img src="img/dark.jpg" alt="Dark" class="w-20 h-28 object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="https://en.wikipedia.org/wiki/Dark_skin" class="textlink">Dark</a></h3>
+                    <p class="text-sm text-charcoal/60">အလွန် ညိုသော အသားရေရှိပြီး ကျန်းမာသော အသားရေဖြစ်ပြီး မယ်လနင် ဓာတ်ပါဝင်မှု အမြင့်ဆုံး အသားအရေ ဖြစ်သည်။</p>
                 </div>
             </div>
 
-            
-            <div class="image">
-                 <div class="about">
-                <h3 class="name">K Me Ko</h3>
-                <h2 class="mo">2IT - 6</h2>
-               </div>
+            <div class="bg-gradient-to-r from-sage/10 to-dustyrose/10 p-8 rounded-3xl fade-in">
+                <h3 class="font-display text-2xl font-semibold text-charcoal mb-6 text-center">About Undertones</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <ul class="space-y-2 text-charcoal/70">
+                            <li>
+                                Skin undertones ဆိုသည်မှာ သင့်အရေပြား၏ အပေါ်ယံအလွှာအောက်တွင် ရှိနေသော သိမ်မွေ့သည့် အရောင်အသွေးများကို ဆိုလိုခြင်းဖြစ်သည်။ နေပူထဲထွက်ခြင်း စသည့် အကြောင်းအမျိုးမျိုးကြောင့် ပြောင်းလဲနိုင်သော အသားအရောင် (Skin tone) နှင့်မတူဘဲ Undertone မှာမူ မပြောင်းလဲဘဲ အမြဲတမ်း တည်ရှိနေသည်။ Undertone ကို အဓိကအားဖြင့် Warm၊ Cool နှင့် Neutral ဟူ၍ သုံးမျိုး ခွဲခြားထားသည်။ မိမိ၏ Undertone ကို သိရှိနားလည်ခြင်းဖြင့် မိမိ၏ ရုပ်ရည်သွင်ပြင်နှင့် အလိုက်ဖက်ဆုံး ဖြစ်စေမည့် မိတ်ကပ်၊ အဝတ်အစားနှင့် ဆံပင်အရောင်များကို မှန်ကန်စွာ ရွေးချယ်နိုင်မည်ဖြစ်သည်။
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-row">
+                        <div class="flex">
+                            <a href="https://skincaregeeks.com/cool-skin-tone/" class="mb-4 gap-6" target="_blank"><img src="img/cool.jpg" alt="cool" class="shape-diagram w-30 h-28 mb-8 bg-sage/10 rounded-2xl flex items-center justify-center gap-6"></a>
+                            <a href="https://skincaregeeks.com/warm-skin-tone/" class="mb-4 gap-6" target="_blank"><img src="img/warm tone.jpg" alt="warm" class="shape-diagram w-30 h-28 mb-8 bg-sage/10 rounded-2xl flex items-center justify-center gap-6"></a>
+                            <a href="https://skincaregeeks.com/neutral-skin-tone/" class="mb-4 gap-6" target="_blank"><img src="img/natural tone.jpg" alt="neutral" class="shape-diagram w-30 h-28 mb-8 bg-sage/10 rounded-2xl flex items-center justify-center gap-6"></a>
+                        </div>
+                        <a href="intro.html" class="textlink">ပိုမို လေ့လာရန်</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Color Analysis -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-4xl font-bold text-charcoal mb-6">
+                    Seasonal Color Palettes
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-sage to-dustyrose mx-auto rounded-full mb-8"></div>
+                <p class="font-body text-lg text-charcoal/70 max-w-2xl mx-auto">
+                    Seasonal color palettes ဆိုသည်မှာ မိမိနှင့် သင့်တော်သော ရာသီတစ်ခုစီ၏ သဘာဝအလှတရားကို ပိုမိုပေါ်လွင်စေရန် ဖော်ဆောင်ထားခြင်းဖြစ်ပြီး၊ ထိုရာသီ၏ အနှစ်သာရကို ဖော်ညွှန်းပေးနိုင်သော အရောင်အမျိုးမျိုးကို ရွေးချယ်နိုင်ရန် စီစဉ်ထားခြင်း ဖြစ်သည်။
+                </p>
             </div>
 
+            <div class="grid md:grid-cols-4 gap-8 mb-16">
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-24 h-24 mx-auto mb-4 bg-sage/10 rounded-full flex items-center justify-center">
+                        <img src="img/winter.jpg" alt="Winter" class="w-16 h-16 object-cover rounded-full">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="intro.html#winter" target="_blank" class="textlink">Winter</a></h3>
+                    <p class="text-sm text-charcoal/60">Winter၏ အရောင်များသည် အေးမြသော၊ ရင့်မှောင်သော၊ နှင့် ထင်ရှားပြတ်သားသော လက္ခဏာရှိပြီး အပြာရောင်၊ မီးခိုးရောင်နှင့် အနက်ရောင် အရိပ်အယောင်များ ပါဝင်သည်။</p>
+                </div>
 
-            <div class="image">
-                <div class="about">
-                    <h3 class="name">Zun Lae Lae Tun</h3>
-                    <h2 class="mo">2IT - 9</h2>
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-24 h-24 mx-auto mb-4 bg-dustyrose/10 rounded-full flex items-center justify-center">
+                        <img src="img/summer.jpg" alt="Summer" class="w-16 h-16 object-cover rounded-full">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="intro.html#summer" target="_blank" class="textlink">Summer</a></h3>
+                    <p class="text-sm text-charcoal/60">Summer၏ အရောင်များသည် အေးမြခြင်း၊ တည်ငြိမ်ခြင်းနှင့် ဆိတ်ငြိမ်အေးချမ်းခြင်းတို့ ရှိကြပြီး အပြာရောင်၊ အစိမ်းရောင်နှင့် နုဖျော့သောအရောင်များ ပါဝင်သည့် အရောင်တွဲဖက်မှုမျိုး ဖြစ်သည်။</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-24 h-24 mx-auto mb-4 bg-sage/10 rounded-full flex items-center justify-center">
+                        <img src="img/spring.jpg" alt="Spring" class="w-16 h-16 object-cover rounded-full">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="intro.html#spring" target="_blank" class="textlink">Spring</a></h3>
+                    <p class="text-sm text-charcoal/60">Spring၏ အရောင်များသည် တောက်ပခြင်း၊ တက်ကြွလန်းဆန်းခြင်းနှင့် သစ်လွင်ခြင်းတို့ ရှိကြပြီး များသောအားဖြင့် Yellow-based tones ပါဝင်လေ့ရှိသည်။</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="shape-diagram w-24 h-24 mx-auto mb-4 bg-dustyrose/10 rounded-full flex items-center justify-center">
+                        <img src="img/autumn.jpg" alt="Autumn" class="w-16 h-16 object-cover rounded-full">
+                    </div>
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-2"><a href="intro.html#autumn" target="_blank" class="textlink">Autumn</a></h3>
+                    <p class="text-sm text-charcoal/60">Autumn၏ အရောင်များသည် နွေးထွေးသော၊ ကြွယ်ဝသော၊ နှင့် သဘာဝဆန်သော လက္ခဏာရှိပြီး အညိုရောင်၊ ရွှေရောင်နှင့် အနီရင့်ရောင် အရိပ်အယောင်များ ပါဝင်သည်။</p>
                 </div>
             </div>
 
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-sage/10 fade-in">
+                <h3 class="font-display text-2xl font-semibold text-charcoal mb-6 text-center">12 Seasonal Color Analysis</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/bright-winter.jpg" alt="bright winter" class="w-20 h-15  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#bright-winter-in-seasonal-color-analysis" class="textlink">Bright Winter</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            Contrast အလွန်မြင့်မားပြီး တောက်ပလွန်းတဲ့ အရောင်တွေ (Neon colors နီးပါး) ကိုတောင် အေးအေးဆေးဆေး ဝတ်လို့ရသူတွေပါ။
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/cool-winter.jpg" alt="cool winter" class="w-20 h-15  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#true-winter-in-seasonal-color-analysis" class="textlink">Cool Winter</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အေးစိမ့်တဲ့အရောင်တွေကိုမှ တောက်တောက်လေးတွေ (Jewel tones) ဖြစ်တဲ့ Emerald green သို့မဟုတ် Royal blue တို့နဲ့ အလွန်လိုက်ဖက်ပါတယ်။
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/deep-winter.jpg" alt="deep winter" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#dark-winter-in-seasonal-color-analysis" class="textlink">Deep Winter</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အေးပြီး ရင့်မှည့်တဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ ခရမ်းရင့်၊ အပြာရင့် စတာတွေက သူတို့ရဲ့ အလှကို ပိုပေါ်လွင်စေပါတယ်။
+                        </p>
+                    </div>
 
-            <div class="image">
-                <div class="about">
-                <h3 class="name">Thin Zar Lin Htet</h3>
-                <h2 class="mo">2IT - 4</h2>
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/light-summer.jpg" alt="light-summer" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#light-summer-in-seasonal-color-analysis" class="textlink">Light Summer</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အေးမြပြီး အရောင်ဖျော့တာကိုမှ ကြည်ကြည်လင်လင်လေး ဖြစ်နေသူတွေပါ။ နူးညံ့တဲ့ ပန်းရောင်၊ အပြာနုရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/cool-summer.jpg" alt="cool-summer" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#true-summer-in-seasonal-color-analysis" class="textlink">Cool Summer</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အေးစိမ့်တဲ့အရောင်တွေ (Classic Blue, Lavender) နဲ့ အလိုက်ဖက်ဆုံးပါ။ သူတို့မှာ ဖြစ်တဲ့  သွင်ပြင် လုံးဝမရှိသလောက်ပါပဲ။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/soft-summer.jpg" alt="soft-summer" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#soft-summer-in-seasonal-color-analysis" class="textlink">Soft Summer</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အရောင်တွေက အရမ်းမတောက်ဘဲ မှိုင်းမှိုင်းလေးတွေ (Muted colors) နဲ့ လိုက်ဖက်ပါတယ်။ အသားအရေက နည်းနည်း "Neutral" ဘက် ရောက်တတ်ပါတယ်။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/clear-spring.jpg" alt="bright spring" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#bright-spring-in-seasonal-color-analysis" class="textlink">Bright Spring</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အလွန်တောက်ပပြီး စိုပြည်တဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ မျက်လုံးအရောင်က တောက်တောက်လေးဖြစ်နေတတ်ပြီး မျက်နှာသွင်ပြင်က ထင်ရှားပါတယ်။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/warm-spring.jpg" alt="warm spring" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#true-spring-in-seasonal-color-analysis" class="textlink">Warm Spring</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အဝါရောင်အောက်ခံ (Warm undertone) အားကောင်းသူတွေပါ။ ရွှေရောင်၊ လိမ္မော်ရောင် စတဲ့ နွေးထွေးတဲ့အရောင်တွေနဲ့ အလွန်လိုက်ဖက်ပါတယ်။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/light-spring.jpg" alt="light spring" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#light-spring-in-seasonal-color-analysis" class="textlink">Light Spring</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အရောင်ဖျော့ဖျော့ (Pastel) လေးတွေနဲ့ လိုက်ဖက်သူတွေပါ။ အသားအရေနဲ့ ဆံပင်အရောင်က အလင်းဘက်ကို ပိုသွားပါတယ်။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/soft-autumn.jpg" alt="soft-autumn" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#soft-autumn-in-seasonal-color-analysis" class="textlink">Soft Autumn</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အဝါဘက်နွယ်ပေမဲ့ အရောင်တွေက နူးညံ့ပြီး မှိုင်းပါတယ်။ သဲရောင်၊ သလင်းရောင် စတဲ့ ကမ္ဘာမြေအရောင် (Earthy tones) နုနုလေးတွေနဲ့ လိုက်ဖက်ပါတယ်။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/warm-autumn.jpg" alt="warm autumn" class="w-20 h-25  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#true-autumn-in-seasonal-color-analysis" class="textlink">Warm Autumn</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            ဆောင်းဦးရာသီရဲ့ ပုံစံအတိုင်း ရွှေဝါရောင်၊ အုတ်နီရောင် စတဲ့ နွေးထွေးစိုပြည်တဲ့ အရောင်ရင့်တွေနဲ့ လှပါတယ်။
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16  from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-cream"><img src="img/deep-autumn.jpg" alt="deep autumn" class="w-20 h-25 from-sage to-dustyrose rounded-full flex items-center justify-center mx-auto mb-4"></span>
+                        </div>
+                        <h4 class="font-semibold text-charcoal mb-3"><a href="https://thenavyblonde.com/seasonal-color-analysis-the-ultimate-guide/#dark-autumn-in-seasonal-color-analysis" class="textlink">Deep Autumn</a></h4>
+                        <p class="text-sm text-charcoal/70">
+                            အရောင်ရင့်ရင့် (Dark colors) တွေနဲ့ လိုက်ဖက်သူတွေပါ။ ဆံပင်နဲ့ မျက်လုံးအရောင်က အမည်း သို့မဟုတ် အညိုရင့်ဘက် သွားလေ့ရှိပါတယ်။
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
+    <!-- FAQ Section -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-4xl font-bold text-charcoal mb-6">
+                    Frequently Asked Questions
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-sage to-dustyrose mx-auto rounded-full"></div>
+            </div>
 
-            <div class="image">
-                <div class="about">
-                <h3 class="name">Hsu Yadi Aung</h3>
-                <h2 class="mo">2IT -25 </h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sage/10 fade-in">
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-3">Chroma Glow ဆိုတာဘာလဲ?</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        Chroma Glow က သင့်ရဲ့ skin tone, personal style နဲ့ lifestyle ကိုအခြေခံပြီး
+                        clothing color, makeup, hair style, fashion style တွေကို smart recommendation ပေးတဲ့ beauty & fashion web platform တစ်ခုပါ။
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sage/10 fade-in">
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-3">Chroma Glow results page မှာ ဘာတွေကို recommendation ပေးလဲ?</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        Chroma Glow results page မှာclothing color, makeup color, hair color, nail color, contact lenses color
+                        တွေကို အရောင်အလိုက်သာ recommendation ပေးပါတယ်။
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sage/10 fade-in">
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-3">Recommendation ပေးတဲ့အရောင်တွေကို ဘယ်အချက်တွေကို အခြေခံပြီးရွေးတာလဲ?</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                       သင့်ရဲ့
+                        ✔️ skin tone
+                        ✔️ undertone
+                        ✔️ color harmony
+                        တွေကိုအခြေခံပြီး
+                        သင့်အသားအရောင်ကို ပိုမိုတောက်ပအောင်၊ မျက်နှာလင်းအောင်ကူညီနိုင်တဲ့ colors တွေကိုရွေးပေးပါတယ်။
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sage/10 fade-in">
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-3">Makeup color recommendation ထဲမှာ ဘာတွေပါလဲ?</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        Makeup color recommendation မှာ
+                        💄 lipstick shades
+                        🎨 blush & eyeshadow tones,
+                        foundation color
+                        တွေကို skin tone နဲ့လိုက်ဖက်အောင် color-based အနေနဲ့ပြပေးပါတယ်။
+                        Brand သို့မဟုတ် makeup style ကိုမသတ်မှတ်ပါဘူး။
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sage/10 fade-in">
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-3">Hair, nail နဲ့ lenses color တွေကို ဘာကြောင့် recommendation ပေးတာလဲ?</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        Hair, nail နဲ့ lenses color တွေက
+                        သင့် skin tone နဲ့ မကိုက်ရင် မျက်နှာမလင်းသွားနိုင်ပါဘူး။
+                        Chroma Glow က အရောင်ညီညွတ်မှုကိုဦးစားပေးပြီး
+                        overall look ကို clean & balanced ဖြစ်စေမယ့် colors တွေကိုရွေးပေးပါတယ်။
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sage/10 fade-in">
+                    <h3 class="font-display text-lg font-semibold text-charcoal mb-3">Chroma Glow ရဲ့ color recommendations တွေကို ဘယ်လိုအသုံးချနိုင်လဲ?</h3>
+                    <p class="text-charcoal/70 leading-relaxed">
+                        Recommendation ပေးထားတဲ့ colors တွေကို
+                        ✔️ shopping လုပ်တဲ့အခါ
+                        ✔️ makeup products ရွေးတဲ့အခါ
+                        ✔️ hair / nail color ပြောင်းချင်တဲ့အချိန်
+                        reference အဖြစ်အသုံးချနိုင်ပြီး
+                        ကိုယ့်အတွက် ကိုက်ညီတဲ့အရောင်ကို အလွယ်တကူဆုံးဖြတ်နိုင်ပါတယ် ✨
+                    </p>
+                </div>
             </div>
         </div>
+    </section>
 
-
+    <!-- Call to Action -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="fade-in">
+                <h2 class="font-display text-4xl font-bold text-charcoal mb-6">
+                    Ready to find your glow? Take the test now!
+                </h2>
+                <p class="font-body text-lg text-charcoal/70 mb-8 max-w-2xl mx-auto">
+                    သင်နဲ့ အလိုက်ဖက်ဆုံး အရောင်တွေကို ရွေးခြယ်ပြီး တောက်ပစွာ လှပနိုင်ဖို့ အဆင်သင့် ဖြစ်ပြီလား?
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="test.html" class="bg-gradient-to-r from-sage to-dustyrose text-cream px-8 py-4 rounded-full font-medium text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        Create Your Style Passport
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-            <footer class="footer" id="Contact">
-  <div class="footer-container">
-    <p>&copy; 2025 Chroma Glow. All Rights Reserved.</p>
-    <p>Designed & Created by Ji</p>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/eunji-cha-3b0884284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://github.com/ChaEunji209" target="_blank" aria-label="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-  </div>
-</footer>
+    <!-- Footer -->
+    <footer class="bg-charcoal text-cream py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <div class="w-10 h-10 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center">
+                    <span class="text-cream font-display font-bold text-lg"><img src="img/logo.png" alt="logo" style="width: 80px; height: 40px; border-radius: 50%;"></span>
+                </div>
+                <h3 class="font-display text-2xl font-semibold">Chroma Glow</h3>
+            </div>
+            <p class="text-cream/70 font-body">
+                © 2025 Chroma Glow. Crafting personalized style experiences with elegance and precision.
+            </p>
+        </div>
+    </footer>
 
-<div class="popup-overlay" id="popup">
-  <div class="popup-content">
-    <span class="close-btn" onclick="closePopup()">&times;</span>
-    <h2 id="popupTitle">Skin Tone</h2>
-    <div id="popupText">Details about this skin tone will show here.</div>
-  </div>
-</div>
+    <script>
+        // Initialize animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            setupIntersectionObserver();
+            initializeAnimations();
+        });
 
-<script src="main_function.js"></script>
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        function initializeAnimations() {
+            // Animate hero elements
+            anime({
+                targets: '.aurora-bg h1',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 1000,
+                easing: 'easeOutQuart',
+                delay: 300
+            });
+
+            // Animate methodology cards
+            anime({
+                targets: '.methodology-card',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                duration: 800,
+                easing: 'easeOutQuart',
+                delay: anime.stagger(200, {start: 600})
+            });
+
+            // Animate shape diagrams
+            anime({
+                targets: '.shape-diagram',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 600,
+                easing: 'easeOutQuart',
+                delay: anime.stagger(100, {start: 1000})
+            });
+        }
+    </script>
 </body>
 </html>

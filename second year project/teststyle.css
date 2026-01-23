@@ -8,46 +8,6 @@
     --text-color: #371d10;
 }
 
-.home {
-  right: 30px;
-  top: 30px;
-  display: flex;
-  position: fixed;
-}
-
-.home i {
-  color: var(--text-color);
-  font-size: 24px;
-  font-weight: 200;
-}
-
-.home i:hover {
-  color: #dd7a83;
-}
-
-.home i:active {
-  color: #00afb9;
-}
-
- .nav-buttons{
-    display:flex;
-    gap:.75rem;
-    margin:.5rem 8px 1rem;
-}
-.nav-buttons button{
-    border:none;
-    padding:.35rem .9rem;
-    border-radius: 8px;
-    font-weight: 200;
-    cursor:pointer;
-    font-size:14px;
-    color:var(--background-color);
-    transition:.2s;
-}
-.nav-buttons button:hover{
-    letter-spacing: 0.5px;
-}
-
 body{
     font-family: 'Montserrat', sans-serif;
     background:var(--primary-color);
