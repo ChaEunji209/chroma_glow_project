@@ -3,379 +3,674 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undertones & Seasonal Colors - အသေးစိတ်လမ်းညွှန်</title>
+    <title>Undertones & Seasonal Colors - Chroma Glow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#2C2C2C',
+                        cream: '#F8F6F0',
+                        sage: '#A8B5A0',
+                        dustyrose: '#D4A5A5',
+                        spring: '#feb236',
+                        summer: '#92a8d1',
+                        autumn: '#b85042',
+                        winter: '#034f84',
+                        warm: '#f39c12',
+                        cool: '#3498db',
+                        neutral: '#95a5a6'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Cormorant Garamond', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap');
-
-        :root {
-            --spring: #feb236;
-            --summer: #92a8d1;
-            --autumn: #b85042;
-            --winter: #034f84;
-            --warm: #f39c12;
-            --cool: #3498db;
-            --neutral: #95a5a6;
+        .aurora-bg {
+            background: linear-gradient(45deg, #F8F6F0, #A8B5A0, #F8F6F0, #D4A5A5);
+            background-size: 400% 400%;
+            animation: aurora 15s ease infinite;
         }
-
-        body {
-            font-family: 'Pyidaungsu', sans-serif;
-            line-height: 1.8;
-            margin: 0;
-            background-color: #f8f9fa;
-            color: #2c3e50;
+        
+        @keyframes aurora {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        header {
-            background: linear-gradient(135deg, #d3dcff, #ffa1a1e5, #5effdf);
-            color: rgb(180, 23, 23);
-            padding: 4rem 1rem;
-            text-align: center;
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(248, 246, 240, 0.9);
         }
-
-        .container {
-            max-width: 950px;
-            margin: 2rem auto;
-            padding: 0 20px;
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
         }
-
-        section {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
-
-        h2 { font-size: 1.8rem; border-left: 5px solid #2c3e50; padding-left: 15px; margin-bottom: 1.5rem; }
-        h3 { color: #444; margin-top: 1.5rem; }
-
-        /* Undertone Cards */
-        .undertone-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 1rem;
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
         }
-
-        .u-card {
-            padding: 1.5rem;
-            border-radius: 15px;
-            color: white;
-            text-align: center;
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
         }
-
-        .warm-bg { background: var(--warm); }
-        .cool-bg { background: var(--cool); }
-        .neutral-bg { background: var(--neutral); }
-
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 1rem;
+        
+        .card-hover {
+            transition: all 0.3s ease;
         }
-
-        /* Test Section */
-        .test-box {
-            background: #fff3e0;
-            border-left: 5px solid #ff9800;
-            padding: 1.5rem;
-            margin: 1rem 0;
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(44, 44, 44, 0.1);
         }
-
-.container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 20px;
+        
+        .season-card {
+            border-left: 6px solid;
+            transition: all 0.3s ease;
         }
-
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 0 8px;
-        margin: 0 auto;
-    }
-}
-
-        .season-section {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-left: 10px solid;
+        
+        .season-card:hover {
+            transform: translateX(8px);
         }
-
-        .spring-sec { border-color: var(--spring); }
-        .summer-sec { border-color: var(--summer); }
-        .autumn-sec { border-color: var(--autumn); }
-        .winter-sec { border-color: var(--winter); }
-
-        h2 { font-size: 2rem; margin-top: 0; }
-        h3 { color: #555; border-bottom: 2px solid #eee; padding-bottom: 5px; }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 1.5rem;
+        
+        .spring-border { border-color: var(--spring); }
+        .summer-border { border-color: var(--summer); }
+        .autumn-border { border-color: var(--autumn); }
+        .winter-border { border-color: var(--winter); }
+        
+        .textlink {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
         }
-
-        @media (max-width: 600px) {
-            .detail-grid { grid-template-columns: 1fr; }
+        
+        .textlink:hover {
+            text-decoration: underline;
+            color: #A8B5A0;
         }
-
-        .color-box {
-            display: flex;
-            gap: 10px;
-            margin: 1rem 0;
+        
+        /* Hamburger Menu Animations */
+        #mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
         }
-
-        .circle {
-            width: 40px;
-            height: 40px;
+        
+        #mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        
+        #mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        #mobile-menu {
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        .color-circle {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            border: 1px solid #ddd;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
-
-        .highlight {
-            font-weight: bold;
-            color: #e67e22;
+        
+        .color-circle:hover {
+            transform: scale(1.2);
         }
-	h1 {
-	     text-align: center;
-	   }
+        
+        .undertone-card {
+            transition: all 0.3s ease;
+        }
+        
+        .undertone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .test-box {
+            background: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
+            border-left: 5px solid #A8B5A0;
+            transition: all 0.3s ease;
+        }
+        
+        .test-box:hover {
+            box-shadow: 0 5px 15px rgba(168, 181, 160, 0.2);
+        }
     </style>
 </head>
-<body>
+<body class="bg-cream font-body text-charcoal">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-sage/20">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center">
+                        <span class="text-cream font-display font-bold text-lg">CG</span>
+                    </div>
+                    <h1 class="font-display text-2xl font-semibold text-charcoal">Chroma Glow</h1>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="https://fashion-styling.netlify.app/" class="font-medium text-charcoal hover:text-sage transition-colors">Styling Engine</a>
+                    <a href="test.html" class="font-medium text-charcoal hover:text-sage transition-colors">Style Passport</a>
+                    <a href="Chroma Glow.html" class="font-medium text-sage">About</a>
+                </div>
 
-<header>
-    <h1>Skin Undertone & Seasonal Colors</h1>
-    <p>ကိုယ့်အသားအရေရဲ့ လျှို့ဝှက်ချက်ကို ရှာဖွေဖော်ထုတ်ခြင်း</p>
-</header>
+                <!-- Hamburger Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none" aria-label="Toggle menu">
+                    <span class="hamburger-line w-6 h-0.5 bg-charcoal transition-all duration-300 origin-center"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-charcoal transition-all duration-300 origin-center"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-charcoal transition-all duration-300 origin-center"></span>
+                </button>
+            </div>
 
-<div class="container">
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-sage/20 pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="https://fashion-styling.netlify.app/" class="font-medium text-charcoal hover:text-sage transition-colors py-2 px-4 rounded-lg hover:bg-sage/10">Styling Engine</a>
+                    <a href="test.html" class="font-medium text-charcoal hover:text-sage transition-colors py-2 px-4 rounded-lg hover:bg-sage/10">Style Passport</a>
+                    <a href="Chroma Glow.html" class="font-medium text-sage py-2 px-4 rounded-lg bg-sage/10">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <section>
-        <h2>Undertone အကြောင်း</h2>
-        <p>Undertone ဆိုတာ အသားအရေရဲ့ အပေါ်ယံအရောင် (Surface Tone) အောက်မှာရှိတဲ့ <b>"အခြေခံအောက်ခံအရောင်"</b> ဖြစ်ပါတယ်။ အသားဖြူသည်ဖြစ်စေ၊ ညိုသည်ဖြစ်စေ Undertone ကတော့ ပြောင်းလဲသွားခြင်း မရှိပါဘူး။</p>
+    <!-- Hero Section -->
+    <section class="relative min-h-[60vh] aurora-bg flex items-center justify-center overflow-hidden pt-20">
+        <!-- Floating Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="floating-element absolute top-20 left-10 w-20 h-20 bg-sage/20 rounded-full"></div>
+            <div class="floating-element absolute top-40 right-20 w-16 h-16 bg-dustyrose/20 rounded-full" style="animation-delay: -2s;"></div>
+            <div class="floating-element absolute bottom-32 left-1/4 w-12 h-12 bg-sage/30 rounded-full" style="animation-delay: -4s;"></div>
+        </div>
         
-        <div class="undertone-grid">
-            <div class="u-card warm-bg">
-                <img src="img\warm tone.jpg" alt="warm">
-                <h3>Warm tone</h3>
-                <p>အဝါ၊ ရွှေဝါ ဒါမှမဟုတ် မက်မွန်သီးရောင် အောက်ခံရှိပါတယ်။</p>
-            </div>
-            <div class="u-card cool-bg">
-                <img src="img\cool.jpg" alt="cool">
-                <h3>Cool tone</h3>
-                <p>ပန်းရောင်၊ အပြာ ဒါမှမဟုတ် ခရမ်းရောင် အောက်ခံရှိပါတယ်။</p>
-            </div>
-            <div class="u-card neutral-bg">
-                <img src="img\natural tone.jpg" alt="neutral">
-                <h3>Neutral tone</h3>
-                <p>အေးတဲ့အရောင်ရော၊ နွေးတဲ့အရောင်ရော မျှတစွာ ပါဝင်နေပါတယ်။</p>
+        <div class="max-w-7xl mx-auto px-6 py-20 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="font-display text-4xl md:text-6xl font-bold text-charcoal mb-6 leading-tight">
+                    Skin Undertone &<br>
+                    <span class="bg-gradient-to-r from-sage to-dustyrose bg-clip-text text-transparent">
+                        Seasonal Colors
+                    </span>
+                </h1>
+                <p class="font-body text-xl md:text-2xl text-charcoal/80 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    ကိုယ့်အသားအရေရဲ့ လျှို့ဝှက်ချက်ကို ရှာဖွေဖော်ထုတ်ခြင်း
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#undertones" class="bg-gradient-to-r from-sage to-dustyrose text-cream px-6 py-3 rounded-full font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        Undertones
+                    </a>
+                    <a href="#seasons" class="border-2 border-charcoal text-charcoal px-6 py-3 rounded-full font-medium hover:bg-charcoal hover:text-cream transition-all duration-300">
+                        Seasonal Colors
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section>
-        <h2>ကိုယ့်ရဲ့ Undertone ကို ဘယ်လိုစစ်ဆေးမလဲ?</h2>
-        <p>အလင်းရောင်ကောင်းကောင်း (သဘာဝနေရောင်) အောက်မှာ အောက်ပါအတိုင်း စမ်းသပ်ကြည့်ပါ။</p>
+    <!-- Undertone Section -->
+    <section id="undertones" class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                    Understanding Undertones
+                </h2>
+                <p class="font-body text-lg text-charcoal/70 max-w-3xl mx-auto leading-relaxed">
+                    Undertone ဆိုတာ အသားအရေရဲ့ အပေါ်ယံအရောင် (Surface Tone) အောက်မှာရှိတဲ့ <b>"အခြေခံအောက်ခံအရောင်"</b> ဖြစ်ပါတယ်။ အသားဖြူသည်ဖြစ်စေ၊ ညိုသည်ဖြစ်စေ Undertone ကတော့ ပြောင်းလဲသွားခြင်း မရှိပါဘူး။
+                </p>
+            </div>
 
-        <div class="test-box">
-            <h3> သွေးကြောစစ်ဆေးနည်း (Vein Test)</h3>
-            <ul>
-                <li><b>အစိမ်းရောင်:</b> Warm Undertone ဖြစ်ဖို့ များပါတယ်။</li>
-                <li><b>အပြာ/ခရမ်းရောင်:</b> Cool Undertone ဖြစ်ဖို့ များပါတယ်။</li>
-                <li><b>ခွဲရခက်နေလျှင်:</b> Neutral Undertone ဖြစ်နိုင်ပါတယ်။</li>
-            </ul>
-        </div>
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="undertone-card bg-gradient-to-br from-orange-400 to-yellow-400 p-8 rounded-3xl text-white text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+                        <span class="text-3xl">☀️</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold mb-4">Warm Tone</h3>
+                    <p class="leading-relaxed mb-4">အဝါ၊ ရွှေဝါ ဒါမှမဟုတ် မက်မွန်သီးရောင် အောက်ခံရှိပါတယ်။</p>
+                    <div class="flex justify-center gap-2">
+                        <div class="color-circle" style="background: #f39c12;"></div>
+                        <div class="color-circle" style="background: #e67e22;"></div>
+                        <div class="color-circle" style="background: #f1c40f;"></div>
+                    </div>
+                </div>
 
-        <div class="test-box">
-            <h3> လက်ဝတ်ရတနာ စစ်ဆေးနည်း (Jewelry Test)</h3>
-            <ul>
-                <li><b>ရွှေထည် (Gold):</b> ဝတ်လိုက်ရင် အသားဝင်းပသွားပါက Warm ပါ။</li>
-                <li><b>ငွေထည် (Silver):</b> ဝတ်လိုက်ရင် ပိုကြည့်ကောင်းပါက Cool ပါ။</li>
-            </ul>
-        </div>
+                <div class="undertone-card bg-gradient-to-br from-blue-400 to-purple-400 p-8 rounded-3xl text-white text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+                        <span class="text-3xl">❄️</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold mb-4">Cool Tone</h3>
+                    <p class="leading-relaxed mb-4">ပန်းရောင်၊ အပြာ ဒါမှမဟုတ် ခရမ်းရောင် အောက်ခံရှိပါတယ်။</p>
+                    <div class="flex justify-center gap-2">
+                        <div class="color-circle" style="background: #3498db;"></div>
+                        <div class="color-circle" style="background: #9b59b6;"></div>
+                        <div class="color-circle" style="background: #e91e63;"></div>
+                    </div>
+                </div>
 
-        <div class="test-box">
-            <h3> အဖြူရောင်စက္ကူနည်း (White Paper Test)</h3>
-            <p>မျက်နှာဘေးမှာ အဖြူရောင်စက္ကူတစ်ရွက် ကပ်ကြည့်ပါ။</p>
-            <ul>
-                <li>မျက်နှာက <b>အဝါ/လိမ္မော်</b> ဘက်သန်းသွားရင် - Warm</li>
-                <li>မျက်နှာက <b>ပန်းရောင်/ပြာ</b> ဘက်သန်းသွားရင် - Cool</li>
-            </ul>
+                <div class="undertone-card bg-gradient-to-br from-gray-400 to-gray-500 p-8 rounded-3xl text-white text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+                        <span class="text-3xl">⚖️</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold mb-4">Neutral Tone</h3>
+                    <p class="leading-relaxed mb-4">အေးတဲ့အရောင်ရော၊ နွေးတဲ့အရောင်ရော မျှတစွာ ပါဝင်နေပါတယ်။</p>
+                    <div class="flex justify-center gap-2">
+                        <div class="color-circle" style="background: #95a5a6;"></div>
+                        <div class="color-circle" style="background: #7f8c8d;"></div>
+                        <div class="color-circle" style="background: #bdc3c7;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tests Section -->
+            <div class="max-w-4xl mx-auto">
+                <h3 class="font-display text-3xl font-semibold text-center text-charcoal mb-12 fade-in">
+                    ကိုယ့်ရဲ့ Undertone ကို ဘယ်လိုစစ်ဆေးမလဲ?
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="test-box p-6 rounded-2xl fade-in">
+                        <div class="text-3xl mb-4">💚💙💜</div>
+                        <h4 class="font-semibold text-lg text-charcoal mb-3">သွေးကြောစစ်ဆေးနည်း</h4>
+                        <ul class="space-y-2 text-charcoal/70 text-sm">
+                            <li><b class="text-green-600">အစိမ်းရောင်:</b> Warm Undertone</li>
+                            <li><b class="text-blue-600">အပြာ/ခရမ်း:</b> Cool Undertone</li>
+                            <li><b>ခွဲရခက္:</b> Neutral ဖြစ်နိုင်</li>
+                        </ul>
+                    </div>
+
+                    <div class="test-box p-6 rounded-2xl fade-in">
+                        <div class="text-3xl mb-4">💍</div>
+                        <h4 class="font-semibold text-lg text-charcoal mb-3">လက်ဝတ်ရတနာ စစ်ဆေးနည်း</h4>
+                        <ul class="space-y-2 text-charcoal/70 text-sm">
+                            <li><b class="text-yellow-600">ရွှေထည်:</b> ဝိုင်းပသွားရင် Warm</li>
+                            <li><b class="text-gray-400">ငွေထည်:</b> ကြည့်ကောင်းရင် Cool</li>
+                            <li><b>နှစ်ခုလုံး:</b> Neutral ဖြစ်နိုင်</li>
+                        </ul>
+                    </div>
+
+                    <div class="test-box p-6 rounded-2xl fade-in">
+                        <div class="text-3xl mb-4">📄</div>
+                        <h4 class="font-semibold text-lg text-charcoal mb-3">အဖြူရောင်စက္ကူနည်း</h4>
+                        <ul class="space-y-2 text-charcoal/70 text-sm">
+                            <li><b class="text-yellow-600">အဝါ/လိမ္မော်:</b> Warm</li>
+                            <li><b class="text-pink-500">ပန်း/အပြာ:</b> Cool</li>
+                            <li>မျက်နှာဘေးမှာ စက္ကူကပ်ပြီး စမ်းကြည့်ပါ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="container">
-	<h1> 4 Seasonal color tone </h1>
-
-    <div class="season-section spring-sec" id="spring">
-        <h2>1. Spring - Warm & Bright</h2>
-        <p>Spring သမားတွေရဲ့ အသားအရေက အလင်းပေါက်သလိုမျိုး ကြည်လင် နေတတ်ပါတယ်။ အောက်ခံအရောင် ရွှေရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် သန်းပါတယ်။ မျက်နှာမှာ ပါးနီလေးတွေ သဘာဝအတိုင်း ပါနေတတ်သလို၊ တချို့ဆို မှဲ့ခြောက် လေးတွေ ရှိတတ်ပါတယ်။ လက်ကောက်ဝတ်မှာ အစိမ်းရောင် ဒါမှမဟုတ် အပြာစိမ်းရောင် သွေးကြောလေးတွေ တွေ့ရတတ်ပါတယ်။ ဖြူတဲ့သူဆိုရင် ခရင်မ်ရောင် (Creamy ivory) ရှိပြီး၊ ညိုတဲ့သူဆိုရင် ရွှေရောင်သန်းတဲ့ အသားညို (Golden tan) မျိုး ဖြစ်ပါတယ်။</p>
-        
-        <div class="detail-grid">
-            <div>
-                <h3>အသားအရေ (Skin)</h3>
-                <p>Warm Undertone ရှိပြီး ရွှေဝါရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် အခြေခံပါတယ်။ သွေးကြောက အစိမ်းရောင်သန်းပြီး နေပူထဲသွားရင် အသားအရေက ရွှေရောင်ဝင်းလာတတ်ပါတယ်။</p>
+    <!-- Seasonal Colors Section -->
+    <section id="seasons" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                    4 Seasonal Color Palettes
+                </h2>
+                <p class="font-body text-lg text-charcoal/70 max-w-3xl mx-auto leading-relaxed">
+                    Seasonal color palettes ဆိုသည်မှာ မိမိနှင့် သင့်တော်သော ရာသီတစ်ခုစီ၏ သဘာဝအလှတရားကို ပိုမိုပေါ်လွင်စေရန် ဖော်ဆောင်ထားခြင်းဖြစ်ပြီး၊ သင့်အသားအရောင်ကို ပိုမိုတောက်ပစေမယ့် အရောင်အမျိုးမျိုးကို ရွေးချယ်နိုင်ရန် စီစဉ်ထားခြင်း ဖြစ်သည်။
+                </p>
             </div>
-            <div>
-                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
-                <p>မျက်လုံးအရောင်က အရမ်းကြည်ပါတယ်။ အပြာနုရောင်၊ အစိမ်းနုရောင် ဒါမှမဟုတ် ပယင်းရောင် မျိုး ဖြစ်တတ်ပြီး မျက်လုံးအိမ်က တောက်ပနေပါတယ်။ဆံပင်အရောင်မှာ ရွှေဝါရောင်၊ စတော်ဘယ်ရီရွှေရောင် ဒါမှမဟုတ် ရွှေရောင်သန်းတဲ့ အညိုဖျော့လေးတွေ ရှိပါတယ်။</p>
+
+            <!-- Spring -->
+            <div class="season-card spring-border bg-cream p-8 rounded-3xl mb-12 shadow-sm fade-in">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-gradient-to-br from-yellow-200 to-orange-200 w-full h-48 rounded-2xl flex items-center justify-center mb-4">
+                            <span class="text-6xl">🌸</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-charcoal mb-2">Spring</h3>
+                        <span class="inline-block bg-yellow-400 text-white px-3 py-1 rounded-full text-sm font-semibold">Warm & Bright</span>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-charcoal/80 leading-relaxed mb-6">
+                            Spring သမားတွေရဲ့ အသားအရေက အလင်းပေါက်သလိုမျိုး ကြည်လင် နေတတ်ပါတယ်။ အောက်ခံအရောင် ရွှေရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် သန်းပါတယ်။ မျက်လုံးမှာ ပါးနီလေးတွေ သဘာဝအတိုင်း ပါနေတတ်ပါတယ်။
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">အသားအရေ</h4>
+                                <p class="text-sm text-charcoal/70">Warm Undertone ရှိပြီး ရွှေဝါရောင် အောက်ခံပါတယ်။ နေပူထဲသွားရင် အသားက ရွှေရောင်ဝင်းလာတတ်ပါတယ်။</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">မျက်လုံးနှင့် ဆံပင်</h4>
+                                <p class="text-sm text-charcoal/70">မျက်လုံးအရောင်က အရမ်းကြည်ပြီး အပြာနု၊ ပယင်းရောင် မျိုးဖြစ်တတ်ပါတယ်။ ဆံပင်မှာ ရွှေဝါရောင်၊ စတော်ဘယ်ရီရွှေရောင် လေးတွေ ရှိပါတယ်။</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm">Bright Spring</span>
+                            <span class="px-3 py-1 bg-orange-200 text-orange-800 rounded-full text-sm">Warm Spring</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">Light Spring</span>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span class="text-sm font-semibold text-charcoal">အရောင်များ:</span>
+                            <div class="color-circle" style="background: #FF7F50;"></div>
+                            <div class="color-circle" style="background: #FFD700;"></div>
+                            <div class="color-circle" style="background: #40E0D0;"></div>
+                            <div class="color-circle" style="background: #DA70D6;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summer -->
+            <div class="season-card summer-border bg-cream p-8 rounded-3xl mb-12 shadow-sm fade-in">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-gradient-to-br from-blue-200 to-purple-200 w-full h-48 rounded-2xl flex items-center justify-center mb-4">
+                            <span class="text-6xl">☁️</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-charcoal mb-2">Summer</h3>
+                        <span class="inline-block bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-semibold">Cool & Muted</span>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-charcoal/80 leading-relaxed mb-6">
+                            Summer သမားတွေဟာ Cool Undertone ရှိကြပါတယ်။ အသားထဲမှာ ပန်းရောင် ဒါမှမဟုတ် အပြာနုရောင် အောက်ခံလေးတွေ ရှိနေတတ်ပါတယ်။ Summer ရဲ့ ထူးခြားချက်က "နူးညံ့မှု" ပါ။
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">အသားအရေ</h4>
+                                <p class="text-sm text-charcoal/70">Cool Undertone ရှိပြီး ပန်းရောင် ဒါမှမဟုတ် အပြာနုရောင် အောက်ခံပါတယ်။ နေလောင်ရင် နီမြန်းလွယ်ပါတယ်။</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">မျက်လုံးနှင့် ဆံပင်</h4>
+                                <p class="text-sm text-charcoal/70">မျက်လုံးအရောင်က အရမ်းမတောက်ပါဘူး။ ခပ်မှိုင်းမှိုင်း အပြာရောင်၊ အစိမ်းရောင် မျိုးဖြစ်တတ်ပါတယ်။</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-sm">Light Summer</span>
+                            <span class="px-3 py-1 bg-indigo-200 text-indigo-800 rounded-full text-sm">Cool Summer</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm">Soft Summer</span>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span class="text-sm font-semibold text-charcoal">အရောင်များ:</span>
+                            <div class="color-circle" style="background: #E6E6FA;"></div>
+                            <div class="color-circle" style="background: #B0C4DE;"></div>
+                            <div class="color-circle" style="background: #F08080;"></div>
+                            <div class="color-circle" style="background: #9575cd;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Autumn -->
+            <div class="season-card autumn-border bg-cream p-8 rounded-3xl mb-12 shadow-sm fade-in">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-gradient-to-br from-orange-300 to-red-300 w-full h-48 rounded-2xl flex items-center justify-center mb-4">
+                            <span class="text-6xl">🍂</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-charcoal mb-2">Autumn</h3>
+                        <span class="inline-block bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold">Warm & Muted</span>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-charcoal/80 leading-relaxed mb-6">
+                            Autumn သမားတွေရဲ့ အသားအရေဟာ Warm Undertone ရှိကြပါတယ်။ အဝါရောင် ၊ ရွှေဝါရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် အောက်ခံလေးတွေ ပါနေတတ်ပါတယ်။
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">အသားအရေ</h4>
+                                <p class="text-sm text-charcoal/70">Warm Undertone ဖြစ်ပြီး အဝါရောင် သို့မဟုတ် ပျားရည်ရောင် သန်းပါတယ်။ အသားညိုရလွယ်ပါတယ်။</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">မျက်လုံးနှင့် ဆံပင်</h4>
+                                <p class="text-sm text-charcoal/70">မျက်လုံးအရောင်က အညိုရောင်သန်းတဲ့ အနက်၊ သံလွင်စိမ်းရောင် မျိုးဖြစ်တတ်ပါတယ်။ ဆံပင်မှာ ရွှေ၊ နီကြောင်ကြောင် ရောင်လေးတွေ ပါနေတတ်ပါတယ်။</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm">Soft Autumn</span>
+                            <span class="px-3 py-1 bg-orange-200 text-orange-800 rounded-full text-sm">Warm Autumn</span>
+                            <span class="px-3 py-1 bg-red-200 text-red-800 rounded-full text-sm">Deep Autumn</span>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span class="text-sm font-semibold text-charcoal">အရောင်များ:</span>
+                            <div class="color-circle" style="background: #8B4513;"></div>
+                            <div class="color-circle" style="background: #556B2F;"></div>
+                            <div class="color-circle" style="background: #D2691E;"></div>
+                            <div class="color-circle" style="background: #FF8C00;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Winter -->
+            <div class="season-card winter-border bg-cream p-8 rounded-3xl mb-12 shadow-sm fade-in">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-gradient-to-br from-blue-600 to-purple-600 w-full h-48 rounded-2xl flex items-center justify-center mb-4">
+                            <span class="text-6xl">❄️</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-charcoal mb-2">Winter</h3>
+                        <span class="inline-block bg-blue-800 text-white px-3 py-1 rounded-full text-sm font-semibold">Cool & Bright</span>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-charcoal/80 leading-relaxed mb-6">
+                            Winter သမားတွေရဲ့ အသားအရေဟာ Cool Undertones ကို သွားပါတယ်။ Winter တွေရဲ့ အဓိက ထူးခြားချက်က မျက်နှာပေါ်မှာ ရှိတဲ့ အစိတ်အပိုင်းတွေက တစ်ခုနဲ့တစ်ခု အရောင်ကွဲပြားမှု အရမ်းပြတ်သားပါတယ်။
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">အသားအရေ</h4>
+                                <p class="text-sm text-charcoal/70">Cool Undertone စစ်စစ်ဖြစ်ပြီး အသားအရောင်က အရမ်းဖြူရင်ဖြူ၊ ဒါမှမဟုတ် အရမ်းညိုပါတယ်။ သွေးကြောက အပြာ သို့မဟုတ် ခရမ်းရောင် ဖြစ်ပါတယ်။</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">မျက်လုံးနှင့် ဆံပင်</h4>
+                                <p class="text-sm text-charcoal/70">မျက်လုံးသူငယ်အိမ် အရောင်က အရမ်းတောက်ပပြီး ကြည်လင်နေတတ်ပါတယ်။ ဆံပင်ဟာ အနက်စစ်စစ် ဒါမှမဟုတ် အညိုရင့်ရင့် ဖြစ်ပါတယ်။</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-sm">Cool Winter</span>
+                            <span class="px-3 py-1 bg-purple-200 text-purple-800 rounded-full text-sm">Bright Winter</span>
+                            <span class="px-3 py-1 bg-indigo-200 text-indigo-800 rounded-full text-sm">Dark Winter</span>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <span class="text-sm font-semibold text-charcoal">အရောင်များ:</span>
+                            <div class="color-circle" style="background: #000000;"></div>
+                            <div class="color-circle" style="background: #FFFFFF; border: 1px solid #ddd;"></div>
+                            <div class="color-circle" style="background: #C71585;"></div>
+                            <div class="color-circle" style="background: #000080;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Comparison -->
+            <div class="bg-gradient-to-r from-sage/10 to-dustyrose/10 p-8 rounded-3xl fade-in">
+                <h3 class="font-display text-2xl font-semibold text-center text-charcoal mb-8">ရာသီအလိုက် ထူးခြားချက်များ</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center p-4 bg-white rounded-2xl">
+                        <div class="text-3xl mb-2">🌸</div>
+                        <h4 class="font-semibold text-charcoal mb-2">Spring</h4>
+                        <p class="text-sm text-charcoal/70">တောက်ပ၊ နုနယ်၊ ရွှေဝါသန်းသော</p>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-2xl">
+                        <div class="text-3xl mb-2">☁️</div>
+                        <h4 class="font-semibold text-charcoal mb-2">Summer</h4>
+                        <p class="text-sm text-charcoal/70">အေးမြ၊ နူးညံ့၊ ပန်းရောင်သန်းသော</p>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-2xl">
+                        <div class="text-3xl mb-2">🍂</div>
+                        <h4 class="font-semibold text-charcoal mb-2">Autumn</h4>
+                        <p class="text-sm text-charcoal/70">နွေး၊ မှိုင်း၊ ရင့်သန်သော</p>
+                    </div>
+                    <div class="text-center p-4 bg-white rounded-2xl">
+                        <div class="text-3xl mb-2">❄️</div>
+                        <h4 class="font-semibold text-charcoal mb-2">Winter</h4>
+                        <p class="text-sm text-charcoal/70">အေးမြ၊ တောက်ပ၊ ပြတ်သားသော</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <h3 class="highlight">Spring Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
-        <div class="color_palette">
-            <p><b>Bright Spring:</b> Spring ထဲမှာမှ အတောက်ပဆုံးပါ။ (Winter နဲ့ နီးစပ်ပါတယ်)။ တောက်ပတဲ့ အဝါရောင်၊ လိမ္မော်ရောင်တွေနဲ့ လှပါတယ်။</p>
-            <p><b>Warm Spring:</b> နွေးထွေးတဲ့ အရောင်တွေ ပိုကဲပါတယ်။ (Autumn နဲ့ နီးစပ်ပါတယ်)။ ရွှေဝါရောင်၊ မက်မွန်ရောင်တွေနဲ့ အလိုက်ဖက်ဆုံးပါ။</p>
-            <p><b>Light Spring:</b> အလွန်နုနယ်ပြီး တောက်ပတဲ့ အရောင်ဖျော့လေးတွေနဲ့ လိုက်ဖက်ပါတယ်။ (Summer နဲ့ နီးစပ်ပါတယ်)။</p>
-        </div>
-        <br>
-        <h3 class="highlight">Spring လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
-        <div>
-            <p><b>Warm Tones:</b> Spring တွေဟာ လိမ္မော်ရောင်၊ အဝါရောင် နဲ့ ပန်းရောင်နုနု ဝတ်လိုက်ရင် မျက်နှာက ချက်ချင်းလင်းလာပါတယ်။</p>
-            <p><b>Gold jewelry:</b> Autumn လိုပဲ ရွှေရောင် နဲ့ လိုက်ပါတယ်။ ဒါပေမဲ့ Autumn ထက်စာရင် ပိုပြီးတောက်ပတဲ့ ရွှေရောင်အဝါမျိုး နဲ့ ပိုလိုက်ပါတယ်။</p>
-            <p><b>Black is too heavy:</b> Spring သမားတွေ အနက်ရောင် ဝတ်လိုက်ရင် လူက အသားအရောင် မှိန်သွားပြီး အင်္ကျီအရောင်က အသားရောင်ကိုမှေးမှိန်သွားစေ ပါတယ်။ အနက်အစား နို့နှစ်ရောင်  ဒါမှမဟုတ် ရွှေညိုရောင်  ကို ဝတ်သင့်ပါတယ်။</p>
-        </div>
-        <br>
-        <h3 class="highlight">Spring နဲ့ Autumn ဘယ်လို ကွာသလဲ?</h3>
-        <div>
-            <p><b>Spring:</b> အလင်းပေါက်သလို ကြည်လင်တယ်၊ တောက်ပတယ်၊ အရောင်ဖျော့ပြီး လင်းတဲ့ဘက်ကို သွားပါတယ်။</p>
-            <p><b>Autumn:</b> မှိုင်းတယ်၊ နက်ရှိုင်းတယ်၊ မြေကြီးရောင် ခပ်ရင့်ရင့်ဘက်ကို သွားပါတယ်။</p>
-        </div>
-        <br>
-        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
-        <div class="color-box">
-            <div class="circle" style="background: #FF7F50;"></div>
-            <div class="circle" style="background: #FFD700;"></div>
-            <div class="circle" style="background: #40E0D0;"></div>
-            <div class="circle" style="background: #DA70D6;"></div>
-        </div>
-        <p><span class="highlight">အဓိကအချက်:</span> အနက်ရောင်ထက် နို့နှစ်ရောင် (Cream)၊ ရွှေညိုရောင်တို့နဲ့ ပိုလိုက်ပါတယ်။ တောက်ပတဲ့ အနီ၊ အဝါတွေက မျက်နှာကို လင်းစေပါတယ်။</p>
-    </div>
-
-    <div class="season-section summer-sec" id="summer">
-        <h2>2. Summer - Cool & Muted</h2>
-        <p>Summer သမားတွေဟာ Cool Undertone ရှိကြပါတယ်။ အသားထဲမှာ ပန်းရောင် ဒါမှမဟုတ် အပြာနုရောင် အောက်ခံလေးတွေ ရှိနေတတ်ပါတယ်။ လက်ကောက်ဝတ်က သွေးကြောတွေဟာ အပြာရောင် ဒါမှမဟုတ် ခရမ်းရောင် သန်းပါတယ်။ အသားဖြူသူဆိုရင် ပန်းရောင်သန်းပြီး အသားနုပါတယ်။ အသားညိုသူဆိုရင်လည်း အသားအရေက ခပ်ပြာပြာ ခပ်မှိုင်းမှိုင်း ဘက်ကို သွားပါတယ်။ Summer ရဲ့ ထူးခြားချက်က "နူးညံ့မှု" ပါ။ Winter လို ပြတ်သားတဲ့ ကွာခြားမှု (High Contrast) မရှိဘဲ အရာအားလုံးက ရောယှက်ပြီး အေးအေးလူလူ ရှိနေတတ်ပါတယ်။</p>
-        
-        <div class="detail-grid">
-            <div>
-                <h3>အသားအရေ (Skin)</h3>
-                <p>Cool Undertone ရှိပြီး ပန်းရောင် ဒါမှမဟုတ် အပြာနုရောင် အခြေခံပါတယ်။ သွေးကြောက အပြာရောင်သန်းပြီး နေလောင်ရင် နီမြန်းလွယ်ပါတယ်။</p>
-            </div>
-            <div>
-                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
-                <p>မျက်လုံးအရောင်က အရမ်းမတောက်ပါဘူး။ ခပ်မှိုင်းမှိုင်း အပြာရောင်၊ ခပ်မှိုင်းမှိုင်း အစိမ်းရောင် ဒါမှမဟုတ် အညိုဖျော့ဖျော့ မျိုး ဖြစ်တတ်ပါတယ်။ ဆံပင်အရောင်မှာ ရွှေဝါရောင် သို့မဟုတ် နီကြောင်ကြောင် လုံးဝမပါပါဘူး။ အညိုဖောင်ဖောင် မျိုး ဖြစ်တတ်ပြီး ငယ်ငယ်တုန်းက ဆံပင်အရောင်က ပိုဖျော့တတ်ပါတယ်။</p>
+    <!-- Call to Action -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="fade-in">
+                <h2 class="font-display text-4xl font-bold text-charcoal mb-6">
+                    Ready to Discover Your Season?
+                </h2>
+                <p class="font-body text-lg text-charcoal/70 mb-8 max-w-2xl mx-auto">
+                    သင့်ရဲ့ အသားအရောင်၊ undertone နဲ့ လိုက်ဖက်ဆုံးရာသီကို သိရှိပြီး သင့်အတွက် အကိုက်ညီဆုံး အရောင်များကို ရွေးချယ်နိုင်ပါပြီ။
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="test.html" class="bg-gradient-to-r from-sage to-dustyrose text-cream px-8 py-4 rounded-full font-medium text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        သင့်ရဲ့ ရာသီကို စစ်ဆေးရန်
+                    </a>
+                    <a href="Chroma Glow.html" class="border-2 border-charcoal text-charcoal px-8 py-4 rounded-full font-medium text-lg hover:bg-charcoal hover:text-cream transition-all duration-300">
+                        အရောင်များ မူဝါဒ ကြည့်ရန်
+                    </a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <h3 class="highlight">Summer Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
-        <div class="color_palette">
-            <p><b>Light Summer:</b> အလွန်ဖျော့ပြီး အေးမြတဲ့အရောင်တွေနဲ့ လိုက်ပါတယ်။ (Spring နဲ့ နီးစပ်ပါတယ်)။</p>
-            <p><b>Cool Summer:</b> အစစ်မှန်ဆုံး Summer ပါ။ အပြာရောင်မှိုင်းမှိုင်း၊ ခရမ်းရောင်ဖျော့ဖျော့ (Lavender) တွေနဲ့ လှပါတယ်။</p>
-            <p><b>Soft Summer:</b> နည်းနည်းလေး ပိုညိုပြီး မှိုင်းတဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ (Autumn နဲ့ နီးစပ်ပါတယ်)။</p>
-        </div>
-        <br>
-        <h3 class="highlight">Summer လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
-        <div>
-            <p><b>Silver is your best friend:</b> Summer သမားတွေဟာ ငွေထည် (Silver) နဲ့ အရမ်းလိုက်ဖက်ပါတယ်။ ရွှေရောင် (Gold) ဝတ်ရင် အသားအရေက အဝါရောင် တက်လာသလိုမျိုး (Sallow look) ဖြစ်တတ်ပါတယ်။</p>
-            <p><b>Pastel Colors:</b>Pastel အရောင်လေးတွေဖြစ်တဲ့ အပြာနု၊ ပန်းနု၊ ခရမ်းနုလေးတွေ ဝတ်ရင် မျက်နှာက ပိုကြည်လင်ပြီး လှပနေတတ်ပါတယ်။</p>
-            <p><b>The Black Test:</b> Summer တွေဟာ အနက်စစ်စစ် ကို ဝတ်ရင် မျက်နှာက ညိုမှိုင်းသွားပြီး လူက အရမ်း ပင်ပန်းနေသလို ထင်ရတတ်ပါတယ်။ အနက်အစား မီးခိုးရောင် ဒါမှမဟုတ် ရေပြာရင့်ရင့် ကို ဝတ်ရင် ပိုပြီး Elegant ဖြစ်ပါတယ်။</p>
-        </div>
-        <br>
-        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
-        <div class="color-box">
-            <div class="circle" style="background: #E6E6FA;"></div>
-            <div class="circle" style="background: #B0C4DE;"></div>
-            <div class="circle" style="background: #F08080;"></div>
-            <div class="circle" style="background: #9575cd;"></div>
-        </div>
-        <p><span class="highlight">အဓိကအချက်:</span> Pastel အရောင်နုလေးတွေနဲ့ အလိုက်ဖက်ဆုံးပါ။ အရမ်းတောက်လွန်းတဲ့အရောင်တွေကို ရှောင်သင့်ပါတယ်။</p>
-    </div>
-
-    <div class="season-section autumn-sec" id="autumn">
-        <h2>3. Autumn (ဆောင်းဦး) - Warm & Muted</h2>
-        <p>Autumn သမားတွေရဲ့ အသားအရေဟာ Warm Undertone ရှိကြပါတယ်။အသားအရေထဲမှာ အဝါရောင် ၊ ရွှေရောင် ဒါမှမဟုတ် မက်မွန်သီးရောင် အောက်ခံလေးတွေ ပါနေတတ်ပါတယ်။လက်ကောက်ဝတ်က သွေးကြောတွေကို ကြည့်ရင် အစိမ်းရောင် သန်းနေတာကို တွေ့ရပါလိမ့်မယ်။ ဖြူတဲ့သူဆိုရင်လည်း နို့နှစ်ရောင် ဒါမှမဟုတ် ဆန်ခါရောင် ဘက်သွားပြီး၊ ညိုတဲ့သူဆိုရင် ကြေးနီရောင် ဒါမှမဟုတ် ပျားရည်ရောင် ဘက်ကို သွားပါတယ်။ Autumn သမားတွေရဲ့ ထူးခြားချက်က အရောင်တွေဟာ တစ်ခုနဲ့တစ်ခု ရောယှက် နေပြီး သိပ်မပြတ်သားပါဘူး</p>
-        
-        <div class="detail-grid">
-            <div>
-                <h3>အသားအရေ (Skin)</h3>
-                <p>Warm Undertone ဖြစ်ပြီး အဝါရောင် သို့မဟုတ် ပျားရည်ရောင် သန်းပါတယ်။ သွေးကြောက အစိမ်းရောင်ဖြစ်ပြီး အသားညိုရလွယ်ပါတယ်။</p>
+    <!-- Footer -->
+    <footer class="bg-charcoal text-cream py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <div class="w-10 h-10 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center">
+                    <span class="text-cream font-display font-bold text-lg">CG</span>
+                </div>
+                <h3 class="font-display text-2xl font-semibold">Chroma Glow</h3>
             </div>
-            <div>
-                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
-                <p>မျက်လုံးအရောင်က အရမ်းတောက်မနေဘဲ အနက်ရောင်ဆိုရင်တောင် အညိုရောင်သန်းတဲ့ အနက်၊ သံလွင်စိမ်းရောင် ဒါမှမဟုတ် ပယင်းရောင် မျိုး ဖြစ်တတ်ပါတယ်။ ဆံပင်မှာ သဘာဝအတိုင်း ရွှေရောင်၊ နီကြောင်ကြောင် ဒါမှမဟုတ် ကြေးနီရောင် လေးတွေ ပါနေတတ်ပါတယ်။ အနက်ရောင်ဆိုရင်လည်း အညိုနွေးနွေးဘက် သန်းပါတယ်။</p>
-            </div>
+            <p class="text-cream/70 font-body">
+                © 2025 Chroma Glow. Crafting personalized color experiences with elegance and precision.
+            </p>
         </div>
+    </footer>
 
-        <h3 class="highlight">Autumn Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
-        <div class="color_palette">
-            <p><b>Soft Autumn:</b> အသားအရောင်က အရမ်းမနွေးသလို၊ အရမ်းလည်း မအေးပါဘူး (Summer နဲ့ နီးစပ်ပါတယ်)။ အရောင်ဖျော့ဖျော့ မှိုင်းမှိုင်းလေးတွေနဲ့ လိုက်ဖက်ပါတယ်။</p>
-            <p><b>Warm Autumn:</b> ဒါကတော့ အစစ်မှန်ဆုံး Autumn ပါ။ ရွှေရောင်၊ လိမ္မော်ရောင်၊ အဝါရင့်ရင့် တွေနဲ့ အရမ်းကြည့်ကောင်းပါတယ်။</p>
-            <p><b>Dark Autumn:</b> နက်မှောင်ပြီး နွေးထွေးတဲ့ အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ (Winter နဲ့ နီးစပ်ပါတယ်)။ ချောကလက်ရောင်၊ သစ်တောစိမ်းရောင် တွေနဲ့ လှပါတယ်။</p>
-        </div>
-        <br>
-        <h3 class="highlight">Autumn လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
-        <div>
-            <p><b>Gold vs Silver:</b> Autumn သမားတွေဟာ ရွှေထည် ဝတ်လိုက်ရင် မျက်နှာက ပိုဝင်းပပြီး ကျန်းမာတဲ့ပုံပေါက်ပါတယ်။ ငွေထည် ဝတ်ရင်တော့ မျက်နှာက ဖြူဖျော့ပြီး မွဲခြောက်သွားတတ်ပါတယ်။</p>
-            <p><b>Earth Tones:</b>မြေကြီးရောင်တွေဖြစ်တဲ့ အညိုရောင်၊ လိမ္မော်ရင့်ရင့်၊ သံလွင်စိမ်းရောင်တွေကို ဝတ်ကြည့်ပါ။ အဲ့ဒီအရောင်တွေနဲ့ လိုက်ဖက်နေရင် Autumn သေချာပါတယ်။</p>
-            <p><b>The Black Test:</b> Autumn သမားတွေဟာ အနက်စစ်စစ် ဝတ်ရင် လူက အရောင်မှိန်သွားပြီး အိုစာသွားသလို ခံစားရတတ်ပါတယ်။ အနက်အစား အညိုရင့်ရင့် ကို ဝတ်ရင် ပိုလှပါတယ်။</p>
-        </div>
-        <br>
-        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
-        <div class="color-box">
-            <div class="circle" style="background: #8B4513;"></div>
-            <div class="circle" style="background: #556B2F;"></div>
-            <div class="circle" style="background: #D2691E;"></div>
-            <div class="circle" style="background: #FF8C00;"></div>
-        </div>
-        <p><span class="highlight">အဓိကအချက်:</span> မုန်ညင်းဝါ၊ သစ်တောစိမ်းနဲ့ ချောကလက်ရောင်တွေက အသားကို ဝင်းစေပါတယ်။ အပြာရောင်အေးအေးတွေကို ရှောင်ရပါမယ်။</p>
-    </div>
+    <script>
+        // Initialize animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            setupIntersectionObserver();
+            initializeAnimations();
+            setupMobileMenu();
+        });
 
-    <div class="season-section winter-sec" id="winter">
-        <h2>4. Winter (ဆောင်းရာသီ) - Cool & Bright</h2>
-        <p>Winter သမားတွေရဲ့ အသားအရေဟာ Cool Undertones ကို သွားပါတယ်။လက်ကောက်ဝတ်က သွေးကြောတွေကို ကြည့်ရင် အပြာရောင် ဒါမှမဟုတ် ခရမ်းရောင် သန်းနေတတ်ပါတယ်။နေပူထဲသွားရင် အသားက ညိုမသွားဘဲ ပန်းရောင်သန်းပြီး နီမြန်းလာတတ်ပါတယ်။ အသားအရောင်က Winter ဆိုတာနဲ့ ဖြူရမယ်လို့ မဆိုလိုပါဘူး။စက္ကူလို ဖြူဆွတ်တာ ဒါမှမဟုတ် ပန်းရောင်သန်းတဲ့ အဖြူမျိုး လည်းရှိသလို သံလွင်ရောင် ခပ်မှိုင်းမှိုင်း ဒါမှမဟုတ် အပြာဘက်သန်းတဲ့ အသားညိုရောင် မျိုးလည်း ဖြစ်တတ်ပါတယ်။Winter တွေရြ့ အဓိက ထူးခြားချက်က မျက်နှာပေါ်မှာ ရှိတဲ့ အစိတ်အပိုင်းတွေက တစ်ခုနဲ့တစ်ခု အရောင်ကွဲပြားမှု အရမ်းပြတ်သားပါတယ်။</p>
-        
-        <div class="detail-grid">
-            <div>
-                <h3>အသားအရေ (Skin)</h3>
-                <p>Cool Undertone စစ်စစ်ဖြစ်ပြီး အသားအရောင်က အရမ်းဖြူရင်ဖြူ၊ ဒါမှမဟုတ် အရမ်းညိုပါတယ်။ သွေးကြောက အပြာ သို့မဟုတ် ခရမ်းရောင် ဖြစ်ပါတယ်။</p>
-            </div>
-            <div>
-                <h3>မျက်လုံးနှင့် ဆံပင်</h3>
-                <p>မျက်လုံးသူငယ်အိမ် အရောင်က အရမ်းတောက်ပပြီး ကြည်လင်နေတတ်ပါတယ်။ မျက်လုံးအိမ် အဖြူသားကလည်း အဝါဘက်မသန်းဘဲ အပြာရောင်သန်းတဲ့အထိ ဖြူစင်နေတတ်လို့ သူငယ်အိမ်အရောင်နဲ့ အဖြူသားက အရမ်းကို သိသာထင်ရှားပါတယ်။ ဆံပင်အရောင်ဟာ အနက်စစ်စစ် ဒါမှမဟုတ် အညိုရင့်ရင့်  တွေ ဖြစ်ပါတယ်။ ရွှေဝါရောင် ဒါမှမဟုတ် နီကြောင်ကြောင် အရောင်တွေ လုံးဝမပါတတ်ပါဘူး။</p>
-            </div>
-        </div>
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        <h3 class="highlight">Winter Palette ရဲ့ အမျိုးအစား (၃) မျိုး</h3>
-        <div class="color_palette">
-            <p><b>Cool Winter</b> အစစ်မှန်ဆုံး winter Palette ပါ။အလွန်အေးမြပြီး ကြည်လင်တဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။ </p>
-            <p><b>Bright Winter (Clear Winter):</b> Winter နဲ့ Spring ကြား ဆုံမှတ်ဖြစ်လို့ တောက်ပတဲ့အရောင်တွေကို ပိုဆောင်ပါတယ်။မျက်လုံးအရောင် တောက်ပပြီး ကြည်လင်နေတတ်ပါတယ်။</p>
-            <p><b>Dark Winter (Deep Winter):</b> Winter နဲ့ Autumn ကြား ဆုံမှတ်ဖြစ်လို့ နက်မှောင်တဲ့အရောင်တွေနဲ့ လိုက်ဖက်ပါတယ်။အသားညိုတာ ဒါမှမဟုတ် ဆံပင်နဲ့ မျက်လုံးအရောင် အရမ်းနက်မှောင်တာမျိုးပါ။</p>
-        </div>
-        <br>
-        <h3 class="highlight">Winter လား၊ မဟုတ်ဘူးလား ဘယ်လို သိနိုင်မလဲ?</h3>
-        <div>
-            <p><b>Black & White Test:</b> တခြား Seasonal tone တွေ (ဥပမာ- Autumn သို့မဟုတ် Spring) က အနက်စစ်စစ်ကို ဝတ်ရင် မျက်နှာက အရောင်မှိန်သွားတတ်ပါတယ်။ ဒါပေမဲ့ Winter သမားတွေကတော့ "အနက်စစ်စစ်" နဲ့ "အဖြူစင်စစ်" ကို ဝတ်လိုက်ရင် မျက်နှာက ပိုပြီး လင်းလက်တောက်ပလာပါတယ်။</p>
-            <p><b>Silver vs Gold:</b>ရွှေထည် ထက် ငွေထည် ဝတ်လိုက်တဲ့အခါ အသားအရေက ပိုကြည်သွားပြီး အိုမင်းမောပန်းတဲ့ပုံ မပေါက်တော့ဘူးဆိုရင် ဒါဟာ Winter ပါပဲ။</p>
-            <p><b>Lipstick Test:</b> လိမ္မော်ရောင်သန်းတဲ့ နှုတ်ခမ်းနီ ထက် ခရမ်းရောင် ဒါမှမဟုတ် အပြာရောင်သန်းတဲ့ အနီရဲရဲ နဲ့ ပိုလှနေရင် ဒါဟာ Winter သေချာသလောက် ရှိပါတယ်။</p>
-        </div>
-        <br>
-        <h3>အလိုက်ဖက်ဆုံးအရောင်များ</h3>
-        <div class="color-box">
-            <div class="circle" style="background: #000000;"></div>
-            <div class="circle" style="background: #FFFFFF;"></div>
-            <div class="circle" style="background: #C71585;"></div>
-            <div class="circle" style="background: #000080;"></div>
-        </div>
-        <p><span class="highlight">အဓိကအချက်:</span> အနက်စစ်စစ်နဲ့ အဖြူစင်စစ်ကို ဝတ်လို့ရတဲ့ တစ်ခုတည်းသော ရာသီပါ။ အရောင်ရင့်ရင့် တောက်တောက်တွေနဲ့ လှပါတယ်။ လိမ္မော်ရောင်၊ အဝါရောင် နဲ့ မြေကြီးရောင် တွေကို ဝတ်ရင် မျက်နှာညှိုးသွားတတ်လို့ သတိထားရပါမယ်။</p>
-    </div>
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
 
-</div>
+        function initializeAnimations() {
+            // Animate hero elements
+            anime({
+                targets: '.aurora-bg h1',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 1000,
+                easing: 'easeOutQuart',
+                delay: 300
+            });
 
-</div>
+            // Animate season cards
+            anime({
+                targets: '.season-card',
+                opacity: [0, 1],
+                translateX: [-30, 0],
+                duration: 800,
+                easing: 'easeOutQuart',
+                delay: anime.stagger(200, {start: 600})
+            });
 
+            // Animate undertone cards
+            anime({
+                targets: '.undertone-card',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 600,
+                easing: 'easeOutQuart',
+                delay: anime.stagger(150, {start: 400})
+            });
+        }
+
+        function setupMobileMenu() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    mobileMenu.classList.toggle('hidden');
+                    document.body.classList.toggle('menu-open');
+                });
+
+                // Close menu when clicking on links
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuBtn.classList.remove('active');
+                        mobileMenu.classList.add('hidden');
+                        document.body.classList.remove('menu-open');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                        menuBtn.classList.remove('active');
+                        mobileMenu.classList.add('hidden');
+                        document.body.classList.remove('menu-open');
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>

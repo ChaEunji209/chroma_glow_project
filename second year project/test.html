@@ -2,10 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Chroma Glow test edition</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chroma Glow - Color Analysis</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <link rel="stylesheet" href="teststyle.css">
-
-<!-- Boxicons CSS -->
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    charcoal: '#2C2C2C',
+                    cream: '#F8F6F0',
+                    sage: '#A8B5A0',
+                    dustyrose: '#D4A5A5'
+                },
+                fontFamily: {
+                    'display': ['Playfair Display', 'serif'],
+                    'body': ['Inter', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <!-- EmailJS SDK (v4) -->
@@ -13,177 +33,482 @@
 <script>
   emailjs.init("u1djz-ybNOWN7Mi21");
 </script>
+
+<style>
+    .aurora-bg {
+        background: linear-gradient(45deg, #F8F6F0, #A8B5A0, #F8F6F0, #D4A5A5);
+        background-size: 400% 400%;
+        animation: aurora 15s ease infinite;
+    }
+    
+    @keyframes aurora {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(248, 246, 240, 0.9);
+    }
+    
+    .card-hover {
+        transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(44, 44, 44, 0.15);
+    }
+    
+    .card-selected {
+        border: 3px solid #A8B5A0;
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(168, 181, 160, 0.3);
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    /* Hamburger Menu Animations */
+    #mobile-menu-btn.active .hamburger-line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    #mobile-menu-btn.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    
+    #mobile-menu-btn.active .hamburger-line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    #mobile-menu {
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.6s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Color swatch styles */
+    .swatch {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 5px;
+        border: 2px solid white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+    
+    .swatch:hover {
+        transform: scale(1.2);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #F8F6F0;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #A8B5A0;
+        border-radius: 4px;
+    }
+    
+    /* Number button styles for outfit checker */
+    .number-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #A8B5A0;
+        background: white;
+        color: #2C2C2C;
+        font-weight: 600;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+    
+    .number-btn:hover, .number-btn.selected {
+        background: linear-gradient(135deg, #A8B5A0, #D4A5A5);
+        color: white;
+        border-color: transparent;
+        transform: scale(1.1);
+    }
+    
+    /* Score circle animation */
+    .score-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0 auto 1rem;
+        transition: all 0.5s ease;
+    }
+    
+    .score-excellent { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+    .score-good { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+    .score-fair { background: linear-gradient(135deg, #f97316, #ea580c); color: white; }
+    .score-poor { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+</style>
 </head>
-<body>
-<header class="home">
-  <a href="Chroma Glow.html"><i class="fa-regular fa-house"></i></a>
-</header>
-<script src="https://kit.fontawesome.com/dc103e9e3b.js" crossorigin="anonymous"></script>
+<body class="bg-cream font-body text-charcoal antialiased">
 
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-sage/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="Chroma Glow.html" class="w-10 h-10 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center text-cream font-bold text-lg hover:shadow-lg transition-all">
+                        <img src="img/logo.png" alt="logo" class="w-6 h-6">
+                    </a>
+                    <h1 class="font-display text-xl sm:text-2xl font-semibold text-charcoal">Chroma Glow</h1>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="Chroma Glow.html" class="font-medium text-charcoal hover:text-sage transition-colors">Home</a>
+                    <a href="intro.html" class="font-medium text-charcoal hover:text-sage transition-colors">About</a>
+                    <a href="test.html" class="font-medium text-sage">Color Test</a>
+                </div>
 
+                <!-- Hamburger Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
+                    <span class="hamburger-line w-6 h-0.5 bg-charcoal transition-all duration-300 origin-center"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-charcoal transition-all duration-300 origin-center"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-charcoal transition-all duration-300 origin-center"></span>
+                </button>
+            </div>
 
-
-<main id="app">
-  <h1>Find the best clothing colours for you</h1>
-
-  <!-- STEP 1 – surface -->
-  <section id="step1" class="step">
-    <h2>1. Choose your surface tone</h2>
-    <div class="grid" id="surfaceGrid"></div>
-  </section>
-
-
-  <!-- STEP 2 – sub-tone -->
-  <section id="step2" class="step hidden">
-    <h2>2. Pick the closest sub-tone</h2>
-    <div class="nav-buttons">
-      <button class="prev" onclick="goStep(1)"> <i class='bx bx-undo'></i></button>
-  </div>
-    <div class="grid" id="subGrid"></div>
-  </section>
-
-
-  <!-- STEP 3 – undertone -->
-  <section id="step3" class="step hidden">
-    <h2>3. Pick your undertone</h2>
-    <div class="nav-buttons">
-      <button class="prev" onclick="goStep(2)"><i class='bx bx-undo'></i></button>
-  </div>
-    <div class="grid" id="undertoneGrid"></div>
-  </section>
-
-
-  <!-- STEP 4 – hair -->
-  <section id="step4" class="step hidden">
-    <h2>4. Choose your current hair colour</h2>
-    <div class="nav-buttons">
-      <button class="prev" onclick="goStep(3)"><i class='bx bx-undo'></i></button>
-  </div>
-    <div class="grid" id="hairGrid"></div>
-  </section>
-
-  <!-- STEP 5 – eyes -->
-  <section id="step5" class="step hidden">
-    <h2>5. Choose your eye colour</h2>
-    <div class="nav-buttons">
-      <button class="prev" onclick="goStep(4)"><i class='bx bx-undo'></i></button>
-  </div>
-    <div class="grid" id="eyeGrid"></div>
-    <button onclick="showConfirmationPopup()" class="palette">Show my palette</button>
-  </section>
-
-  <!-- RESULT -->
-<section id="result" class="step hidden">
-
-  <div class="nav-buttons">
-    <button class="prev" onclick="goStep(5)">
-      <i class='bx bx-undo'></i>
-    </button>
-  </div>
-  
-  <div class="answer">
-    <div class="result-header">
-    <h1 id="seasonalNameDisplay">Your Personal Palette</h1>
-    <p>Discover the colors that make you glow</p>
-  </div>
-    <div class="palette-section">
-    <div class="palette-card">
-      <h3><i class='bx bxs-check-circle' style="color: #27ae60;"></i> Best to Wear</h3>
-      <div id="bestSwatches" class="swatch-grid"></div>
-    </div>
-    
-    <div class="palette-card">
-      <h3><i class='bx bxs-x-circle' style="color: #e74c3c;"></i> Colors to Avoid</h3>
-      <div id="avoidSwatches" class="swatch-grid"></div>
-    </div>
-  </div>
-  </div>  
-  
-  <!-- Make-up text suggestion -->
-  <div id="makeupBox" class="hidden"></div>
-
-  <!-- E-mail form -->
-  <div id="emailBox" style="margin-top:1rem">
-    <h3>Save Your Results</h3>
-    <p>Get your detailed analysis sent to your inbox</p>
-    <label>
-      <input type="text" id="userName" placeholder="Your name">
-      <input type="email" id="userEmail" placeholder="your@email.com">
-      <button onclick="sendViaEmailJS()">
-        <i class='bx bx-send'></i>
-      </button>
-    </label>
-    <p id="emailStatus" style="color:green"></p>
-  </div>
-  
-  <!-- Enhanced restart button -->
-  <div class="restart-analysis">
-    <button onclick="resetQuiz()" class="restart-btn">
-      <i class='bx bx-refresh'></i>
-      Restart Analysis
-    </button>
-    <button onclick="sharePassport()" class="restart-btn">📤 Share Results
-    </button>
-  </div>
-
-  <div class="outfit-checker-section">
-      <button onclick="showOutfitChecker()" class="outfit-checker-btn">
-          <i class='bx bx-palette'></i> Check Your Current Outfit Color Match
-      </button>
-  </div>
-</section>
-<!-- Add this after the result section -->
-<section id="outfitChecker" class="step hidden">
-    <div class="nav-buttons">
-        <button class="prev" onclick="goStep(6)">
-            <i class='bx bx-undo'></i> Back to Results
-        </button>
-    </div>
-    
-    <h2>Real-time Outfit Color Matcher</h2>
-    
-    <!-- Step 1: Number of items -->
-    <div id="outfitStep1" class="outfit-step">
-        <h3>How many clothing items are you wearing?</h3>
-        <div class="number-selector">
-            <div class="number-buttons">
-                <button onclick="selectItemCount(1)" class="number-btn">1</button>
-                <button onclick="selectItemCount(2)" class="number-btn">2</button>
-                <button onclick="selectItemCount(3)" class="number-btn">3</button>
-                <button onclick="selectItemCount(4)" class="number-btn">4</button>
-                <button onclick="selectItemCount(5)" class="number-btn">5</button>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-sage/20 pt-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="Chroma Glow.html" class="font-medium text-charcoal hover:text-sage transition-colors py-2 px-4 rounded-lg hover:bg-sage/10">Home</a>
+                    <a href="about.html" class="font-medium text-charcoal hover:text-sage transition-colors py-2 px-4 rounded-lg hover:bg-sage/10">About</a>
+                    <a href="test.html" class="font-medium text-sage py-2 px-4 rounded-lg bg-sage/10">Color Test</a>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Step 2: Color pickers -->
-    <div id="outfitStep2" class="outfit-step hidden">
-        <h3>Select colors for each clothing item:</h3>
-        <div id="colorPickersContainer" class="color-pickers-grid"></div>
-        <button onclick="analyzeOutfit()" class="analyze-btn">
-            <i class='bx bx-analyse'></i> Submit & Analyze
-        </button>
-    </div>
-    
-    <!-- Step 3: Results -->
-    <div id="outfitStep3" class="outfit-step hidden">
-        <div class="outfit-score-container">
-            <div class="score-circle">
-                <span id="scorePercentage">0%</span>
-            </div>
-            <h3 id="scoreTitle">Analyzing...</h3>
-            <p id="scoreDescription"></p>
-            <div id="outfitBreakdown" class="outfit-breakdown"></div>
-        </div>
-        <button onclick="resetOutfitChecker()" class="restart-btn">
-            <i class='bx bx-refresh'></i> Check Another Outfit
-        </button>
-    </div>
-</section>
-</main>
+    </nav>
 
-<script  src="test_function.js"></script>
-<script src="nct.js"></script>
-<script src="main_function.js"></script>
+    <!-- Main Content -->
+    <main id="app" class="pt-20 min-h-screen">
+        
+        <!-- Hero Section -->
+        <section class="relative py-12 sm:py-20 aurora-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                <h1 class="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-charcoal mb-4 leading-tight">
+                    Find Your Perfect <br>
+                    <span class="bg-gradient-to-r from-sage to-dustyrose bg-clip-text text-transparent">Color Palette</span>
+                </h1>
+                <p class="font-body text-lg sm:text-xl text-charcoal/80 max-w-2xl mx-auto px-4">
+                    Discover the colors that make you glow through our personalized analysis
+                </p>
+            </div>
+        </section>
+
+        <!-- STEP 1 – Surface -->
+        <section id="step1" class="step py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12">
+                <span class="inline-block px-4 py-1 bg-sage/20 text-sage rounded-full text-sm font-semibold mb-4">Step 1 of 5</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-charcoal mb-4">Choose Your Surface Tone</h2>
+                <p class="text-charcoal/70 max-w-xl mx-auto">Select the option that best matches your natural skin tone</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6" id="surfaceGrid"></div>
+        </section>
+
+        <!-- STEP 2 – Sub-tone -->
+        <section id="step2" class="step hidden py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto fade-in">
+            <div class="mb-6">
+                <button class="prev flex items-center gap-2 text-charcoal/70 hover:text-sage transition-colors mb-4" onclick="goStep(1)">
+                    <i class='bx bx-undo text-xl'></i>
+                    <span>Back</span>
+                </button>
+            </div>
+            <div class="text-center mb-8 sm:mb-12">
+                <span class="inline-block px-4 py-1 bg-sage/20 text-sage rounded-full text-sm font-semibold mb-4">Step 2 of 5</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-charcoal mb-4">Select Your Sub-tone</h2>
+                <p class="text-charcoal/70 max-w-xl mx-auto">Refine your skin tone classification</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6" id="subGrid"></div>
+        </section>
+
+        <!-- STEP 3 – Undertone -->
+        <section id="step3" class="step hidden py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto fade-in">
+            <div class="mb-6">
+                <button class="prev flex items-center gap-2 text-charcoal/70 hover:text-sage transition-colors mb-4" onclick="goStep(2)">
+                    <i class='bx bx-undo text-xl'></i>
+                    <span>Back</span>
+                </button>
+            </div>
+            <div class="text-center mb-8 sm:mb-12">
+                <span class="inline-block px-4 py-1 bg-sage/20 text-sage rounded-full text-sm font-semibold mb-4">Step 3 of 5</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-charcoal mb-4">What's Your Undertone?</h2>
+                <p class="text-charcoal/70 max-w-xl mx-auto">Choose the undertone that best describes your skin</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto" id="undertoneGrid"></div>
+        </section>
+
+        <!-- STEP 4 – Hair -->
+        <section id="step4" class="step hidden py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto fade-in">
+            <div class="mb-6">
+                <button class="prev flex items-center gap-2 text-charcoal/70 hover:text-sage transition-colors mb-4" onclick="goStep(3)">
+                    <i class='bx bx-undo text-xl'></i>
+                    <span>Back</span>
+                </button>
+            </div>
+            <div class="text-center mb-8 sm:mb-12">
+                <span class="inline-block px-4 py-1 bg-sage/20 text-sage rounded-full text-sm font-semibold mb-4">Step 4 of 5</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-charcoal mb-4">Current Hair Color</h2>
+                <p class="text-charcoal/70 max-w-xl mx-auto">Select your natural or current hair color</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6" id="hairGrid"></div>
+        </section>
+
+        <!-- STEP 5 – Eyes -->
+        <section id="step5" class="step hidden py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto fade-in">
+            <div class="mb-6">
+                <button class="prev flex items-center gap-2 text-charcoal/70 hover:text-sage transition-colors mb-4" onclick="goStep(4)">
+                    <i class='bx bx-undo text-xl'></i>
+                    <span>Back</span>
+                </button>
+            </div>
+            <div class="text-center mb-8 sm:mb-12">
+                <span class="inline-block px-4 py-1 bg-sage/20 text-sage rounded-full text-sm font-semibold mb-4">Step 5 of 5</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-charcoal mb-4">Eye Color</h2>
+                <p class="text-charcoal/70 max-w-xl mx-auto">Choose your natural eye color</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto" id="eyeGrid"></div>
+            
+            <div class="text-center mt-12">
+                <button onclick="showConfirmationPopup()" class="bg-gradient-to-r from-sage to-dustyrose text-cream px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto">
+                    <span>Show My Palette</span>
+                    <i class='bx bx-right-arrow-alt'></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- RESULT SECTION -->
+        <section id="result" class="step hidden py-12 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto fade-in">
+            <!-- Back Button -->
+            <div class="mb-6 max-w-6xl mx-auto">
+                <button class="prev flex items-center gap-2 text-charcoal/70 hover:text-sage transition-colors" onclick="goStep(5)">
+                    <i class='bx bx-undo text-xl'></i>
+                    <span>Back to Eye Color</span>
+                </button>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <!-- Seasonal Header -->
+                <div class="seasonal-header text-center mb-12">
+                    <h1 id="seasonalNameDisplay" class="font-display text-3xl sm:text-5xl font-bold text-charcoal mb-4">Your Personal Palette</h1>
+                    <p class="text-charcoal/70 text-lg sm:text-xl">Discover the colors that make you glow</p>
+                </div>
+
+                <!-- Color Palettes Grid -->
+                <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-12">
+                    <!-- Best Colors -->
+                    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-sage/20">
+                        <h3 class="flex items-center gap-2 text-xl sm:text-2xl font-bold text-charcoal mb-6">
+                            <i class='bx bxs-check-circle text-green-500 text-2xl'></i>
+                            Best to Wear
+                        </h3>
+                        <div id="bestSwatches" class="flex flex-wrap gap-2 justify-center sm:justify-start"></div>
+                    </div>
+
+                    <!-- Colors to Avoid -->
+                    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-sage/20">
+                        <h3 class="flex items-center gap-2 text-xl sm:text-2xl font-bold text-charcoal mb-6">
+                            <i class='bx bxs-x-circle text-red-500 text-2xl'></i>
+                            Colors to Avoid
+                        </h3>
+                        <div id="avoidSwatches" class="flex flex-wrap gap-2 justify-center sm:justify-start"></div>
+                    </div>
+                </div>
+
+                <!-- Makeup Suggestions -->
+                <div id="makeupBox" class="hidden bg-gradient-to-r from-sage/10 to-dustyrose/10 p-6 sm:p-8 rounded-3xl mb-8">
+                    <h3 class="font-display text-2xl font-bold text-charcoal mb-6">Make-up & Style Suggestions</h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm sm:text-base" id="makeupContent"></div>
+                </div>
+
+                <!-- Email Form -->
+                <div id="emailBox" class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-sage/20 mb-8">
+                    <h3 class="font-display text-xl sm:text-2xl font-bold text-charcoal mb-2">Save Your Results</h3>
+                    <p class="text-charcoal/70 mb-6">Get your detailed analysis sent to your inbox</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 max-w-2xl">
+                        <input type="text" id="userName" placeholder="Your name" 
+                            class="flex-1 px-4 py-3 rounded-xl border border-sage/30 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 bg-cream">
+                        <input type="email" id="userEmail" placeholder="your@email.com" 
+                            class="flex-1 px-4 py-3 rounded-xl border border-sage/30 focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20 bg-cream">
+                        <button onclick="sendViaEmailJS()" 
+                            class="bg-gradient-to-r from-sage to-dustyrose text-cream px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+                            <i class='bx bx-send'></i>
+                            <span>Send</span>
+                        </button>
+                    </div>
+                    <p id="emailStatus" class="mt-4 text-green-600 font-medium"></p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button onclick="resetQuiz()" class="flex items-center gap-2 px-6 py-3 border-2 border-charcoal text-charcoal rounded-full font-medium hover:bg-charcoal hover:text-cream transition-all">
+                        <i class='bx bx-refresh'></i>
+                        <span>Restart Analysis</span>
+                    </button>
+                    
+                    <button onclick="sharePassport()" class="flex items-center gap-2 px-6 py-3 border-2 border-sage text-sage rounded-full font-medium hover:bg-sage hover:text-cream transition-all">
+                        <i class='bx bx-share-alt'></i>
+                        <span>Share Results</span>
+                    </button>
+                </div>
+
+                <!-- Outfit Checker CTA -->
+                <div class="mt-12 text-center">
+                    <button onclick="showOutfitChecker()" class="bg-charcoal text-cream px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105 flex items-center gap-2 mx-auto">
+                        <i class='bx bx-palette text-xl'></i>
+                        <span>Check Outfit Color Match</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUTFIT CHECKER SECTION -->
+        <section id="outfitChecker" class="step hidden py-12 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto fade-in">
+            <div class="mb-6">
+                <button class="prev flex items-center gap-2 text-charcoal/70 hover:text-sage transition-colors mb-4" onclick="goStep(6)">
+                    <i class='bx bx-undo text-xl'></i>
+                    <span>Back to Results</span>
+                </button>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-sage/20">
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-center text-charcoal mb-8">Real-time Outfit Color Matcher</h2>
+
+                <!-- Step 1: Number of items -->
+                <div id="outfitStep1" class="outfit-step">
+                    <h3 class="text-center text-lg sm:text-xl mb-8">How many clothing items are you wearing?</h3>
+                    <div class="flex justify-center gap-4 flex-wrap">
+                        <button onclick="selectItemCount(1)" class="number-btn">1</button>
+                        <button onclick="selectItemCount(2)" class="number-btn">2</button>
+                        <button onclick="selectItemCount(3)" class="number-btn">3</button>
+                        <button onclick="selectItemCount(4)" class="number-btn">4</button>
+                        <button onclick="selectItemCount(5)" class="number-btn">5</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Color pickers -->
+                <div id="outfitStep2" class="outfit-step hidden">
+                    <h3 class="text-center text-lg sm:text-xl mb-6">Select colors for each clothing item:</h3>
+                    <div id="colorPickersContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"></div>
+                    <button onclick="analyzeOutfit()" class="w-full bg-gradient-to-r from-sage to-dustyrose text-cream py-4 rounded-full font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class='bx bx-analyse'></i>
+                        <span>Submit & Analyze</span>
+                    </button>
+                </div>
+
+                <!-- Step 3: Results -->
+                <div id="outfitStep3" class="outfit-step hidden">
+                    <div class="text-center mb-8">
+                        <div class="score-circle" id="scoreDisplay">
+                            <span id="scorePercentage">0%</span>
+                        </div>
+                        <h3 id="scoreTitle" class="font-display text-2xl font-bold mb-2">Analyzing...</h3>
+                        <p id="scoreDescription" class="text-charcoal/70"></p>
+                    </div>
+                    
+                    <div id="outfitBreakdown" class="space-y-4 mb-8"></div>
+                    
+                    <button onclick="resetOutfitChecker()" class="w-full bg-charcoal text-cream py-4 rounded-full font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class='bx bx-refresh'></i>
+                        <span>Check Another Outfit</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-cream py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <div class="w-10 h-10 bg-gradient-to-br from-sage to-dustyrose rounded-full flex items-center justify-center font-bold"><img src="img/logo.png" alt="logo"></div>
+                <h3 class="font-display text-2xl font-semibold">Chroma Glow</h3>
+            </div>
+            <p class="text-cream/70">© 2025 Chroma Glow. Crafting personalized color experiences.</p>
+        </div>
+    </footer>
+
+    <script src="test_function.js"></script>
+    <script src="nct.js"></script>
+    <script src="main_function.js"></script>
+    
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    mobileMenu.classList.toggle('hidden');
+                    document.body.classList.toggle('menu-open');
+                });
+
+                // Close menu when clicking on links
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuBtn.classList.remove('active');
+                        mobileMenu.classList.add('hidden');
+                        document.body.classList.remove('menu-open');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                        menuBtn.classList.remove('active');
+                        mobileMenu.classList.add('hidden');
+                        document.body.classList.remove('menu-open');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
